@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mire — Privacy Policy · Awry Labs</title>
+  <meta name="description" content="Mire privacy policy. Zero data collection. Everything runs on your device." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #1a1a1e;
+      --surface:    #24242a;
+      --border:     #2e2e38;
+      --accent:     #6e8cad;
+      --text:       #e2e2e8;
+      --muted:      #888898;
+      --radius:     14px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Nav ── */
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 2rem 2rem 0;
+      max-width: 740px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .wordmark {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .wordmark span { color: var(--accent); }
+
+    .nav-sep { color: var(--border); font-size: 1.2rem; }
+
+    .nav-crumb {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .nav-crumb:hover { color: var(--text); }
+
+    /* ── Content ── */
+    main {
+      flex: 1;
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 3.5rem 2rem 4rem;
+      width: 100%;
+    }
+
+    .page-header {
+      margin-bottom: 3rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .page-header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-header p {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    /* tl;dr callout */
+    .tldr {
+      background: rgba(110, 140, 173, 0.08);
+      border: 1px solid rgba(110, 140, 173, 0.22);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .tldr-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .tldr p {
+      font-size: 0.95rem;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* policy sections */
+    .policy-section {
+      margin-bottom: 2.25rem;
+    }
+
+    .policy-section h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.6rem;
+      color: var(--text);
+    }
+
+    .policy-section p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 0.6rem;
+    }
+
+    .policy-section p:last-child { margin-bottom: 0; }
+
+    .policy-section a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .policy-section a:hover { text-decoration: underline; }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 2rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+    footer .sep { margin: 0 0.5rem; opacity: 0.4; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="wordmark" href="/">Awry<span>Labs</span></a>
+    <span class="nav-sep">/</span>
+    <a class="nav-crumb" href="mire.html">Mire</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-crumb" style="color: var(--muted); cursor: default;">Privacy</span>
+  </nav>
+
+  <main>
+
+    <div class="page-header">
+      <h1>Mire — Privacy Policy</h1>
+      <p>Last updated: February 2025 &nbsp;·&nbsp; Applies to Mire for iOS and macOS</p>
+    </div>
+
+    <div class="tldr">
+      <div class="tldr-label">tl;dr</div>
+      <p>
+        Mire collects zero data. Nothing is tracked, nothing is sent anywhere.
+        Your games, your AI, your score — all of it stays on your device.
+      </p>
+    </div>
+
+    <div class="policy-section">
+      <h2>Data We Collect</h2>
+      <p>None. Mire does not collect, transmit, or store any personal data on external servers.</p>
+      <p>
+        There are no analytics SDKs, no crash reporters phoning home, no advertising identifiers,
+        and no user accounts. We don't know who you are, and we've built it that way intentionally.
+      </p>
+    </div>
+
+    <div class="policy-section">
+      <h2>What Stays on Your Device</h2>
+      <p>The following data is generated and stored <em>locally only</em>:</p>
+      <p>
+        <strong>Game history</strong> — your past games, board states, and move logs.<br />
+        <strong>Skill rating</strong> — your adaptive difficulty level, calculated on-device.<br />
+        <strong>AI model state</strong> — the neural model that powers adaptive difficulty trains locally
+        and never leaves your device. No model weights are uploaded anywhere.
+      </p>
+    </div>
+
+    <div class="policy-section">
+      <h2>iCloud Sync</h2>
+      <p>
+        Mire supports optional iCloud sync for game progress. This is <strong>opt-in</strong> and
+        controlled entirely through your iOS/macOS system iCloud settings. If you enable it,
+        your local game data syncs across your own devices via Apple's iCloud infrastructure.
+        Awry Labs has no access to this data.
+      </p>
+    </div>
+
+    <div class="policy-section">
+      <h2>Game Center</h2>
+      <p>
+        Asynchronous multiplayer in Mire is powered by Apple Game Center. When you play online,
+        Game Center manages match data, player identifiers, and leaderboards under Apple's privacy
+        framework. You can review Apple's privacy policy at
+        <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">apple.com/legal/privacy</a>.
+      </p>
+      <p>
+        Awry Labs does not receive, store, or process any Game Center data on our own servers.
+      </p>
+    </div>
+
+    <div class="policy-section">
+      <h2>Purchases</h2>
+      <p>
+        Mire offers a single optional in-app purchase ("coffee") processed entirely by Apple via
+        StoreKit. Awry Labs does not handle payment information. Apple's purchase receipt validation
+        happens on-device. No purchase data is transmitted to us.
+      </p>
+    </div>
+
+    <div class="policy-section">
+      <h2>Children's Privacy</h2>
+      <p>
+        Mire does not collect any information from anyone, including children under 13.
+        The app is safe to use for all ages from a data-collection standpoint.
+      </p>
+    </div>
+
+    <div class="policy-section">
+      <h2>Changes to This Policy</h2>
+      <p>
+        If we ever change our data practices in a meaningful way, we'll update this page and
+        note a new effective date at the top. We don't anticipate this changing — "collect nothing"
+        is a design choice, not a legal formality.
+      </p>
+    </div>
+
+    <div class="policy-section">
+      <h2>Contact</h2>
+      <p>
+        Questions, concerns, or just want to say hello?
+        Reach us at <a href="mailto:hello@awrylabs.com">hello@awrylabs.com</a>.
+      </p>
+    </div>
+
+  </main>
+
+  <footer>
+    <a href="/">Awry Labs</a>
+    <span class="sep">·</span>
+    <a href="mire.html">Mire</a>
+    <span class="sep">·</span>
+    <span>© 2025 Awry Labs</span>
+  </footer>
+
+</body>
+</html>
