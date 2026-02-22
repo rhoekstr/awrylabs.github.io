@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mire — Privacy Policy · Awry Labs</title>
+  <title>Mire — Privacy Policy · awryLabs</title>
   <meta name="description" content="Mire privacy policy. Zero data collection. Everything runs on your device." />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -48,7 +48,12 @@
 
     .wordmark span { color: var(--accent); }
 
-    .nav-sep { color: var(--border); font-size: 1.2rem; }
+    .nav-sep {
+      color: var(--border);
+      font-size: 1.2rem;
+      line-height: 1;
+      user-select: none;
+    }
 
     .nav-crumb {
       font-size: 1.1rem;
@@ -58,6 +63,12 @@
     }
 
     .nav-crumb:hover { color: var(--text); }
+
+    .nav-current {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
 
     /* ── Content ── */
     main {
@@ -156,18 +167,18 @@
 <body>
 
   <nav>
-    <a class="wordmark" href="/">Awry<span>Labs</span></a>
+    <a class="wordmark" href="/">awry<span>Labs</span></a>
     <span class="nav-sep">/</span>
     <a class="nav-crumb" href="mire.html">Mire</a>
     <span class="nav-sep">/</span>
-    <span class="nav-crumb" style="color: var(--muted); cursor: default;">Privacy</span>
+    <span class="nav-current">Privacy</span>
   </nav>
 
   <main>
 
     <div class="page-header">
       <h1>Mire — Privacy Policy</h1>
-      <p>Last updated: February 2025 &nbsp;·&nbsp; Applies to Mire for iOS and macOS</p>
+      <p>Last updated: February 2026 &nbsp;·&nbsp; Applies to Mire for iOS and macOS</p>
     </div>
 
     <div class="tldr">
@@ -204,7 +215,7 @@
         Mire supports optional iCloud sync for game progress. This is <strong>opt-in</strong> and
         controlled entirely through your iOS/macOS system iCloud settings. If you enable it,
         your local game data syncs across your own devices via Apple's iCloud infrastructure.
-        Awry Labs has no access to this data.
+        awryLabs has no access to this data.
       </p>
     </div>
 
@@ -217,7 +228,7 @@
         <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">apple.com/legal/privacy</a>.
       </p>
       <p>
-        Awry Labs does not receive, store, or process any Game Center data on our own servers.
+        awryLabs does not receive, store, or process any Game Center data on our own servers.
       </p>
     </div>
 
@@ -225,7 +236,7 @@
       <h2>Purchases</h2>
       <p>
         Mire offers a single optional in-app purchase ("coffee") processed entirely by Apple via
-        StoreKit. Awry Labs does not handle payment information. Apple's purchase receipt validation
+        StoreKit. awryLabs does not handle payment information. Apple's purchase receipt validation
         happens on-device. No purchase data is transmitted to us.
       </p>
     </div>
@@ -258,11 +269,11 @@
   </main>
 
   <footer>
-    <a href="/">Awry Labs</a>
+    <a href="/">awryLabs</a>
     <span class="sep">·</span>
     <a href="mire.html">Mire</a>
     <span class="sep">·</span>
-    <span>© 2025 Awry Labs</span>
+    <span>© 2026 awryLabs</span>
   </footer>
 
 </body>
