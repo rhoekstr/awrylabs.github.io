@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mire — Awry Labs</title>
+  <meta name="description" content="Mire is a strategic territory game for iOS and macOS. ML-driven boundaries. Adaptive AI. Zero data collection." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #1a1a1e;
+      --surface:    #24242a;
+      --surface2:   #2a2a32;
+      --border:     #2e2e38;
+      --accent:     #6e8cad;
+      --accent-dim: #4a6585;
+      --text:       #e2e2e8;
+      --muted:      #888898;
+      --radius:     14px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Nav ── */
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 2rem 2rem 0;
+      max-width: 900px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .wordmark {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .wordmark span { color: var(--accent); }
+
+    .nav-sep {
+      color: var(--border);
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+
+    .nav-current {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    /* ── Hero ── */
+    .hero {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4rem 2rem 3rem;
+      width: 100%;
+      display: flex;
+      align-items: flex-start;
+      gap: 2.5rem;
+    }
+
+    .app-icon-lg {
+      width: 96px;
+      height: 96px;
+      background: linear-gradient(135deg, #2c3e55 0%, #1a2a3a 100%);
+      border-radius: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: -0.05em;
+      flex-shrink: 0;
+      border: 1px solid rgba(110, 140, 173, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .app-icon-lg::after {
+      content: '';
+      position: absolute;
+      inset: -100%;
+      background: radial-gradient(ellipse at 55% 35%, rgba(110, 140, 173, 0.15) 0%, transparent 60%);
+      animation: icon-breathe 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes icon-breathe {
+      0%   { transform: scale(1)    rotate(0deg); }
+      100% { transform: scale(1.15) rotate(5deg); }
+    }
+
+    .hero-text { flex: 1; }
+
+    .hero-text h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-tagline {
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin-bottom: 1.75rem;
+      max-width: 480px;
+    }
+
+    .cta-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-appstore {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: #fff;
+      padding: 0.65rem 1.25rem;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-appstore:hover {
+      background: var(--accent-dim);
+      transform: translateY(-1px);
+    }
+
+    .btn-appstore .badge-logo {
+      font-size: 1.1rem;
+    }
+
+    .price-note {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* ── Screenshots placeholder ── */
+    .screenshots {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 3rem 2rem;
+      overflow: hidden;
+    }
+
+    .screenshots-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .screenshot-row {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+      scrollbar-width: none;
+    }
+
+    .screenshot-row::-webkit-scrollbar { display: none; }
+
+    .screenshot-slot {
+      flex-shrink: 0;
+      width: 220px;
+      height: 390px;
+      border-radius: 18px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      color: var(--muted);
+      font-size: 0.8rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* subtle animated gradient in each slot */
+    .screenshot-slot::before {
+      content: '';
+      position: absolute;
+      inset: -60%;
+      background: radial-gradient(ellipse at var(--ox, 50%) var(--oy, 50%),
+                  rgba(110, 140, 173, 0.06) 0%, transparent 65%);
+      animation: slot-drift 10s ease-in-out infinite alternate;
+    }
+
+    .screenshot-slot:nth-child(2) { --ox: 30%; --oy: 60%; animation-delay: -3s; }
+    .screenshot-slot:nth-child(3) { --ox: 70%; --oy: 40%; animation-delay: -6s; }
+
+    @keyframes slot-drift {
+      0%   { transform: scale(1)    rotate(0deg); }
+      100% { transform: scale(1.2)  rotate(4deg); }
+    }
+
+    .slot-icon { font-size: 2rem; opacity: 0.3; }
+    .slot-text { opacity: 0.4; text-align: center; }
+
+    /* ── Body content ── */
+    main {
+      flex: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 2rem 4rem;
+      width: 100%;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .content-block h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.85rem;
+    }
+
+    .content-block p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ── Features ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.35rem 1.5rem;
+    }
+
+    .feature-icon {
+      font-size: 1.3rem;
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+
+    .feature-card h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+      letter-spacing: -0.01em;
+    }
+
+    .feature-card p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* ── Privacy callout ── */
+    .privacy-callout {
+      background: rgba(110, 140, 173, 0.07);
+      border: 1px solid rgba(110, 140, 173, 0.2);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.75rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .privacy-callout .pi { font-size: 1.5rem; flex-shrink: 0; }
+
+    .privacy-callout h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+
+    .privacy-callout p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .privacy-callout a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .privacy-callout a:hover { text-decoration: underline; }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 2rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+    footer .sep { margin: 0 0.5rem; opacity: 0.4; }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .hero { flex-direction: column; gap: 1.5rem; padding-top: 2.5rem; }
+      .app-icon-lg { width: 72px; height: 72px; font-size: 2rem; border-radius: 16px; }
+      .two-col { grid-template-columns: 1fr; gap: 2rem; }
+      .screenshot-slot { width: 180px; height: 320px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="wordmark" href="/">Awry<span>Labs</span></a>
+    <span class="nav-sep">/</span>
+    <span class="nav-current">Mire</span>
+  </nav>
+
+  <div class="hero">
+    <div class="app-icon-lg">M</div>
+    <div class="hero-text">
+      <h1>Mire</h1>
+      <p class="hero-tagline">
+        Strategic territory game for iOS &amp; macOS. The board tilts.
+        The terrain shifts. So should your strategy.
+      </p>
+      <div class="cta-row">
+        <a class="btn-appstore" href="#">
+          <span class="badge-logo">&#xf8ff;</span>
+          Download on the App Store
+        </a>
+        <span class="price-note">Free to play &nbsp;·&nbsp; $4.99 optional coffee</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="screenshots">
+    <div class="screenshots-inner">
+      <p class="section-label">Screenshots</p>
+      <div class="screenshot-row">
+        <div class="screenshot-slot">
+          <span class="slot-icon">📱</span>
+          <span class="slot-text">Screenshot<br>coming soon</span>
+        </div>
+        <div class="screenshot-slot">
+          <span class="slot-icon">📱</span>
+          <span class="slot-text">Screenshot<br>coming soon</span>
+        </div>
+        <div class="screenshot-slot">
+          <span class="slot-icon">📱</span>
+          <span class="slot-text">Screenshot<br>coming soon</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main>
+
+    <div class="two-col">
+      <div class="content-block">
+        <h2>Strategic depth without<br>the spreadsheet.</h2>
+        <p>
+          Mire is a territory game built around pins, boards, and contested space.
+          Place your pins to claim the board — but every boundary shifts with terrain,
+          opponent positioning, and a ML engine blending four algorithms underneath.
+          The same move lands differently every game. That's the point.
+        </p>
+      </div>
+      <div class="content-block">
+        <h2>The ML engine<br>runs on your device.</h2>
+        <p>
+          Four boundary algorithms blend in real time to produce organic, emergent
+          results you won't find in a rules table. Voronoi, gradient fields, erosion,
+          pressure — the board is alive. Your strategy has to be too.
+        </p>
+      </div>
+    </div>
+
+    <p class="section-label">Features</p>
+
+    <div class="features-grid">
+
+      <div class="feature-card">
+        <span class="feature-icon">🧠</span>
+        <h3>Adaptive AI</h3>
+        <p>Scales continuously to your skill level — no difficulty slider, no ceiling. It watches, then adjusts.</p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">⚡</span>
+        <h3>ML Boundary Engine</h3>
+        <p>Four algorithms blend in real time to produce organic, unpredictable territory boundaries. No two games read the same.</p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">🌐</span>
+        <h3>Async Multiplayer</h3>
+        <p>Game Center powered. Play your turn when you want. No lobby waiting. No timers hunting you.</p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">🔒</span>
+        <h3>Zero Data Collection</h3>
+        <p>Nothing leaves your device. No analytics, no telemetry, no user accounts. Your games are your games.</p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">☕</span>
+        <h3>One-Time Coffee</h3>
+        <p>$4.99 optional purchase. Not a subscription. Not a battle pass. A coffee. You drink it once.</p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">📲</span>
+        <h3>iOS &amp; macOS</h3>
+        <p>Universal app. One purchase. Plays great on iPhone, iPad, and Mac — same board, same engine.</p>
+      </div>
+
+    </div>
+
+    <div class="privacy-callout">
+      <span class="pi">🛡</span>
+      <div>
+        <h3>Privacy by default</h3>
+        <p>
+          Mire collects zero data. Game history and your skill rating live locally on your device.
+          iCloud sync is optional and entirely user-controlled. The neural AI model trains on-device
+          and never leaves. <a href="mire-privacy.html">Full privacy policy →</a>
+        </p>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <a href="/">Awry Labs</a>
+    <span class="sep">·</span>
+    <a href="mire-privacy.html">Privacy Policy</a>
+    <span class="sep">·</span>
+    <span>© 2025 Awry Labs</span>
+  </footer>
+
+</body>
+</html>
