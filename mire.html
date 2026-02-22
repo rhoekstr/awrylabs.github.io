@@ -4,29 +4,45 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mire — awryLabs</title>
-  <meta name="description" content="Mire is a strategic territory game for iOS and macOS. ML-driven boundaries. Adaptive AI. Zero data collection." />
+  <meta name="description" content="Mire — a game of influence and contested ground for iOS and macOS. Territory yields. Edges drift. Vigilance is the only strategy." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:         #1a1a1e;
-      --surface:    #24242a;
-      --surface2:   #2a2a32;
-      --border:     #2e2e38;
-      --accent:     #6e8cad;
-      --accent-dim: #4a6585;
-      --text:       #e2e2e8;
-      --muted:      #888898;
-      --radius:     14px;
+      --bg:         #1e1409;
+      --bg-deeper:  #16100a;
+      --ink:        #1a1008;
+      --ink-mid:    #3d2b1f;
+      --sepia:      #5c3d2e;
+      --parchment:  #e3cda5;
+      --gold:       #c9a84c;
+      --gold-dim:   #9e7e35;
+      --text-warm:  #ede2c8;
+      --muted-warm: #8a7060;
+      --muted-lt:   #6b5040;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.6;
+      background-color: var(--bg);
+      background-image:
+        repeating-linear-gradient(
+          0deg,
+          transparent 0px, transparent 3px,
+          rgba(255, 210, 120, 0.014) 3px, rgba(255, 210, 120, 0.014) 4px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          transparent 0px, transparent 5px,
+          rgba(0, 0, 0, 0.03) 5px, rgba(0, 0, 0, 0.03) 6px
+        );
+      color: var(--text-warm);
+      font-family: 'Lora', Georgia, serif;
+      line-height: 1.65;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -36,50 +52,41 @@
     nav {
       display: flex;
       align-items: center;
-      gap: 1rem;
-      padding: 2rem 2rem 0;
-      max-width: 900px;
+      gap: 0.75rem;
+      padding: 2.5rem 2.5rem 0;
+      max-width: 960px;
       margin: 0 auto;
       width: 100%;
     }
 
     .wordmark {
-      font-size: 1.1rem;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      color: var(--text);
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.05rem;
+      color: var(--text-warm);
       text-decoration: none;
     }
 
-    .wordmark span { color: var(--accent); }
+    .wordmark .awry { font-style: italic; font-weight: 400; color: var(--gold); }
+    .wordmark .labs { font-style: normal; font-weight: 700; }
 
     .nav-sep {
-      color: var(--border);
-      font-size: 1.2rem;
-      line-height: 1;
+      color: rgba(201, 168, 76, 0.3);
+      font-size: 1rem;
       user-select: none;
     }
 
-    .nav-crumb {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--muted);
-      text-decoration: none;
-    }
-
-    .nav-crumb:hover { color: var(--text); }
-
     .nav-current {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--muted);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--muted-warm);
     }
 
     /* ── Hero ── */
     .hero {
-      max-width: 900px;
+      max-width: 960px;
       margin: 0 auto;
-      padding: 4rem 2rem 3rem;
+      padding: 4rem 2.5rem 3.5rem;
       width: 100%;
       display: flex;
       align-items: flex-start;
@@ -89,19 +96,22 @@
     .app-icon-lg {
       width: 96px;
       height: 96px;
-      background: linear-gradient(145deg, #1e2438 0%, #0f1421 100%);
+      background: linear-gradient(145deg, #d4b896 0%, #c8a87e 60%, #b8925a 100%);
       border-radius: 22px;
       display: flex;
       align-items: center;
       justify-content: center;
+      font-family: 'Playfair Display', serif;
       font-size: 2.8rem;
-      font-weight: 800;
-      color: #7fa0c0;
-      letter-spacing: -0.05em;
+      font-weight: 700;
+      font-style: italic;
+      color: #3d2b1f;
       flex-shrink: 0;
-      border: 1px solid rgba(110, 140, 173, 0.25);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05),
-                  inset 0 -1px 0 rgba(0,0,0,0.35);
+      border: 1px solid rgba(61, 43, 31, 0.28);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.20),
+        inset 0 -2px 0 rgba(0,0,0,0.15),
+        0 4px 12px rgba(0,0,0,0.35);
       position: relative;
       overflow: hidden;
     }
@@ -110,96 +120,102 @@
       content: '';
       position: absolute;
       inset: -100%;
-      background: radial-gradient(ellipse at 55% 35%, rgba(110, 140, 173, 0.15) 0%, transparent 60%);
-      animation: icon-breathe 6s ease-in-out infinite alternate;
+      background: radial-gradient(ellipse at 55% 35%, rgba(139, 69, 19, 0.18) 0%, transparent 55%);
+      animation: icon-breathe 9s ease-in-out infinite alternate;
     }
 
     @keyframes icon-breathe {
-      0%   { transform: scale(1)    rotate(0deg); }
-      100% { transform: scale(1.15) rotate(5deg); }
+      0%   { transform: scale(1)    rotate(0deg); opacity: 0.5; }
+      100% { transform: scale(1.18) rotate(9deg); opacity: 1;   }
     }
 
     .hero-text { flex: 1; }
 
     .hero-text h1 {
-      font-size: clamp(2rem, 5vw, 3rem);
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2.4rem, 5.5vw, 3.4rem);
       font-weight: 700;
-      letter-spacing: -0.04em;
-      line-height: 1.05;
-      margin-bottom: 0.75rem;
+      line-height: 1.06;
+      color: var(--text-warm);
+      margin-bottom: 1rem;
     }
 
-    .hero-tagline {
-      font-size: 1.05rem;
-      color: var(--muted);
-      margin-bottom: 1.75rem;
-      max-width: 480px;
+    .hero-concept {
+      font-size: 1rem;
+      color: var(--muted-warm);
+      line-height: 1.85;
+      max-width: 500px;
+      margin-bottom: 2rem;
     }
 
     .cta-row {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 1.25rem;
       flex-wrap: wrap;
     }
 
-    .coming-soon {
+    /* campaign map notation — "Dispatches forthcoming" */
+    .dispatch-stamp {
       display: inline-flex;
       flex-direction: column;
-      gap: 0.15rem;
-      padding: 0.6rem 1.2rem;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      background: transparent;
-      line-height: 1.2;
+      gap: 0.1rem;
+      padding: 0.55rem 1rem;
+      border: 1px solid rgba(201, 168, 76, 0.35);
+      background: rgba(201, 168, 76, 0.05);
     }
 
-    .cs-eyebrow {
-      font-size: 0.65rem;
+    .dispatch-label {
+      font-size: 0.55rem;
       font-weight: 600;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: var(--gold-dim);
     }
 
-    .cs-status {
+    .dispatch-status {
+      font-family: 'Playfair Display', serif;
       font-size: 0.95rem;
       font-weight: 700;
-      color: var(--text);
-      letter-spacing: -0.01em;
+      color: var(--text-warm);
     }
 
     .price-note {
       font-size: 0.8rem;
-      color: var(--muted);
+      color: var(--muted-warm);
+      font-style: italic;
+      line-height: 1.5;
+      max-width: 240px;
     }
 
-    /* ── Screenshots placeholder ── */
-    .screenshots {
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 3rem 2rem;
+    /* ── "From the Field" — screenshots ── */
+    .field-section {
+      background-color: var(--bg-deeper);
+      border-top: 1px solid rgba(61, 43, 31, 0.4);
+      border-bottom: 1px solid rgba(61, 43, 31, 0.4);
+      padding: 3rem 2.5rem;
       overflow: hidden;
     }
 
-    .screenshots-inner {
-      max-width: 900px;
+    .field-inner {
+      max-width: 960px;
       margin: 0 auto;
     }
 
     .section-label {
-      font-size: 0.75rem;
+      font-size: 0.6rem;
       font-weight: 600;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: var(--gold-dim);
       margin-bottom: 1.5rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid rgba(201, 168, 76, 0.18);
     }
 
     .screenshot-row {
       display: flex;
-      gap: 1rem;
+      gap: 1.25rem;
       overflow-x: auto;
       padding-bottom: 0.5rem;
       scrollbar-width: none;
@@ -207,166 +223,186 @@
 
     .screenshot-row::-webkit-scrollbar { display: none; }
 
+    /* blank map sections awaiting survey */
     .screenshot-slot {
       flex-shrink: 0;
       width: 220px;
       height: 390px;
-      border-radius: 18px;
-      background: var(--surface2);
-      border: 1px solid var(--border);
+      border-radius: 2px;
+      background-color: #d8c49a;
+      background-image:
+        radial-gradient(ellipse at 50% 40%, rgba(61, 43, 31, 0.08) 0%, transparent 65%),
+        repeating-linear-gradient(
+          0deg,
+          transparent 0px, transparent 2px,
+          rgba(61, 43, 31, 0.02) 2px, rgba(61, 43, 31, 0.02) 3px
+        );
+      border: 1px solid rgba(61, 43, 31, 0.22);
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 0.75rem;
-      color: var(--muted);
-      font-size: 0.8rem;
       position: relative;
       overflow: hidden;
     }
 
-    /* subtle animated gradient in each slot */
     .screenshot-slot::before {
       content: '';
       position: absolute;
       inset: -60%;
-      background: radial-gradient(ellipse at var(--ox, 50%) var(--oy, 50%),
-                  rgba(110, 140, 173, 0.06) 0%, transparent 65%);
-      animation: slot-drift 10s ease-in-out infinite alternate;
+      background: radial-gradient(
+        ellipse at var(--ox, 50%) var(--oy, 50%),
+        rgba(139, 69, 19, 0.06) 0%, transparent 60%
+      );
+      animation: slot-drift 14s ease-in-out infinite alternate;
     }
 
-    .screenshot-slot:nth-child(2) { --ox: 30%; --oy: 60%; animation-delay: -3s; }
-    .screenshot-slot:nth-child(3) { --ox: 70%; --oy: 40%; animation-delay: -6s; }
+    .screenshot-slot:nth-child(2) { --ox: 30%; --oy: 65%; }
+    .screenshot-slot:nth-child(3) { --ox: 68%; --oy: 38%; }
 
     @keyframes slot-drift {
       0%   { transform: scale(1)    rotate(0deg); }
-      100% { transform: scale(1.2)  rotate(4deg); }
+      100% { transform: scale(1.25) rotate(5deg); }
     }
 
-    .slot-icon { font-size: 2rem; opacity: 0.3; }
-    .slot-text { opacity: 0.4; text-align: center; }
+    .slot-text {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: 0.75rem;
+      color: rgba(61, 43, 31, 0.38);
+      text-align: center;
+      letter-spacing: 0.02em;
+      position: relative;
+      z-index: 1;
+    }
 
-    /* ── Body content ── */
+    /* ── Main content ── */
     main {
       flex: 1;
-      max-width: 900px;
+      max-width: 960px;
       margin: 0 auto;
-      padding: 3rem 2rem 4rem;
+      padding: 3.5rem 2.5rem 5rem;
       width: 100%;
     }
 
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
+    /* concept pull-quote — marginal annotation style */
+    .concept-block {
+      border-left: 2px solid rgba(201, 168, 76, 0.3);
+      padding-left: 1.75rem;
       margin-bottom: 3.5rem;
     }
 
-    .content-block h2 {
-      font-size: 1.35rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.85rem;
+    .concept-block p {
+      font-size: 1.05rem;
+      color: var(--text-warm);
+      line-height: 1.9;
+      font-style: italic;
     }
 
-    .content-block p {
-      font-size: 0.95rem;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    /* ── Features ── */
+    /* ── Feature briefing notes ── */
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       gap: 1rem;
       margin-bottom: 3.5rem;
     }
 
     .feature-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.35rem 1.5rem;
+      background-color: #e0cb9f;
+      background-image:
+        radial-gradient(ellipse at 80% 20%, rgba(61, 43, 31, 0.06) 0%, transparent 50%),
+        repeating-linear-gradient(
+          0deg,
+          transparent 0px, transparent 2px,
+          rgba(61, 43, 31, 0.018) 2px, rgba(61, 43, 31, 0.018) 3px
+        );
+      border: 1px solid rgba(61, 43, 31, 0.25);
+      border-radius: 2px;
+      padding: 1.4rem 1.5rem;
     }
 
-    .feature-icon {
-      font-size: 1.3rem;
-      margin-bottom: 0.6rem;
+    .feature-marker {
       display: block;
+      font-size: 0.5rem;
+      color: var(--gold-dim);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.65rem;
     }
 
     .feature-card h3 {
-      font-size: 0.95rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 0.98rem;
       font-weight: 700;
-      margin-bottom: 0.35rem;
-      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+      line-height: 1.3;
     }
 
     .feature-card p {
       font-size: 0.82rem;
-      color: var(--muted);
-      line-height: 1.55;
+      color: var(--sepia);
+      line-height: 1.65;
     }
 
     /* ── Privacy callout ── */
     .privacy-callout {
-      background: rgba(110, 140, 173, 0.07);
-      border: 1px solid rgba(110, 140, 173, 0.2);
-      border-radius: var(--radius);
+      border: 1px solid rgba(201, 168, 76, 0.28);
+      background: rgba(201, 168, 76, 0.04);
       padding: 1.5rem 1.75rem;
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
     }
 
-    .privacy-callout .pi { font-size: 1.5rem; flex-shrink: 0; }
+    .callout-mark {
+      font-size: 0.8rem;
+      color: var(--gold-dim);
+      margin-right: 0.35rem;
+      font-style: normal;
+    }
 
     .privacy-callout h3 {
-      font-size: 0.95rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 0.98rem;
       font-weight: 700;
-      margin-bottom: 0.3rem;
+      color: var(--text-warm);
+      margin-bottom: 0.5rem;
     }
 
     .privacy-callout p {
       font-size: 0.85rem;
-      color: var(--muted);
-      line-height: 1.6;
+      color: var(--muted-warm);
+      line-height: 1.75;
     }
 
-    .privacy-callout a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
+    .privacy-callout a { color: var(--gold); text-decoration: none; }
     .privacy-callout a:hover { text-decoration: underline; }
 
     /* ── Footer ── */
     footer {
-      border-top: 1px solid var(--border);
-      padding: 1.5rem 2rem;
+      border-top: 1px solid rgba(201, 168, 76, 0.13);
+      padding: 1.75rem 2.5rem;
       text-align: center;
-      font-size: 0.8rem;
-      color: var(--muted);
+      font-size: 0.72rem;
+      color: var(--muted-warm);
+      letter-spacing: 0.07em;
     }
 
-    footer a { color: var(--muted); text-decoration: none; }
-    footer a:hover { color: var(--text); }
-    footer .sep { margin: 0 0.5rem; opacity: 0.4; }
+    footer a { color: var(--muted-warm); text-decoration: none; }
+    footer a:hover { color: var(--text-warm); }
+    footer .sep { margin: 0 0.6rem; opacity: 0.3; }
 
     /* ── Responsive ── */
     @media (max-width: 640px) {
-      .hero { flex-direction: column; gap: 1.5rem; padding-top: 2.5rem; }
+      nav { padding: 2rem 1.5rem 0; }
+      .hero { flex-direction: column; gap: 1.5rem; padding: 2.5rem 1.5rem; }
       .app-icon-lg { width: 72px; height: 72px; font-size: 2rem; border-radius: 16px; }
-      .two-col { grid-template-columns: 1fr; gap: 2rem; }
+      .field-section { padding: 2.5rem 1.5rem; }
       .screenshot-slot { width: 180px; height: 320px; }
+      main { padding: 2.5rem 1.5rem 4rem; }
     }
   </style>
 </head>
 <body>
 
   <nav>
-    <a class="wordmark" href="/">awry<span>Labs</span></a>
+    <a class="wordmark" href="/"><span class="awry">awry</span><span class="labs">Labs</span></a>
     <span class="nav-sep">/</span>
     <span class="nav-current">Mire</span>
   </nav>
@@ -375,35 +411,33 @@
     <div class="app-icon-lg">M</div>
     <div class="hero-text">
       <h1>Mire</h1>
-      <p class="hero-tagline">
-        Strategic territory game for iOS &amp; macOS. The board tilts.
-        The terrain shifts. So should your strategy.
+      <p class="hero-concept">
+        The ground you hold is only as real as the pressure you sustain.
+        Every edge bleeds a little — stop pressing and the frontier drifts back.
+        This is not a game about conquest. It is a game about vigilance.
       </p>
       <div class="cta-row">
-        <div class="coming-soon">
-          <span class="cs-eyebrow">App Store</span>
-          <span class="cs-status">Coming soon</span>
+        <div class="dispatch-stamp">
+          <span class="dispatch-label">Field Dispatch</span>
+          <span class="dispatch-status">Forthcoming</span>
         </div>
-        <span class="price-note">Free &nbsp;·&nbsp; $4.99 if you want to feed my coffee addiction</span>
+        <span class="price-note">Free to play. $4.99 funds the caffeine habit behind it.</span>
       </div>
     </div>
   </div>
 
-  <div class="screenshots">
-    <div class="screenshots-inner">
-      <p class="section-label">Screenshots</p>
+  <div class="field-section">
+    <div class="field-inner">
+      <p class="section-label">From the Field</p>
       <div class="screenshot-row">
         <div class="screenshot-slot">
-          <span class="slot-icon">📱</span>
-          <span class="slot-text">Screenshot<br>coming soon</span>
+          <span class="slot-text">Awaiting dispatch</span>
         </div>
         <div class="screenshot-slot">
-          <span class="slot-icon">📱</span>
-          <span class="slot-text">Screenshot<br>coming soon</span>
+          <span class="slot-text">Awaiting dispatch</span>
         </div>
         <div class="screenshot-slot">
-          <span class="slot-icon">📱</span>
-          <span class="slot-text">Screenshot<br>coming soon</span>
+          <span class="slot-text">Awaiting dispatch</span>
         </div>
       </div>
     </div>
@@ -411,79 +445,65 @@
 
   <main>
 
-    <div class="two-col">
-      <div class="content-block">
-        <h2>Strategic depth without<br>the spreadsheet.</h2>
-        <p>
-          Mire is a territory game built around pins, boards, and contested space.
-          Place your pins to claim the board — but every boundary shifts with terrain,
-          opponent positioning, and a ML engine blending four algorithms underneath.
-          The same move lands differently every game. That's the point.
-        </p>
-      </div>
-      <div class="content-block">
-        <h2>The board is alive.<br>Play like it.</h2>
-        <p>
-          The boundaries between your territory and your opponent's aren't drawn with
-          a ruler — they push, yield, and shift in response to pressure on all sides.
-          Contested ground doesn't stay contested the same way twice.
-          The board is alive. Your strategy has to be too.
-        </p>
-      </div>
+    <div class="concept-block">
+      <p>
+        The borders in Mire are not lines. They are the furthest reach of effective
+        pressure. Your pieces radiate influence outward — but only as far as you can
+        sustain it. Your opponent presses back. The ground between you is constantly
+        negotiated, never settled. Whoever holds more of the board when time is called
+        holds the field. That is the only rule that matters.
+      </p>
     </div>
 
-    <p class="section-label">Features</p>
+    <p class="section-label">Briefing</p>
 
     <div class="features-grid">
 
       <div class="feature-card">
-        <span class="feature-icon">🧠</span>
-        <h3>Adaptive AI</h3>
-        <p>Scales continuously to your skill level — no difficulty slider, no ceiling. It watches, then adjusts.</p>
+        <span class="feature-marker">◆</span>
+        <h3>Counsel That Adapts</h3>
+        <p>Reads your tendencies and adjusts without announcement. No difficulty dial. No ceiling to outgrow.</p>
       </div>
 
       <div class="feature-card">
-        <span class="feature-icon">⚡</span>
-        <h3>Living Boundaries</h3>
-        <p>Territory lines push and yield like contested ground — never clean, never predictable. What you held last turn might drift by the next. No two games read the same.</p>
+        <span class="feature-marker">◆</span>
+        <h3>Ground That Breathes</h3>
+        <p>Boundaries yield under sustained opposition and hold where you press. No two boards read the same way twice.</p>
       </div>
 
       <div class="feature-card">
-        <span class="feature-icon">🌐</span>
-        <h3>Async Multiplayer</h3>
-        <p>Game Center powered. Play your turn when you want. No lobby waiting. No timers hunting you.</p>
+        <span class="feature-marker">◆</span>
+        <h3>Asynchronous Campaigns</h3>
+        <p>Game Center powered. Take your turn when the moment suits. No lobby waiting. No clock hunting you.</p>
       </div>
 
       <div class="feature-card">
-        <span class="feature-icon">🔒</span>
-        <h3>Zero Data Collection</h3>
-        <p>Nothing leaves your device. No analytics, no telemetry, no user accounts. Your games are your games.</p>
+        <span class="feature-marker">◆</span>
+        <h3>Nothing Leaves Your Device</h3>
+        <p>No accounts, no analytics, no telemetry. Your record and your history stay local. Full stop.</p>
       </div>
 
       <div class="feature-card">
-        <span class="feature-icon">☕</span>
-        <h3>Fuel the Developer</h3>
-        <p>The game is free. $4.99 covers one coffee and roughly six more hours of 3am debugging. No subscription. No guilt. Entirely your call.</p>
+        <span class="feature-marker">◆</span>
+        <h3>Free. $4.99 Funds the Effort.</h3>
+        <p>Free to play. One optional purchase, no subscription, no expiry. Entirely your call.</p>
       </div>
 
       <div class="feature-card">
-        <span class="feature-icon">📲</span>
+        <span class="feature-marker">◆</span>
         <h3>iOS &amp; macOS</h3>
-        <p>Universal app. One purchase. Plays great on iPhone, iPad, and Mac — same board, same engine.</p>
+        <p>Universal. One purchase. The same board, same pressure, same consequence — on any device you carry.</p>
       </div>
 
     </div>
 
     <div class="privacy-callout">
-      <span class="pi">🛡</span>
-      <div>
-        <h3>Privacy by default</h3>
-        <p>
-          Mire collects zero data. Game history and your skill rating live locally on your device.
-          iCloud sync is optional and entirely user-controlled. The neural AI model trains on-device
-          and never leaves. <a href="mire-privacy.html">Full privacy policy →</a>
-        </p>
-      </div>
+      <h3><span class="callout-mark">§</span>Privacy by default</h3>
+      <p>
+        Mire collects zero data. Game history and your standing are kept locally on your
+        device. iCloud sync is optional and user-controlled. The adaptive logic trains
+        on-device and never leaves. <a href="mire-privacy.html">Full privacy policy →</a>
+      </p>
     </div>
 
   </main>
