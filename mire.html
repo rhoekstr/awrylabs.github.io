@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mire — Awry Labs</title>
+  <title>Mire — awryLabs</title>
   <meta name="description" content="Mire is a strategic territory game for iOS and macOS. ML-driven boundaries. Adaptive AI. Zero data collection." />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -57,7 +57,17 @@
       color: var(--border);
       font-size: 1.2rem;
       line-height: 1;
+      user-select: none;
     }
+
+    .nav-crumb {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .nav-crumb:hover { color: var(--text); }
 
     .nav-current {
       font-size: 1.1rem;
@@ -79,17 +89,19 @@
     .app-icon-lg {
       width: 96px;
       height: 96px;
-      background: linear-gradient(135deg, #2c3e55 0%, #1a2a3a 100%);
+      background: linear-gradient(145deg, #1e2438 0%, #0f1421 100%);
       border-radius: 22px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 2.8rem;
       font-weight: 800;
-      color: var(--accent);
+      color: #7fa0c0;
       letter-spacing: -0.05em;
       flex-shrink: 0;
       border: 1px solid rgba(110, 140, 173, 0.25);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05),
+                  inset 0 -1px 0 rgba(0,0,0,0.35);
       position: relative;
       overflow: hidden;
     }
@@ -131,29 +143,30 @@
       flex-wrap: wrap;
     }
 
-    .btn-appstore {
+    .coming-soon {
       display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--accent);
-      color: #fff;
-      padding: 0.65rem 1.25rem;
+      flex-direction: column;
+      gap: 0.15rem;
+      padding: 0.6rem 1.2rem;
+      border: 1px solid var(--border);
       border-radius: 10px;
-      font-size: 0.9rem;
+      background: transparent;
+      line-height: 1.2;
+    }
+
+    .cs-eyebrow {
+      font-size: 0.65rem;
       font-weight: 600;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.15s;
-      border: none;
-      cursor: pointer;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
     }
 
-    .btn-appstore:hover {
-      background: var(--accent-dim);
-      transform: translateY(-1px);
-    }
-
-    .btn-appstore .badge-logo {
-      font-size: 1.1rem;
+    .cs-status {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
     }
 
     .price-note {
@@ -353,7 +366,7 @@
 <body>
 
   <nav>
-    <a class="wordmark" href="/">Awry<span>Labs</span></a>
+    <a class="wordmark" href="/">awry<span>Labs</span></a>
     <span class="nav-sep">/</span>
     <span class="nav-current">Mire</span>
   </nav>
@@ -367,11 +380,11 @@
         The terrain shifts. So should your strategy.
       </p>
       <div class="cta-row">
-        <a class="btn-appstore" href="#">
-          <span class="badge-logo">&#xf8ff;</span>
-          Download on the App Store
-        </a>
-        <span class="price-note">Free to play &nbsp;·&nbsp; $4.99 optional coffee</span>
+        <div class="coming-soon">
+          <span class="cs-eyebrow">App Store</span>
+          <span class="cs-status">Coming soon</span>
+        </div>
+        <span class="price-note">Free &nbsp;·&nbsp; $4.99 if you want to feed my coffee addiction</span>
       </div>
     </div>
   </div>
@@ -409,11 +422,12 @@
         </p>
       </div>
       <div class="content-block">
-        <h2>The ML engine<br>runs on your device.</h2>
+        <h2>The board is alive.<br>Play like it.</h2>
         <p>
-          Four boundary algorithms blend in real time to produce organic, emergent
-          results you won't find in a rules table. Voronoi, gradient fields, erosion,
-          pressure — the board is alive. Your strategy has to be too.
+          The boundaries between your territory and your opponent's aren't drawn with
+          a ruler — they push, yield, and shift in response to pressure on all sides.
+          Contested ground doesn't stay contested the same way twice.
+          The board is alive. Your strategy has to be too.
         </p>
       </div>
     </div>
@@ -430,8 +444,8 @@
 
       <div class="feature-card">
         <span class="feature-icon">⚡</span>
-        <h3>ML Boundary Engine</h3>
-        <p>Four algorithms blend in real time to produce organic, unpredictable territory boundaries. No two games read the same.</p>
+        <h3>Living Boundaries</h3>
+        <p>Territory lines push and yield like contested ground — never clean, never predictable. What you held last turn might drift by the next. No two games read the same.</p>
       </div>
 
       <div class="feature-card">
@@ -448,8 +462,8 @@
 
       <div class="feature-card">
         <span class="feature-icon">☕</span>
-        <h3>One-Time Coffee</h3>
-        <p>$4.99 optional purchase. Not a subscription. Not a battle pass. A coffee. You drink it once.</p>
+        <h3>Fuel the Developer</h3>
+        <p>The game is free. $4.99 covers one coffee and roughly six more hours of 3am debugging. No subscription. No guilt. Entirely your call.</p>
       </div>
 
       <div class="feature-card">
@@ -475,11 +489,11 @@
   </main>
 
   <footer>
-    <a href="/">Awry Labs</a>
+    <a href="/">awryLabs</a>
     <span class="sep">·</span>
     <a href="mire-privacy.html">Privacy Policy</a>
     <span class="sep">·</span>
-    <span>© 2025 Awry Labs</span>
+    <span>© 2026 awryLabs</span>
   </footer>
 
 </body>
