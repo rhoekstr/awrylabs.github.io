@@ -5,24 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Privacy Policy · awryLabs</title>
   <meta name="description" content="awrylabs.com uses no cookies, no analytics, no tracking of any kind." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:         #1a1a1e;
-      --surface:    #24242a;
-      --border:     #2e2e38;
-      --accent:     #6e8cad;
-      --text:       #e2e2e8;
-      --muted:      #888898;
-      --radius:     14px;
+      --bg:         #1e1409;
+      --ink:        #1a1008;
+      --sepia:      #5c3d2e;
+      --gold:       #c9a84c;
+      --gold-dim:   #9e7e35;
+      --text-warm:  #ede2c8;
+      --muted-warm: #8a7060;
     }
 
     body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.6;
+      background-color: var(--bg);
+      background-image:
+        repeating-linear-gradient(
+          0deg,
+          transparent 0px, transparent 3px,
+          rgba(255, 210, 120, 0.014) 3px, rgba(255, 210, 120, 0.014) 4px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          transparent 0px, transparent 5px,
+          rgba(0, 0, 0, 0.03) 5px, rgba(0, 0, 0, 0.03) 6px
+        );
+      color: var(--text-warm);
+      font-family: 'Lora', Georgia, serif;
+      line-height: 1.7;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -32,142 +46,149 @@
     nav {
       display: flex;
       align-items: center;
-      gap: 1rem;
-      padding: 2rem 2rem 0;
-      max-width: 740px;
+      gap: 0.75rem;
+      padding: 2.5rem 2.5rem 0;
+      max-width: 760px;
       margin: 0 auto;
       width: 100%;
     }
 
     .wordmark {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--text);
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.05rem;
+      color: var(--text-warm);
       text-decoration: none;
     }
 
-    .wordmark span { color: var(--accent); }
+    .wordmark .awry { font-style: italic; font-weight: 400; color: var(--gold); }
+    .wordmark .labs { font-style: normal; font-weight: 700; }
 
     .nav-sep {
-      color: var(--border);
-      font-size: 1.2rem;
-      line-height: 1;
+      color: rgba(201, 168, 76, 0.3);
+      font-size: 1rem;
       user-select: none;
     }
 
-    .nav-crumb {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--muted);
-      text-decoration: none;
-    }
-
-    .nav-crumb:hover { color: var(--text); }
-
     .nav-current {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--muted);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--muted-warm);
     }
 
     /* ── Content ── */
     main {
       flex: 1;
-      max-width: 740px;
+      max-width: 760px;
       margin: 0 auto;
-      padding: 3.5rem 2rem 4rem;
+      padding: 3.5rem 2.5rem 5rem;
       width: 100%;
     }
 
     .page-header {
-      margin-bottom: 3rem;
+      margin-bottom: 2.75rem;
       padding-bottom: 1.5rem;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.18);
     }
 
     .page-header h1 {
+      font-family: 'Playfair Display', Georgia, serif;
       font-size: 2rem;
       font-weight: 700;
-      letter-spacing: -0.03em;
-      margin-bottom: 0.5rem;
+      line-height: 1.1;
+      color: var(--text-warm);
+      margin-bottom: 0.6rem;
     }
 
     .page-header p {
-      font-size: 0.85rem;
-      color: var(--muted);
+      font-size: 0.8rem;
+      color: var(--muted-warm);
+      letter-spacing: 0.04em;
     }
 
-    /* tl;dr callout */
+    /* tl;dr — marginal annotation style */
     .tldr {
-      background: rgba(110, 140, 173, 0.08);
-      border: 1px solid rgba(110, 140, 173, 0.22);
-      border-radius: var(--radius);
-      padding: 1.25rem 1.5rem;
-      margin-bottom: 2.5rem;
+      border-left: 2px solid rgba(201, 168, 76, 0.35);
+      padding: 0.6rem 1.5rem;
+      margin-bottom: 3rem;
+      background: rgba(201, 168, 76, 0.03);
     }
 
     .tldr-label {
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
+      font-size: 0.58rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.5rem;
+      color: var(--gold-dim);
+      margin-bottom: 0.45rem;
     }
 
     .tldr p {
-      font-size: 0.95rem;
-      color: var(--text);
-      line-height: 1.6;
+      font-size: 0.9rem;
+      color: var(--text-warm);
+      font-style: italic;
+      line-height: 1.75;
     }
 
     /* policy sections */
     .policy-section {
-      margin-bottom: 2.25rem;
+      margin-bottom: 2.5rem;
     }
 
     .policy-section h2 {
+      font-family: 'Playfair Display', Georgia, serif;
       font-size: 1.05rem;
       font-weight: 700;
-      letter-spacing: -0.01em;
-      margin-bottom: 0.6rem;
-      color: var(--text);
+      color: var(--text-warm);
+      margin-bottom: 0.65rem;
     }
 
     .policy-section p {
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.75;
+      font-size: 0.88rem;
+      color: var(--muted-warm);
+      line-height: 1.85;
       margin-bottom: 0.6rem;
     }
 
     .policy-section p:last-child { margin-bottom: 0; }
 
     .policy-section a {
-      color: var(--accent);
+      color: var(--gold);
       text-decoration: none;
     }
 
     .policy-section a:hover { text-decoration: underline; }
 
-    /* ── Footer ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 1.5rem 2rem;
-      text-align: center;
-      font-size: 0.8rem;
-      color: var(--muted);
+    /* section divider */
+    .policy-section + .policy-section {
+      padding-top: 0.25rem;
+      border-top: 1px solid rgba(201, 168, 76, 0.08);
     }
 
-    footer a { color: var(--muted); text-decoration: none; }
-    footer a:hover { color: var(--text); }
-    footer .sep { margin: 0 0.5rem; opacity: 0.4; }
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid rgba(201, 168, 76, 0.13);
+      padding: 1.75rem 2.5rem;
+      text-align: center;
+      font-size: 0.72rem;
+      color: var(--muted-warm);
+      letter-spacing: 0.07em;
+    }
+
+    footer a { color: var(--muted-warm); text-decoration: none; }
+    footer a:hover { color: var(--text-warm); }
+    footer .sep { margin: 0 0.6rem; opacity: 0.3; }
+
+    @media (max-width: 600px) {
+      nav { padding: 2rem 1.5rem 0; }
+      main { padding: 2.5rem 1.5rem 4rem; }
+    }
   </style>
 </head>
 <body>
 
   <nav>
-    <a class="wordmark" href="/">awry<span>Labs</span></a>
+    <a class="wordmark" href="/"><span class="awry">awry</span><span class="labs">Labs</span></a>
     <span class="nav-sep">/</span>
     <span class="nav-current">Privacy</span>
   </nav>
@@ -180,7 +201,7 @@
     </div>
 
     <div class="tldr">
-      <div class="tldr-label">tl;dr</div>
+      <div class="tldr-label">In brief</div>
       <p>
         awrylabs.com uses no cookies, no analytics, and no tracking of any kind.
         We don't know you visited. That's by design.
