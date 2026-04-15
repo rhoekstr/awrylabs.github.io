@@ -3,283 +3,109 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Privacy Policy · awryLabs</title>
-  <meta name="description" content="awrylabs.com uses no cookies, no analytics, no tracking of any kind." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg:         #1e1409;
-      --ink:        #1a1008;
-      --sepia:      #5c3d2e;
-      --gold:       #c9a84c;
-      --gold-dim:   #9e7e35;
-      --text-warm:  #ede2c8;
-      --muted-warm: #8a7060;
-    }
-
-    body {
-      background-color: var(--bg);
-      background-image:
-        repeating-linear-gradient(
-          0deg,
-          transparent 0px, transparent 3px,
-          rgba(255, 210, 120, 0.014) 3px, rgba(255, 210, 120, 0.014) 4px
-        ),
-        repeating-linear-gradient(
-          90deg,
-          transparent 0px, transparent 5px,
-          rgba(0, 0, 0, 0.03) 5px, rgba(0, 0, 0, 0.03) 6px
-        );
-      color: var(--text-warm);
-      font-family: 'Lora', Georgia, serif;
-      line-height: 1.7;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* ── Nav ── */
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 2.5rem 2.5rem 0;
-      max-width: 760px;
-      margin: 0 auto;
-      width: 100%;
-    }
-
-    .wordmark {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.05rem;
-      color: var(--text-warm);
-      text-decoration: none;
-    }
-
-    .wordmark .awry { font-style: italic; font-weight: 400; color: var(--gold); }
-    .wordmark .labs { font-style: normal; font-weight: 700; }
-
-    .nav-sep {
-      color: rgba(201, 168, 76, 0.3);
-      font-size: 1rem;
-      user-select: none;
-    }
-
-    .nav-current {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--muted-warm);
-    }
-
-    /* ── Content ── */
-    main {
-      flex: 1;
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 3.5rem 2.5rem 5rem;
-      width: 100%;
-    }
-
-    .page-header {
-      margin-bottom: 2.75rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid rgba(201, 168, 76, 0.18);
-    }
-
-    .page-header h1 {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 2rem;
-      font-weight: 700;
-      line-height: 1.1;
-      color: var(--text-warm);
-      margin-bottom: 0.6rem;
-    }
-
-    .page-header p {
-      font-size: 0.8rem;
-      color: var(--muted-warm);
-      letter-spacing: 0.04em;
-    }
-
-    /* tl;dr — marginal annotation style */
-    .tldr {
-      border-left: 2px solid rgba(201, 168, 76, 0.35);
-      padding: 0.6rem 1.5rem;
-      margin-bottom: 3rem;
-      background: rgba(201, 168, 76, 0.03);
-    }
-
-    .tldr-label {
-      font-size: 0.58rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold-dim);
-      margin-bottom: 0.45rem;
-    }
-
-    .tldr p {
-      font-size: 0.9rem;
-      color: var(--text-warm);
-      font-style: italic;
-      line-height: 1.75;
-    }
-
-    /* policy sections */
-    .policy-section {
-      margin-bottom: 2.5rem;
-    }
-
-    .policy-section h2 {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--text-warm);
-      margin-bottom: 0.65rem;
-    }
-
-    .policy-section p {
-      font-size: 0.88rem;
-      color: var(--muted-warm);
-      line-height: 1.85;
-      margin-bottom: 0.6rem;
-    }
-
-    .policy-section p:last-child { margin-bottom: 0; }
-
-    .policy-section a {
-      color: var(--gold);
-      text-decoration: none;
-    }
-
-    .policy-section a:hover { text-decoration: underline; }
-
-    /* section divider */
-    .policy-section + .policy-section {
-      padding-top: 0.25rem;
-      border-top: 1px solid rgba(201, 168, 76, 0.08);
-    }
-
-    /* ── Footer ── */
-    footer {
-      border-top: 1px solid rgba(201, 168, 76, 0.13);
-      padding: 1.75rem 2.5rem;
-      text-align: center;
-      font-size: 0.72rem;
-      color: var(--muted-warm);
-      letter-spacing: 0.07em;
-    }
-
-    footer a { color: var(--muted-warm); text-decoration: none; }
-    footer a:hover { color: var(--text-warm); }
-    footer .sep { margin: 0 0.6rem; opacity: 0.3; }
-
-    @media (max-width: 600px) {
-      nav { padding: 2rem 1.5rem 0; }
-      main { padding: 2.5rem 1.5rem 4rem; }
-    }
-  </style>
+  <title>Privacy · awryLabs</title>
+  <meta name="description" content="awrylabs.com uses no cookies, no analytics, and no tracking of any kind." />
+  <link rel="stylesheet" href="assets/awry.css">
 </head>
 <body>
 
-  <nav>
+  <nav class="nav">
     <a class="wordmark" href="/"><span class="awry">awry</span><span class="labs">Labs</span></a>
     <span class="nav-sep">/</span>
     <span class="nav-current">Privacy</span>
   </nav>
 
-  <main>
+  <main class="main main--narrow">
 
-    <div class="page-header">
-      <h1>Website Privacy Policy</h1>
-      <p>Last updated: February 2026 &nbsp;·&nbsp; Applies to awrylabs.com</p>
-    </div>
+    <header class="page-header">
+      <h1>Website privacy policy</h1>
+      <p>Last updated February 2026 &nbsp;·&nbsp; Applies to awrylabs.com</p>
+    </header>
 
     <div class="tldr">
-      <div class="tldr-label">In brief</div>
+      <div class="tldr__label">In brief</div>
       <p>
         awrylabs.com uses no cookies, no analytics, and no tracking of any kind.
         We don't know you visited. That's by design.
       </p>
     </div>
 
-    <div class="policy-section">
-      <h2>Data We Collect</h2>
-      <p>None. This website does not collect, transmit, or store any personal data.</p>
-      <p>
-        There are no analytics scripts, no session tracking, no advertising pixels,
-        no fingerprinting, and no third-party SDKs of any kind embedded in this site.
-        It's static HTML. It loads, you read it, nothing is recorded.
-      </p>
-    </div>
+    <div class="policy">
 
-    <div class="policy-section">
-      <h2>Cookies</h2>
-      <p>
-        No cookies are set. There is no cookie banner because there is nothing to consent to.
-      </p>
-    </div>
+      <section>
+        <h2>Data we collect</h2>
+        <p>None. This website does not collect, transmit, or store any personal data.</p>
+        <p>
+          There are no analytics scripts, no session tracking, no advertising pixels,
+          no fingerprinting, and no third-party SDKs of any kind embedded in this site.
+          It's static HTML. It loads, you read it, nothing is recorded.
+        </p>
+      </section>
 
-    <div class="policy-section">
-      <h2>Third-Party Scripts</h2>
-      <p>
-        None. No external JavaScript, no CDN-hosted libraries, no social embeds, no comment systems.
-        Every asset on this site is served directly — no third party can track your visit through
-        a resource load.
-      </p>
-    </div>
+      <section>
+        <h2>Cookies</h2>
+        <p>
+          No cookies are set. There is no cookie banner because there is nothing to consent to.
+        </p>
+      </section>
 
-    <div class="policy-section">
-      <h2>Hosting</h2>
-      <p>
-        This site is hosted on GitHub Pages. GitHub may collect server-level access logs
-        (IP address, request timestamp, user agent) as part of standard web infrastructure.
-        This is outside awryLabs' control. GitHub's privacy policy applies:
-        <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">docs.github.com</a>.
-      </p>
-    </div>
+      <section>
+        <h2>Third-party scripts</h2>
+        <p>
+          None. No external JavaScript, no CDN-hosted libraries, no social embeds, no comment systems.
+          Every asset on this site is served directly — no third party can track your visit through
+          a resource load.
+        </p>
+      </section>
 
-    <div class="policy-section">
-      <h2>External Links</h2>
-      <p>
-        This site links to third-party destinations such as the Apple App Store. Those destinations
-        have their own data practices — we don't control what happens once you leave awrylabs.com.
-      </p>
-    </div>
+      <section>
+        <h2>Hosting</h2>
+        <p>
+          This site is hosted on GitHub Pages. GitHub may collect server-level access logs
+          (IP address, request timestamp, user agent) as part of standard web infrastructure.
+          This is outside awryLabs' control. GitHub's privacy policy applies:
+          <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">docs.github.com</a>.
+        </p>
+      </section>
 
-    <div class="policy-section">
-      <h2>App Privacy</h2>
-      <p>
-        Each awryLabs app has its own privacy policy covering what happens on-device, in iCloud,
-        and through any platform services (Game Center, StoreKit, etc.). Links to individual
-        app privacy policies are available on each app's page.
-      </p>
-    </div>
+      <section>
+        <h2>External links</h2>
+        <p>
+          This site links to third-party destinations such as the Apple App Store. Those destinations
+          have their own data practices — we don't control what happens once you leave awrylabs.com.
+        </p>
+      </section>
 
-    <div class="policy-section">
-      <h2>Changes to This Policy</h2>
-      <p>
-        If we ever change our practices in a way that warrants updating this page,
-        we will. The effective date at the top will reflect it. Given that the policy
-        is "collect nothing," material changes seem unlikely.
-      </p>
-    </div>
+      <section>
+        <h2>App privacy</h2>
+        <p>
+          Each awryLabs app has its own privacy policy covering what happens on-device, in iCloud,
+          and through any platform services (Game Center, StoreKit, etc.). Links to individual
+          app privacy policies are available on each app's page.
+        </p>
+      </section>
 
-    <div class="policy-section">
-      <h2>Contact</h2>
-      <p>
-        Questions? Reach us at <a href="mailto:coffee@awrylabs.com">coffee@awrylabs.com</a>.
-      </p>
+      <section>
+        <h2>Changes to this policy</h2>
+        <p>
+          If we ever change our practices in a way that warrants updating this page,
+          we will. The effective date at the top will reflect it. Given that the policy
+          is "collect nothing," material changes seem unlikely.
+        </p>
+      </section>
+
+      <section>
+        <h2>Contact</h2>
+        <p>
+          Questions? Reach us at <a href="mailto:coffee@awrylabs.com">coffee@awrylabs.com</a>.
+        </p>
+      </section>
+
     </div>
 
   </main>
 
-  <footer>
+  <footer class="footer">
     <a href="/">awryLabs</a>
     <span class="sep">·</span>
     <span>© 2026 awryLabs</span>

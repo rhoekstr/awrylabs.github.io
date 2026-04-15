@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gravel · awryLabs</title>
+  <meta name="description" content="Gravel — a C++/Python library for quantifying road network fragility. Contraction-hierarchy routing plus replacement-path fragility analysis." />
+  <link rel="stylesheet" href="assets/awry.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <a class="wordmark" href="/"><span class="awry">awry</span><span class="labs">Labs</span></a>
+    <span class="nav-sep">/</span>
+    <span class="nav-current">Gravel</span>
+  </nav>
+
+  <main class="main">
+
+    <p class="sr-only">Gravel product page. A C++ library with Python bindings for road network fragility analysis. Released at version 2.1 in April 2026.</p>
+
+    <!-- Hero card -->
+    <article class="card card--large" data-theme="published">
+      <div class="status status--corner" role="status">Published · v2.1</div>
+      <h1 class="card__title">Gravel</h1>
+      <p class="card__desc">
+        Gravel is a C++ library with first-class Python bindings that quantifies how
+        vulnerable road networks are to edge failures. It combines contraction-hierarchy
+        routing with replacement-path fragility analysis to produce composite isolation
+        scores for geographic regions — supporting disaster preparedness research,
+        infrastructure planning, and transportation equity analysis.
+      </p>
+      <footer class="card__footer">Version 2.1 &middot; April 2026 &middot; Linux · macOS · Windows</footer>
+    </article>
+
+    <!-- Problem statement -->
+    <article class="card card--section" data-theme="published">
+      <h2 class="card__title">The question routing libraries don't ask</h2>
+      <p class="card__desc">
+        Traditional routing answers <em>what is the shortest path?</em> Gravel answers
+        a harder one: <em>how does that path degrade when edges fail?</em>
+      </p>
+
+      <div class="grid" style="--cols: 2;">
+        <div class="callout">
+          <span class="callout__title">Why it matters</span>
+          <p class="callout__text">
+            Disaster response plans assume road networks remain functional; they rarely do.
+            Rural and mountain communities depend on single critical routes with no viable
+            detours.
+          </p>
+        </div>
+        <div class="callout">
+          <span class="callout__title">What Gravel produces</span>
+          <p class="callout__text">
+            Quantitative fragility scores that make vulnerabilities comparable across
+            counties, states, and regions — so "where is redundancy genuinely absent"
+            is a ranked list, not a hunch.
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Performance KPIs -->
+    <article class="card card--section" data-theme="published">
+      <h2 class="card__title">Measured performance</h2>
+      <p class="card__desc">Numbers from the v2.1 release, all on an M1 Mac in release build.</p>
+
+      <div class="kpi-row">
+        <div class="kpi">
+          <span class="kpi__label">CH build</span>
+          <span class="kpi__value">0.7s</span>
+          <span class="kpi__caption">Contraction hierarchy compiled from 200K nodes.</span>
+        </div>
+        <div class="kpi">
+          <span class="kpi__label">Location fragility</span>
+          <span class="kpi__value">2.1s</span>
+          <span class="kpi__caption">200K nodes, Monte Carlo with 20 trials. ~400× faster than v2.0.</span>
+        </div>
+        <div class="kpi">
+          <span class="kpi__label">County fragility</span>
+          <span class="kpi__value">0.7s</span>
+          <span class="kpi__caption">200K nodes, 20 origin-destination pairs.</span>
+        </div>
+        <div class="kpi">
+          <span class="kpi__label">National pipeline</span>
+          <span class="kpi__value">3.1h</span>
+          <span class="kpi__caption">Fragility index for all 3,221 US counties, end to end.</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Use cases -->
+    <article class="card card--section" data-theme="published">
+      <h2 class="card__title">Who it's for, what it does</h2>
+
+      <p class="section-label" style="margin-top: 0.25rem;">Primary users</p>
+      <div class="pills">
+        <span class="pill">Disaster sociology researchers</span>
+        <span class="pill">Transportation planners</span>
+        <span class="pill">Emergency management</span>
+        <span class="pill">Civil engineers</span>
+      </div>
+
+      <p class="section-label">Primary use cases</p>
+      <div class="grid" style="--cols: 2;">
+        <div class="obj">
+          <div class="obj__num">Ranking</div>
+          <div class="obj__title">Regions by vulnerability</div>
+          <div class="obj__desc">Produce a fragility score for every county in a state or nation and rank them.</div>
+        </div>
+        <div class="obj">
+          <div class="obj__num">Scenario</div>
+          <div class="obj__title">Hazard footprint impact</div>
+          <div class="obj__desc">Given a flood, wildfire, or landslide footprint, measure the resulting connectivity loss.</div>
+        </div>
+        <div class="obj">
+          <div class="obj__num">Progressive</div>
+          <div class="obj__title">Failure simulation</div>
+          <div class="obj__desc">Degrade edges one at a time and plot the resulting isolation curve over the sequence.</div>
+        </div>
+        <div class="obj">
+          <div class="obj__num">Inter-region</div>
+          <div class="obj__title">Connectivity dependence</div>
+          <div class="obj__desc">Quantify how reliant one county is on a neighbor's roads — and where that reliance concentrates.</div>
+        </div>
+        <div class="obj">
+          <div class="obj__num">Directional</div>
+          <div class="obj__title">Asymmetric vulnerability</div>
+          <div class="obj__desc">Reveal that a coastal town's evacuation routes north are fine, while east is fragile.</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Architecture -->
+    <article class="card card--section" data-theme="published">
+      <h2 class="card__title">Architecture</h2>
+      <p class="card__desc">
+        Six sub-libraries organized as a strict dependency DAG. Consumers link only
+        what they need — a router-only tool never pulls in Eigen or Spectra.
+      </p>
+
+      <div class="grid" style="--cols: 2;">
+        <div class="obj">
+          <div class="obj__num">gravel-core</div>
+          <div class="obj__title">ArrayGraph &amp; primitives</div>
+          <div class="obj__desc">Structure-of-arrays CSR graph, region assignment, basic types. No external dependencies.</div>
+        </div>
+        <div class="obj">
+          <div class="obj__num">gravel-ch</div>
+          <div class="obj__title">Contraction hierarchy</div>
+          <div class="obj__desc">Compiled CH for O(log n) shortest-path queries, blocked-edge variants, bidirectional Dijkstra for verification.</div>
+        </div>
+        <div class="obj">
+          <div class="obj__num">gravel-simplify</div>
+          <div class="obj__title">Graph reduction</div>
+          <div class="obj__desc">Degree-2 contraction shrinks 200K-node county graphs to ~14K with zero loss of shortest-path information.</div>
+        </div>
+        <div class="obj">
+          <div class="obj__num">gravel-fragility</div>
+          <div class="obj__title">Fragility analysis</div>
+          <div class="obj__desc">Reverse-incremental SSSP, ensemble and uncertainty quantification, composite formula, progressive elimination.</div>
+        </div>
+        <div class="obj">
+          <div class="obj__num">gravel-geo</div>
+          <div class="obj__title">Geographic operators</div>
+          <div class="obj__desc">GeoJSON boundary loading, point-in-polygon assignment, boundary-aware simplification, graph coarsening.</div>
+        </div>
+        <div class="obj">
+          <div class="obj__num">gravel-us</div>
+          <div class="obj__title">US-specific loaders</div>
+          <div class="obj__desc">TIGER/Line for counties, states, CBSAs, places, urban areas. FIPS crosswalk built in.</div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <span class="callout__title">Composite isolation formula</span>
+        <p class="callout__text">
+          <code>isolation_risk = 0.5 × disconnected_fraction + 0.3 × normalized_distance_inflation + 0.2 × coverage_gap</code>.
+          Weights chosen empirically so Swain County and Bryson City rank as intuitively
+          more fragile than Asheville. Single source of truth in <code>composite_formula.h</code>.
+        </p>
+      </div>
+    </article>
+
+    <!-- Platform & quality -->
+    <article class="card card--section" data-theme="published">
+      <h2 class="card__title">Quality &amp; platforms</h2>
+
+      <div class="kpi-row">
+        <div class="kpi">
+          <span class="kpi__label">Unit tests</span>
+          <span class="kpi__value">200+</span>
+          <span class="kpi__caption">Catch2-based coverage of every public function, validated with ASan builds.</span>
+        </div>
+        <div class="kpi">
+          <span class="kpi__label">C++ standard</span>
+          <span class="kpi__value">C++20</span>
+          <span class="kpi__caption">CMake 3.20+. Built and tested on Linux x86_64/aarch64, macOS x86_64/arm64, Windows x86_64.</span>
+        </div>
+        <div class="kpi">
+          <span class="kpi__label">Python</span>
+          <span class="kpi__value">3.10+</span>
+          <span class="kpi__caption">Full pybind11 bindings. NumPy-compatible graph construction. OSM loading is optional.</span>
+        </div>
+        <div class="kpi">
+          <span class="kpi__label">Validation</span>
+          <span class="kpi__value">Spectral</span>
+          <span class="kpi__caption">CH results cross-checked against Dijkstra. Swain County OSM acts as a real-world regression test.</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Non-goals -->
+    <article class="card card--section" data-theme="published">
+      <h2 class="card__title">What Gravel is not</h2>
+      <div class="grid" style="--cols: 3;">
+        <div class="callout">
+          <span class="callout__title">Not turn-by-turn</span>
+          <p class="callout__text">Not a navigation library. Use OSRM or GraphHopper.</p>
+        </div>
+        <div class="callout">
+          <span class="callout__title">Not transit</span>
+          <p class="callout__text">Not a transit planner. Use OpenTripPlanner for GTFS and multi-modal.</p>
+        </div>
+        <div class="callout">
+          <span class="callout__title">Not dynamic</span>
+          <p class="callout__text">Contraction hierarchies assume a static edge set. No live traffic, no mutable graphs.</p>
+        </div>
+      </div>
+    </article>
+
+  </main>
+
+  <footer class="footer">
+    <a href="/">awryLabs</a>
+    <span class="sep">·</span>
+    <a href="privacy.html">Privacy</a>
+    <span class="sep">·</span>
+    <span>© 2026 awryLabs</span>
+  </footer>
+
+</body>
+</html>
