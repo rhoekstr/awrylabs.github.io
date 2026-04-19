@@ -629,6 +629,180 @@ a { color: inherit; }
 }
 
 /* ============================================================
+   CODE BLOCKS
+   ============================================================ */
+
+code {
+  font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.88em;
+  padding: 0.08em 0.35em;
+  background: var(--card-pill, var(--page-rule));
+  color: var(--card-text-strong, inherit);
+  border-radius: 3px;
+}
+
+pre.code {
+  display: block;
+  font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  padding: 0.85rem 1rem;
+  background: var(--card-surface);
+  border-radius: 6px;
+  overflow-x: auto;
+  color: var(--card-text-strong);
+  border: 1px solid var(--card-border);
+}
+
+pre.code code {
+  background: none;
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+  border-radius: 0;
+}
+
+.code-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--card-accent);
+  margin-bottom: 0.3rem;
+}
+
+/* ============================================================
+   DATA TABLE
+   ============================================================ */
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.table th {
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--card-accent);
+  padding: 0.55rem 0.7rem;
+  border-bottom: 1px solid var(--card-border);
+  background: transparent;
+}
+
+.table td {
+  padding: 0.55rem 0.7rem;
+  border-bottom: 1px solid var(--card-border);
+  color: var(--card-text);
+  vertical-align: top;
+}
+
+.table tr:last-child td { border-bottom: none; }
+
+.table td.num,
+.table th.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.table td strong { color: var(--card-text-strong); font-weight: 600; }
+
+/* ============================================================
+   REPO / ACTION LINK
+   ============================================================ */
+
+.repo-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.95rem;
+  background: var(--card-accent);
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.88rem;
+  letter-spacing: -0.005em;
+  width: fit-content;
+  transition: filter 0.15s ease, transform 0.15s ease;
+}
+
+.repo-link:hover { filter: brightness(1.08); transform: translateY(-1px); }
+
+.repo-link__icon {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   BADGES (license, version chips in hero)
+   ============================================================ */
+
+.badges {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 0.22rem 0.5rem;
+  border-radius: 4px;
+  background: var(--card-pill);
+  color: var(--card-text-strong);
+  letter-spacing: 0.02em;
+}
+
+/* ============================================================
+   HORIZONTAL BAR ROW (for ranked-list visuals)
+   ============================================================ */
+
+.bar-row {
+  display: grid;
+  grid-template-columns: 140px 1fr 70px;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.88rem;
+  padding: 0.35rem 0;
+}
+
+.bar-row + .bar-row { border-top: 1px solid var(--card-border); }
+
+.bar-row__label {
+  color: var(--card-text-strong);
+  font-weight: 500;
+}
+
+.bar-row__track {
+  height: 10px;
+  background: var(--card-pill);
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+}
+
+.bar-row__fill {
+  height: 100%;
+  background: var(--card-accent);
+  width: calc(var(--bar-value, 0) * 1%);
+  border-radius: 5px;
+}
+
+.bar-row__value {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--card-text-strong);
+  font-weight: 600;
+}
+
+/* ============================================================
    RESPONSIVE
    ============================================================ */
 
@@ -638,4 +812,7 @@ a { color: inherit; }
   .footer { padding: 1.25rem 1.25rem; }
   .grid { grid-template-columns: 1fr; }
   .card--large { padding: 1.25rem 1.25rem; }
+  .bar-row { grid-template-columns: 110px 1fr 56px; gap: 0.5rem; font-size: 0.82rem; }
+  .table { font-size: 0.82rem; }
+  pre.code { font-size: 0.76rem; padding: 0.7rem 0.85rem; }
 }
