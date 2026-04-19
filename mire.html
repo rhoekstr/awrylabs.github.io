@@ -31,36 +31,42 @@
         to AI planning depth, so the game grows with you without ever asking you to pick
         a difficulty.
       </p>
-      <footer class="card__footer">iOS 16+ &middot; macOS 13+ &middot; target launch December 15, 2025</footer>
+      <div class="badges">
+        <span class="badge" style="background: #1D9E75; color: #fff;">iOS 16+</span>
+        <span class="badge" style="background: #0E8A80; color: #fff;">macOS 13+</span>
+        <span class="badge" style="background: #6B46C1; color: #fff;">Privacy first</span>
+        <span class="badge" style="background: #B8862B; color: #fff;">Free to play</span>
+      </div>
+      <footer class="card__footer">Target launch &middot; December 15, 2025</footer>
     </article>
 
     <!-- Design principles -->
-    <article class="card card--section" data-theme="launching">
+    <article class="card card--section palette-amber">
       <h2 class="card__title">Design principles</h2>
       <p class="card__desc">Five commitments that shaped every other decision.</p>
 
       <div class="grid" style="--cols: 3;">
-        <div class="obj">
+        <div class="obj" style="--card-accent: #B84545; --card-pill: #F4BCBC;">
           <div class="obj__num">01</div>
           <div class="obj__title">Controlled discomfort</div>
           <div class="obj__desc">The board tilts, territories breathe, terrain rolls. You feel clever when you win, intrigued when you lose.</div>
         </div>
-        <div class="obj">
+        <div class="obj" style="--card-accent: #0E8A80; --card-pill: #9FD8CF;">
           <div class="obj__num">02</div>
           <div class="obj__title">Emergent complexity</div>
           <div class="obj__desc">Simple rules, ML boundaries, topographic influence, and territory friction — together they produce games nobody has designed in advance.</div>
         </div>
-        <div class="obj">
+        <div class="obj" style="--card-accent: #1D9E75; --card-pill: #A9DDC8;">
           <div class="obj__num">03</div>
           <div class="obj__title">Adaptive challenge</div>
           <div class="obj__desc">A single skill rating from 0 to 1 scales every difficulty parameter via sigmoid curves. Beginners play on nearly-flat boards; experts get dramatic terrain.</div>
         </div>
-        <div class="obj">
+        <div class="obj" style="--card-accent: #4A5A75; --card-pill: #BCC4D1;">
           <div class="obj__num">04</div>
           <div class="obj__title">Radical simplicity</div>
           <div class="obj__desc">No live ops, no seasons, no battle pass, no daily grind. Ship a complete, polished experience and let it stand on its own.</div>
         </div>
-        <div class="obj">
+        <div class="obj" style="--card-accent: #6B46C1; --card-pill: #D7CEF0;">
           <div class="obj__num">05</div>
           <div class="obj__title">Privacy first</div>
           <div class="obj__desc">Zero data collection. Games, history, and the local ML model stay on your device. iCloud sync is optional and user-controlled.</div>
@@ -69,26 +75,26 @@
     </article>
 
     <!-- Game modes -->
-    <article class="card card--section" data-theme="launching">
+    <article class="card card--section palette-teal">
       <h2 class="card__title">Game modes at launch</h2>
 
       <div class="grid" style="--cols: 2;">
-        <div class="obj">
+        <div class="obj" style="--card-accent: #B8862B; --card-pill: #F5D89A;">
           <div class="obj__num">Solo</div>
           <div class="obj__title">Human vs AI</div>
           <div class="obj__desc">Play against an opponent blending heuristic rules, Monte-Carlo simulation, and an on-device neural agent. Difficulty tracks your skill automatically.</div>
         </div>
-        <div class="obj">
+        <div class="obj" style="--card-accent: #0E8A80; --card-pill: #9FD8CF;">
           <div class="obj__num">Online</div>
           <div class="obj__title">Asynchronous match</div>
           <div class="obj__desc">Game Center pairs you with a similarly-skilled opponent. Take your turn when the moment suits; up to ten concurrent matches.</div>
         </div>
-        <div class="obj">
+        <div class="obj" style="--card-accent: #6B46C1; --card-pill: #D7CEF0;">
           <div class="obj__num">Friends</div>
           <div class="obj__title">Challenge by invite</div>
           <div class="obj__desc">Challenge a specific Game Center friend. Same rules, same async pacing — just the opponent of your choosing.</div>
         </div>
-        <div class="obj">
+        <div class="obj" style="--card-accent: #B84545; --card-pill: #F4BCBC;">
           <div class="obj__num">Learn</div>
           <div class="obj__title">Three-game tutorial</div>
           <div class="obj__desc">High ground, pin density, first strike. Three compact scenarios that teach the system without tutorials-in-the-abstract.</div>
@@ -97,26 +103,26 @@
     </article>
 
     <!-- Technical pillars / KPIs -->
-    <article class="card card--section" data-theme="launching">
+    <article class="card card--section palette-slate">
       <h2 class="card__title">Under the hood</h2>
 
       <div class="kpi-row">
-        <div class="kpi">
+        <div class="kpi" style="--card-accent: #B8862B; --card-surface: #FAE6BC; --card-text-strong: #4A3408;">
           <span class="kpi__label">Boundary engine</span>
           <span class="kpi__value">4</span>
           <span class="kpi__caption">ML models blend per-game — KDE, power diagram, Bayesian, graph propagation — weighted by skill and calculation speed.</span>
         </div>
-        <div class="kpi">
+        <div class="kpi" style="--card-accent: #6B46C1; --card-surface: #E0D0F0; --card-text-strong: #231253;">
           <span class="kpi__label">Skill scale</span>
           <span class="kpi__value">0–1</span>
           <span class="kpi__caption">One continuous rating drives terrain extremity, feature count, AI depth, influence distance, and convergence thresholds.</span>
         </div>
-        <div class="kpi">
+        <div class="kpi" style="--card-accent: #0E8A80; --card-surface: #C0E8E2; --card-text-strong: #053530;">
           <span class="kpi__label">Boundary calc budget</span>
           <span class="kpi__value">&lt;8s</span>
           <span class="kpi__caption">Target on iPhone XS and up. Territory snapshots are cached; pins are cryptographically signed with Curve25519.</span>
         </div>
-        <div class="kpi">
+        <div class="kpi" style="--card-accent: var(--color-success); --card-surface: rgba(46, 125, 50, 0.14); --card-text-strong: var(--color-success);">
           <span class="kpi__label">Data leaving device</span>
           <span class="kpi__value">0</span>
           <span class="kpi__caption">No analytics SDKs, no crash phone-home, no account. Game Center handles matches; iCloud is opt-in.</span>
@@ -125,7 +131,7 @@
     </article>
 
     <!-- Privacy callout -->
-    <article class="card card--section" data-theme="launching">
+    <article class="card card--section palette-violet">
       <h2 class="card__title">Privacy by default</h2>
       <div class="callout">
         <span class="callout__title">What this actually means</span>
@@ -142,16 +148,16 @@
     <article class="card card--section" data-theme="launching">
       <h2 class="card__title">Availability &amp; pricing</h2>
       <div class="grid" style="--cols: 2;">
-        <div class="callout">
+        <div class="callout" style="--card-surface: rgba(46, 125, 50, 0.14); --card-text-strong: var(--color-success);">
           <span class="callout__title">Free to play</span>
           <p class="callout__text">
             Every mode, every feature, no ads, no subscription. Free on launch day and
             every day after.
           </p>
         </div>
-        <div class="callout">
+        <div class="callout" style="--card-surface: #FAE6BC; --card-text-strong: #6B4C14;">
           <span class="callout__title">$4.99 optional "coffee"</span>
-          <p class="callout__text">
+          <p class="callout__text" style="color: #4A3408;">
             One tip jar. Non-recurring. Nothing is gated behind it. If the game earns
             its keep on your device, that's how you say so.
           </p>
