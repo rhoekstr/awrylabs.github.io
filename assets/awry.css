@@ -143,6 +143,144 @@ a { color: inherit; }
 }
 
 /* ============================================================
+   PALETTE CLASSES — standalone color families
+   Use in place of data-theme when you want a non-status color.
+   ============================================================ */
+
+.palette-amber {
+  --card-bg:          #FEF3DC;
+  --card-surface:     #FAE6BC;
+  --card-border:      #D9A84C;
+  --card-pill:        #F5D89A;
+  --card-accent:      #B8862B;
+  --card-text:        #6B4C14;
+  --card-text-strong: #4A3408;
+  --card-border-style: solid;
+  --card-status-bg:   #FAE6BC;
+  --card-status-text: #6B4C14;
+  --card-status-dot:  #B8862B;
+}
+
+.palette-rose {
+  --card-bg:          #FDEDED;
+  --card-surface:     #FAD4D4;
+  --card-border:      #DC8B8B;
+  --card-pill:        #F4BCBC;
+  --card-accent:      #B84545;
+  --card-text:        #7A2020;
+  --card-text-strong: #4A0D0D;
+  --card-border-style: solid;
+  --card-status-bg:   #FAD4D4;
+  --card-status-text: #7A2020;
+  --card-status-dot:  #B84545;
+}
+
+.palette-teal {
+  --card-bg:          #DEF4F1;
+  --card-surface:     #C0E8E2;
+  --card-border:      #5FB5AA;
+  --card-pill:        #9FD8CF;
+  --card-accent:      #0E8A80;
+  --card-text:        #0B5F58;
+  --card-text-strong: #053530;
+  --card-border-style: solid;
+  --card-status-bg:   #C0E8E2;
+  --card-status-text: #0B5F58;
+  --card-status-dot:  #0E8A80;
+}
+
+.palette-slate {
+  --card-bg:          #EBEEF3;
+  --card-surface:     #D6DBE4;
+  --card-border:      #8D97A8;
+  --card-pill:        #BCC4D1;
+  --card-accent:      #4A5A75;
+  --card-text:        #2F3A4C;
+  --card-text-strong: #1A212E;
+  --card-border-style: solid;
+  --card-status-bg:   #D6DBE4;
+  --card-status-text: #2F3A4C;
+  --card-status-dot:  #4A5A75;
+}
+
+.palette-violet {
+  --card-bg:          #EFE7F7;
+  --card-surface:     #E0D0F0;
+  --card-border:      #9780C8;
+  --card-pill:        #C9B8E0;
+  --card-accent:      #6B46C1;
+  --card-text:        #3E2986;
+  --card-text-strong: #231253;
+  --card-border-style: solid;
+  --card-status-bg:   #E0D0F0;
+  --card-status-text: #3E2986;
+  --card-status-dot:  #6B46C1;
+}
+
+@media (prefers-color-scheme: dark) {
+  .palette-amber {
+    --card-bg:          #2B1F0B;
+    --card-surface:     #3A2B10;
+    --card-border:      #806335;
+    --card-pill:        #4D3A18;
+    --card-accent:      #E0B35C;
+    --card-text:        #D4B880;
+    --card-text-strong: #F5D89A;
+    --card-status-bg:   #3A2B10;
+    --card-status-text: #D4B880;
+    --card-status-dot:  #E0B35C;
+  }
+  .palette-rose {
+    --card-bg:          #2B0F0F;
+    --card-surface:     #3A1515;
+    --card-border:      #7A3030;
+    --card-pill:        #4D1A1A;
+    --card-accent:      #E07070;
+    --card-text:        #E5B5B5;
+    --card-text-strong: #F4D0D0;
+    --card-status-bg:   #3A1515;
+    --card-status-text: #E5B5B5;
+    --card-status-dot:  #E07070;
+  }
+  .palette-teal {
+    --card-bg:          #08302B;
+    --card-surface:     #0A3C36;
+    --card-border:      #328A81;
+    --card-pill:        #12504A;
+    --card-accent:      #4FB8AC;
+    --card-text:        #9DD4CE;
+    --card-text-strong: #C5E8E4;
+    --card-status-bg:   #0A3C36;
+    --card-status-text: #9DD4CE;
+    --card-status-dot:  #4FB8AC;
+  }
+  .palette-slate {
+    --card-bg:          #171B22;
+    --card-surface:     #1F242D;
+    --card-border:      #4A5565;
+    --card-pill:        #272D38;
+    --card-accent:      #8A9AB0;
+    --card-text:        #B0BACA;
+    --card-text-strong: #D4DBE8;
+    --card-status-bg:   #1F242D;
+    --card-status-text: #B0BACA;
+    --card-status-dot:  #8A9AB0;
+  }
+  .palette-violet {
+    --card-bg:          #1C1530;
+    --card-surface:     #241B3C;
+    --card-border:      #5A4A85;
+    --card-pill:        #2E2648;
+    --card-accent:      #9E80E8;
+    --card-text:        #C0B0E8;
+    --card-text-strong: #DFD5F4;
+    --card-status-bg:   #241B3C;
+    --card-status-text: #C0B0E8;
+    --card-status-dot:  #9E80E8;
+  }
+}
+
+/* ============================================================
    LAYOUT — nav, footer, page frame
    ============================================================ */
 
