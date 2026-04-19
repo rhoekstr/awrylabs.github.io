@@ -1,0 +1,81 @@
+name: Refresh Gravel stats
+
+# Pulls release tag, release date, and last-commit date from the public
+# rhoekstr/gravel repo and bakes them into gravel.html at build time.
+# No client-side JS is shipped to visitors.
+
+on:
+  schedule:
+    - cron: '17 6 * * *'          # daily at 06:17 UTC (off-peak minute)
+  workflow_dispatch:              # manual "run now" button
+  repository_dispatch:            # gravel repo can poke us on release
+    types: [gravel-updated]
+
+concurrency:
+  group: refresh-gravel-stats
+  cancel-in-progress: false       # queue overlapping runs instead of cancelling
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write             # needed to commit back to this repo
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch Gravel repo stats
+        id: stats
+        env:
+          # GITHUB_TOKEN can read any public repo; writes are scoped to this one.
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          REPO="rhoekstr/gravel"
+
+          # Default branch (handles repo renames gracefully)
+          BRANCH=$(gh api "repos/$REPO" --jq .default_branch)
+
+          # Latest release — may not exist yet (pre-1.0 repos, or repos
+          # that only tag without publishing releases).
+          if REL_JSON=$(gh api "repos/$REPO/releases/latest" 2>/dev/null); then
+            VERSION=$(jq -r .tag_name <<<"$REL_JSON")
+            RELEASED_RAW=$(jq -r .published_at <<<"$REL_JSON")
+            RELEASED=$(date -u -d "$RELEASED_RAW" '+%B %Y')
+          else
+            VERSION="Unreleased"
+            RELEASED="—"
+          fi
+
+          # Last commit on the default branch
+          LAST_RAW=$(gh api "repos/$REPO/branches/$BRANCH" \
+                      --jq .commit.commit.committer.date)
+          LAST_COMMIT=$(date -u -d "$LAST_RAW" '+%Y-%m-%d')
+
+          {
+            echo "version=$VERSION"
+            echo "released=$RELEASED"
+            echo "last_commit=$LAST_COMMIT"
+          } >> "$GITHUB_OUTPUT"
+
+          echo "::notice title=Gravel stats::version=$VERSION · released=$RELEASED · last_commit=$LAST_COMMIT"
+
+      - name: Inject stats into gravel.html
+        run: |
+          python3 scripts/inject-stats.py \
+            --file gravel.html \
+            --set "version=${{ steps.stats.outputs.version }}" \
+            --set "released=${{ steps.stats.outputs.released }}" \
+            --set "last-commit=${{ steps.stats.outputs.last_commit }}"
+
+      - name: Commit and push if changed
+        run: |
+          if git diff --quiet gravel.html; then
+            echo "No changes to gravel.html — skipping commit."
+            exit 0
+          fi
+          git config user.name  "awrylabs-stats[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add gravel.html
+          git commit -m "gravel: refresh stats (${{ steps.stats.outputs.version }} · ${{ steps.stats.outputs.last_commit }})"
+          git push
