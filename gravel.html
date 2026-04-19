@@ -39,7 +39,7 @@
         <span class="badge">Linux · macOS · Windows</span>
       </div>
       <a class="repo-link" href="https://github.com/rhoekstr/gravel" target="_blank" rel="noopener">
-        <svg class="repo-link__icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        <svg class="repo-link__icon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
         View on GitHub
       </a>
       <footer class="card__footer">
@@ -83,7 +83,7 @@
     <!-- ====================================================
          DOMAIN-AGNOSTIC FRAMING — the key point
          ==================================================== -->
-    <article class="card card--section" data-theme="published">
+    <article class="card card--section" data-theme="launching">
       <h2 class="card__title">Built for roads. Works on any network.</h2>
       <p class="card__desc">
         Gravel's analysis operates on a generic <code>ArrayGraph</code> — nodes, directed
@@ -96,7 +96,7 @@
 
       <div class="grid" style="--cols: 2;">
 
-        <div class="obj">
+        <div class="obj" style="--card-accent: #1D9E75; --card-pill: #A9DDC8;">
           <div class="obj__num">Built-in</div>
           <div class="obj__title">Road networks</div>
           <div class="obj__desc">
@@ -106,7 +106,7 @@
           </div>
         </div>
 
-        <div class="obj">
+        <div class="obj" style="--card-accent: #C17D1E; --card-pill: #F3DFB4;">
           <div class="obj__num">Bring your own</div>
           <div class="obj__title">Electrical grids</div>
           <div class="obj__desc">
@@ -116,7 +116,7 @@
           </div>
         </div>
 
-        <div class="obj">
+        <div class="obj" style="--card-accent: #0B8577; --card-pill: #B5E0D8;">
           <div class="obj__num">Bring your own</div>
           <div class="obj__title">Telecom networks</div>
           <div class="obj__desc">
@@ -126,7 +126,7 @@
           </div>
         </div>
 
-        <div class="obj">
+        <div class="obj" style="--card-accent: #6B46C1; --card-pill: #D7CEF0;">
           <div class="obj__num">Bring your own</div>
           <div class="obj__title">Water, gas, rail, custom</div>
           <div class="obj__desc">
@@ -239,8 +239,8 @@ print(f"directional coverage:  {result.directional_coverage:.2f}")</code></pre>
         <thead>
           <tr>
             <th>Operation</th>
-            <th class="num">200K nodes<br><small style="font-weight: 400; text-transform: none; letter-spacing: 0;">Swain Co., NC</small></th>
-            <th class="num">593K nodes<br><small style="font-weight: 400; text-transform: none; letter-spacing: 0;">Buncombe Co., NC</small></th>
+            <th class="num">Swain · 200K nodes</th>
+            <th class="num">Buncombe · 593K nodes</th>
           </tr>
         </thead>
         <tbody>
@@ -250,8 +250,9 @@ print(f"directional coverage:  {result.directional_coverage:.2f}")</code></pre>
           <tr><td>CH route (with path unpacking)</td>         <td class="num">82.7 µs</td>  <td class="num">144.8 µs</td></tr>
           <tr><td>Distance matrix cell (OpenMP)</td>          <td class="num">5.5 µs</td>   <td class="num">6.3 µs</td></tr>
           <tr><td>Route fragility (per path edge)</td>        <td class="num">~60 ms</td>   <td class="num">~124 ms</td></tr>
-          <tr><td><strong>Location fragility</strong> (MC=20)</td> <td class="num"><strong>2.1 s</strong></td> <td class="num">~8 s</td></tr>
+          <tr class="table__row--emphasis"><td>Location fragility (MC=20)</td> <td class="num">2.1 s</td> <td class="num">~8 s</td></tr>
         </tbody>
+        <caption>Swain Co. NC (200K nodes) and Buncombe Co. NC (593K nodes), real OSM data.</caption>
       </table>
 
       <div class="kpi-row">
@@ -285,8 +286,8 @@ print(f"directional coverage:  {result.directional_coverage:.2f}")</code></pre>
 
       <div class="grid" style="--cols: 2;">
 
-        <div>
-          <div class="code-label">Most vulnerable states</div>
+        <div style="--card-accent: var(--color-danger); --card-pill: rgba(198, 40, 40, 0.18);">
+          <div class="code-label" style="color: var(--color-danger);">Most vulnerable states</div>
           <div class="bar-row">
             <span class="bar-row__label">New Hampshire</span>
             <span class="bar-row__track"><span class="bar-row__fill" style="--bar-value: 100;"></span></span>
@@ -309,8 +310,8 @@ print(f"directional coverage:  {result.directional_coverage:.2f}")</code></pre>
           </div>
         </div>
 
-        <div>
-          <div class="code-label">Most resilient states</div>
+        <div style="--card-accent: var(--color-success); --card-pill: rgba(46, 125, 50, 0.18);">
+          <div class="code-label" style="color: var(--color-success);">Most resilient states</div>
           <div class="bar-row">
             <span class="bar-row__label">Kansas</span>
             <span class="bar-row__track"><span class="bar-row__fill" style="--bar-value: 23;"></span></span>
@@ -389,12 +390,12 @@ print(f"directional coverage:  {result.directional_coverage:.2f}")</code></pre>
     <!-- ====================================================
          APPLICATIONS — disaster + national security
          ==================================================== -->
-    <article class="card card--section" data-theme="published">
+    <article class="card card--section" data-theme="launching">
       <h2 class="card__title">Where it earns its keep</h2>
 
       <div class="grid" style="--cols: 2;">
 
-        <div class="obj">
+        <div class="obj" style="--card-accent: #C17D1E; --card-pill: #F3DFB4;">
           <div class="obj__num">Emergency management</div>
           <div class="obj__title">Pre-position by isolation risk</div>
           <div class="obj__desc">
@@ -404,7 +405,7 @@ print(f"directional coverage:  {result.directional_coverage:.2f}")</code></pre>
           </div>
         </div>
 
-        <div class="obj">
+        <div class="obj" style="--card-accent: #0B8577; --card-pill: #B5E0D8;">
           <div class="obj__num">Infrastructure planning</div>
           <div class="obj__title">Redundancy investment</div>
           <div class="obj__desc">
@@ -414,7 +415,7 @@ print(f"directional coverage:  {result.directional_coverage:.2f}")</code></pre>
           </div>
         </div>
 
-        <div class="obj">
+        <div class="obj" style="--card-accent: #B91C1C; --card-pill: #F3C4C4;">
           <div class="obj__num">Critical infrastructure</div>
           <div class="obj__title">National security assessment</div>
           <div class="obj__desc">
@@ -424,7 +425,7 @@ print(f"directional coverage:  {result.directional_coverage:.2f}")</code></pre>
           </div>
         </div>
 
-        <div class="obj">
+        <div class="obj" style="--card-accent: #6B46C1; --card-pill: #D7CEF0;">
           <div class="obj__num">Transportation equity</div>
           <div class="obj__title">Access gaps, quantified</div>
           <div class="obj__desc">
@@ -477,7 +478,7 @@ print(f"directional coverage:  {result.directional_coverage:.2f}")</code></pre>
     <!-- ====================================================
          NON-GOALS
          ==================================================== -->
-    <article class="card card--section" data-theme="published">
+    <article class="card card--section" data-theme="upcoming">
       <h2 class="card__title">What Gravel is not</h2>
       <div class="grid" style="--cols: 3;">
         <div class="callout">
