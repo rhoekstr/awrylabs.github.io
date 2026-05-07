@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tyche · awryLabs</title>
+  <meta name="description" content="Tyche — a psychedelic randomizer for the small decisions you can't make. 27 official lists, five animation styles, build your own, no telemetry. Named for the Greek goddess of fortune." />
+  <link rel="stylesheet" href="assets/awry.css?v=6">
+</head>
+<body>
+
+  <nav class="nav">
+    <a class="wordmark" href="/"><span class="awry">awry</span><span class="labs">Labs</span></a>
+    <span class="nav-sep">/</span>
+    <span class="nav-current">Tyche</span>
+  </nav>
+
+  <main class="main">
+
+    <p class="sr-only">Tyche is a psychedelic single-page web app that picks something random from a list — 27 official lists shipped (cuisines, dishes, Disney rides, workouts, party games, scenarios, etc) plus custom lists you can build yourself. Five animation styles wrap the same randomizer logic: slot machine, coin flip, tumbling die, card flip, and a triangular rock-paper-scissors prism. No backend, no accounts, no telemetry — everything lives in browser localStorage. Live at tyche.awrylabs.com.</p>
+
+    <!-- ====================================================
+         HERO
+         ==================================================== -->
+    <article class="card card--large palette-violet">
+      <div class="status status--corner" role="status">Live · Spin now</div>
+      <h1 class="card__title">Tyche</h1>
+      <p class="card__desc">
+        A psychedelic randomizer for the small decisions you can't make. Pick
+        a list, hit spin, get an answer. 27 official lists ship with the app;
+        five animation styles wrap the same randomizer logic so the visual
+        matches the metaphor of the choice. Build your own lists, combine
+        them into multi-slot rolls, or just use the standalone coin / dice /
+        cards / RPS utilities. Named for <strong>Τύχη</strong> — the Greek
+        goddess of fortune, chance, and providence.
+      </p>
+      <div class="badges">
+        <span class="badge" style="background: #6B46C1; color: #fff;">React 19</span>
+        <span class="badge" style="background: #0E8A80; color: #fff;">TypeScript 6</span>
+        <span class="badge" style="background: #B8862B; color: #fff;">Tailwind 4</span>
+        <span class="badge" style="background: #B84545; color: #fff;">Mobile-first</span>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 0.6rem;">
+        <a class="repo-link" href="https://tyche.awrylabs.com/" target="_blank" rel="noopener">
+          🎲 Spin at tyche.awrylabs.com
+        </a>
+        <a class="repo-link" href="https://github.com/rhoekstr/tyche" target="_blank" rel="noopener" style="background: var(--card-pill); color: var(--card-text-strong);">
+          <svg class="repo-link__icon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+          rhoekstr/tyche
+        </a>
+      </div>
+      <footer class="card__footer">tyche.awrylabs.com &middot; previously published as <em>So Random!</em> at sorandom.awrylabs.com</footer>
+    </article>
+
+    <!-- ====================================================
+         AT-A-GLANCE KPIs
+         ==================================================== -->
+    <article class="card card--section palette-slate">
+      <h2 class="card__title">At a glance</h2>
+
+      <div class="kpi-row">
+        <div class="kpi tint-violet">
+          <span class="kpi__label">Official lists</span>
+          <span class="kpi__value">27</span>
+          <span class="kpi__caption">Cuisines, dishes, Disney rides, workouts, party games, scenarios, and more — fetched from a manifest at app load.</span>
+        </div>
+        <div class="kpi tint-amber">
+          <span class="kpi__label">Animations</span>
+          <span class="kpi__value">5</span>
+          <span class="kpi__caption">Slot · coin · dice · card · RPS prism. Each conforms to the same animation interface so any list can use any of them.</span>
+        </div>
+        <div class="kpi tint-rose">
+          <span class="kpi__label">Custom Roll slots</span>
+          <span class="kpi__value">8</span>
+          <span class="kpi__caption">Combine up to eight lists or utility randomizers into one decision; save and share configurations as JSON.</span>
+        </div>
+        <div class="kpi tint-success">
+          <span class="kpi__label">Tracking</span>
+          <span class="kpi__value">0</span>
+          <span class="kpi__caption">No accounts, no analytics. All state — preferences, custom lists, configs — lives in browser localStorage.</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- ====================================================
+         THE FIVE ANIMATIONS
+         ==================================================== -->
+    <article class="card card--section" data-theme="published">
+      <h2 class="card__title">Five ways to land an answer</h2>
+      <p class="card__desc">
+        Five animation components implementing the same
+        <code>{ pool, result, isSpinning, onComplete }</code> interface. Each
+        list declares a default animation, and the user can override it from
+        the picker on any pack page.
+      </p>
+
+      <div class="grid" style="--cols: 3;">
+
+        <div class="obj" style="--card-accent: #B8862B; --card-pill: rgba(184, 134, 43, 0.32);">
+          <div class="obj__num">Slot</div>
+          <div class="obj__title">Slot machine</div>
+          <div class="obj__desc">
+            Vertical reel of 24 padding items + the result. Cubic-bezier
+            easing, confetti burst on completion, flash reveal. The default
+            for any pack with more than 52 items.
+          </div>
+        </div>
+
+        <div class="obj" style="--card-accent: #4A5A75; --card-pill: rgba(74, 90, 117, 0.32);">
+          <div class="obj__num">Coin</div>
+          <div class="obj__title">Two-sided 3D flip</div>
+          <div class="obj__desc">
+            Real <code>preserve-3d</code> disc, four full Y-rotations, randomizes
+            the front face on every back-visible pass and locks to the result
+            on the final pre-completion phase so there's no swap-pop.
+          </div>
+        </div>
+
+        <div class="obj" style="--card-accent: #B84545; --card-pill: rgba(184, 69, 69, 0.32);">
+          <div class="obj__num">Dice</div>
+          <div class="obj__title">Tumbling cube</div>
+          <div class="obj__desc">
+            Six positioned faces, X+Y rotation with different easings per
+            axis. Per-frame back-face content swap, last-frame lock so the
+            settled face is always the result. Defaults for d4–d20 lists.
+          </div>
+        </div>
+
+        <div class="obj" style="--card-accent: #6B46C1; --card-pill: rgba(107, 70, 193, 0.32);">
+          <div class="obj__num">Card</div>
+          <div class="obj__title">Card flip</div>
+          <div class="obj__desc">
+            Coin's pattern, rectangular. Renders a real card layout (rank
+            corners, big suit, red ♥/♦) when items have suit icons; otherwise
+            centered text. Defaults for any pack of 52 or fewer items.
+          </div>
+        </div>
+
+        <div class="obj" style="--card-accent: #1D9E75; --card-pill: rgba(29, 158, 117, 0.32);">
+          <div class="obj__num">RPS</div>
+          <div class="obj__title">Triangular prism</div>
+          <div class="obj__desc">
+            Three faces at 120° intervals. Result face is chosen at spin
+            start; content swap happens when that face goes back-facing.
+            Works on any pool size — original 3-item RPS or a 36-item
+            adjective list both land cleanly.
+          </div>
+        </div>
+
+        <div class="obj" style="--card-accent: #0E8A80; --card-pill: rgba(14, 138, 128, 0.32);">
+          <div class="obj__num">Result</div>
+          <div class="obj__title">Label below</div>
+          <div class="obj__desc">
+            Small faces (coin, die, card) can't always fit "Star Wars: Rise
+            of the Resistance." A separate result label component renders
+            the full text + icon below every non-slot animation.
+          </div>
+        </div>
+
+      </div>
+    </article>
+
+    <!-- ====================================================
+         BUILD YOUR OWN
+         ==================================================== -->
+    <article class="card card--section palette-amber">
+      <h2 class="card__title">Build your own</h2>
+      <p class="card__desc">
+        The 27 official lists are a starting point, not a ceiling. Tyche has
+        a full custom-list editor and a multi-slot composer for harder
+        decisions.
+      </p>
+
+      <div class="grid" style="--cols: 2;">
+
+        <div class="obj" style="--card-accent: #B8862B; --card-pill: rgba(184, 134, 43, 0.32);">
+          <div class="obj__num">/custom</div>
+          <div class="obj__title">List editor</div>
+          <div class="obj__desc">
+            Form builder for title, icon, optional filter dimensions, and
+            per-item rows — or paste a Pack JSON object directly. Bulk-add
+            textarea for fast value-only entry. Lists save to localStorage
+            and hot-inject into the same pack cache the official lists use,
+            so they show up everywhere immediately.
+          </div>
+        </div>
+
+        <div class="obj" style="--card-accent: #C17D1E; --card-pill: rgba(193, 125, 30, 0.32);">
+          <div class="obj__num">/multi</div>
+          <div class="obj__title">Custom Roll</div>
+          <div class="obj__desc">
+            Combine up to eight lists or utility randomizers (coin / dice /
+            cards / RPS) into one composite decision. Each slot has its own
+            pack picker, animation override, and filter editor. Save named
+            configs, export and import as JSON.
+          </div>
+        </div>
+
+      </div>
+
+      <div class="callout">
+        <span class="callout__title">Filters, formally</span>
+        <p class="callout__text">
+          Lists can declare optional filter dimensions (e.g. <em>course</em>,
+          <em>cuisine</em>, <em>dietary</em>) and items declare which values
+          they belong to. The runtime treats empty arrays as "no filter on
+          this dimension — accept anything," so the default state of every
+          list is "all chips deselected, full pool." Users opt in by
+          selecting chips. AND across dimensions, OR within.
+        </p>
+      </div>
+    </article>
+
+    <!-- ====================================================
+         PRIVACY & DATA
+         ==================================================== -->
+    <article class="card card--section" data-theme="launching">
+      <h2 class="card__title">All state stays on your device</h2>
+      <p class="card__desc">
+        Tyche is a static site served from GitHub Pages. There is no origin
+        runtime, no account system, no telemetry, and no analytics calls.
+        Everything you create or set is yours alone, in your browser.
+      </p>
+
+      <div class="grid" style="--cols: 3;">
+        <div class="callout tint-success">
+          <span class="callout__title">tyche:preferences</span>
+          <p class="callout__text">Sound, animation speed, reduced motion. Synced across tabs via the <code>storage</code> event.</p>
+        </div>
+        <div class="callout tint-success">
+          <span class="callout__title">tyche:custom-packs</span>
+          <p class="callout__text">Lists you've built. Stored as an array of <code>Pack</code> objects under the <code>tyche:</code> prefix.</p>
+        </div>
+        <div class="callout tint-success">
+          <span class="callout__title">tyche:multi-configs</span>
+          <p class="callout__text">Named Custom Roll configurations. Settings → Export All Data writes the whole bundle as JSON; Import reads it back.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- ====================================================
+         NAMING / GODDESS
+         ==================================================== -->
+    <article class="card card--section palette-rose">
+      <h2 class="card__title">Why "Tyche"</h2>
+      <p class="card__desc">
+        <strong>Τύχη</strong> — Tyche — was the Greek goddess of fortune,
+        chance, and providence. Romans called her Fortuna. She's typically
+        depicted with a rudder (steering fates), a cornucopia (abundance),
+        and a wheel that turns up and down without warning. Cities adopted
+        her as a patron, hoping she'd tilt outcomes their way. Naming a
+        randomizer after her is on-the-nose in the best way.
+      </p>
+      <p class="card__desc">
+        The app shipped originally as <em>So Random!</em> at
+        <code>sorandom.awrylabs.com</code> and was renamed to Tyche in
+        mid-2026 along with the move to its current domain. Old bookmarks
+        redirect.
+      </p>
+    </article>
+
+    <!-- ====================================================
+         RUN IT LOCALLY
+         ==================================================== -->
+    <article class="card card--section palette-teal">
+      <h2 class="card__title">Run it locally</h2>
+
+      <div>
+        <div class="code-label">Clone &amp; serve</div>
+<pre class="code"><code>git clone https://github.com/rhoekstr/tyche.git
+cd tyche
+npm install
+npm run dev          # localhost:5173 (or $PORT)
+npm run build        # tsc -b && vite build
+npm run deploy       # build + cp 404.html + gh-pages -d dist</code></pre>
+      </div>
+
+      <p class="card__desc">
+        Adding a list is a two-file change: drop a <code>Pack</code> JSON
+        into <code>public/data/packs/</code> and add a manifest entry. No
+        rebuild needed in dev — just refresh.
+      </p>
+    </article>
+
+  </main>
+
+  <footer class="footer">
+    <a href="/">awryLabs</a>
+    <span class="sep">·</span>
+    <a href="https://tyche.awrylabs.com/" target="_blank" rel="noopener">Live</a>
+    <span class="sep">·</span>
+    <a href="https://github.com/rhoekstr/tyche" target="_blank" rel="noopener">rhoekstr/tyche</a>
+    <span class="sep">·</span>
+    <a href="about.html">About</a>
+    <span class="sep">·</span>
+    <a href="privacy.html">Privacy</a>
+    <span class="sep">·</span>
+    <span>© 2026 awryLabs</span>
+  </footer>
+
+</body>
+</html>
