@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>WOPR · awryLabs</title>
   <meta name="description" content="WOPR — five turn-based strategy games on one mobile-first menu, themed around the 1983 film WarGames. Tic-Tac-Toe, Connect Four, Dots & Boxes, Go, and a Global Thermonuclear War simulator." />
-  <link rel="stylesheet" href="assets/awry.css?v=2">
+  <link rel="stylesheet" href="assets/awry.css?v=3">
 </head>
 <body>
 
@@ -219,22 +219,22 @@
       </p>
 
       <div class="grid" style="--cols: 2;">
-        <div class="obj" style="--card-accent: #B8862B; --card-pill: #F5D89A;">
+        <div class="obj" style="--card-accent: #B8862B; --card-pill: rgba(184, 134, 43, 0.32);">
           <div class="obj__num">React 18</div>
           <div class="obj__title">Hooks only</div>
           <div class="obj__desc"><code>useState</code>, <code>useEffect</code>, <code>useRef</code>. No reducers, no context, no third-party state library. <code>GameRoom</code> keeps a single <code>screen</code> string and renders the matching component.</div>
         </div>
-        <div class="obj" style="--card-accent: #C17D1E; --card-pill: #F3DFB4;">
+        <div class="obj" style="--card-accent: #C17D1E; --card-pill: rgba(193, 125, 30, 0.32);">
           <div class="obj__num">Vite 5</div>
           <div class="obj__title">Build pipeline</div>
           <div class="obj__desc">Vite + <code>@vitejs/plugin-react</code>, plain JSX, no TypeScript. <code>npm run build</code> writes <code>dist/</code>; the deploy workflow ships it to GitHub Pages on every push to main.</div>
         </div>
-        <div class="obj" style="--card-accent: #B8862B; --card-pill: #F5D89A;">
+        <div class="obj" style="--card-accent: #B8862B; --card-pill: rgba(184, 134, 43, 0.32);">
           <div class="obj__num">Inline styles</div>
           <div class="obj__title">No CSS toolchain</div>
           <div class="obj__desc">Every component sets its own styles inline. No Tailwind, no CSS modules, no styled-components. SVG for game boards, HTML for chrome. Each game has its own background-color and accent so identity reads at a glance.</div>
         </div>
-        <div class="obj" style="--card-accent: #C17D1E; --card-pill: #F3DFB4;">
+        <div class="obj" style="--card-accent: #C17D1E; --card-pill: rgba(193, 125, 30, 0.32);">
           <div class="obj__num">Mobile-first</div>
           <div class="obj__title">420px column</div>
           <div class="obj__desc">Every game's root caps width at 420px and centers, so on desktop you get a phone-sized column on a black field. The page looks identical full-screen on a phone.</div>
@@ -259,7 +259,7 @@ npm run preview      # serves dist/ locally</code></pre>
       </div>
 
       <div class="grid" style="--cols: 2;">
-        <div class="callout" style="--card-surface: rgba(0, 255, 65, 0.1); --card-text-strong: #0B5C42;">
+        <div class="callout tint-success">
           <span class="callout__title">Live</span>
           <p class="callout__text">
             <a href="https://wopr.awrylabs.com/" target="_blank" rel="noopener">wopr.awrylabs.com</a> —
@@ -267,7 +267,7 @@ npm run preview      # serves dist/ locally</code></pre>
             Pages on every push to main.
           </p>
         </div>
-        <div class="callout">
+        <div class="callout tint-violet">
           <span class="callout__title">Source</span>
           <p class="callout__text">
             <a href="https://github.com/rhoekstr/wopr" target="_blank" rel="noopener">github.com/rhoekstr/wopr</a> —
