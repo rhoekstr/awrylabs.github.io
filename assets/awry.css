@@ -217,6 +217,36 @@ a { color: inherit; }
   --card-status-dot:  #6B46C1;
 }
 
+/* Neon — psychedelic gradient palette for Tyche. Stays vibrant in both
+   modes (like palette-phosphor stays dark). Uses a dark purple→violet
+   gradient as the surface so neon accents and pills read as glowing
+   against night-club night. Sets background/color directly so the
+   gradient still applies if anything in the cascade short-circuits the
+   variable lookup. */
+.palette-neon {
+  background: linear-gradient(135deg, #1A0633 0%, #4D1494 45%, #8B26FF 100%);
+  color: #F0E6FF;
+  --card-bg:          linear-gradient(135deg, #1A0633 0%, #4D1494 45%, #8B26FF 100%);
+  --card-surface:     rgba(255, 16, 240, 0.10);
+  --card-border:      #B026FF;
+  --card-pill:        rgba(255, 16, 240, 0.18);
+  --card-accent:      #FF10F0;
+  --card-text:        #F0E6FF;
+  --card-text-strong: #FFFFFF;
+  --card-border-style: solid;
+  --card-status-bg:   rgba(255, 16, 240, 0.22);
+  --card-status-text: #FFFFFF;
+  --card-status-dot:  #FF10F0;
+}
+
+/* Pills inside a neon card glow with their own accent color so the
+   row reads as a strip of arcade lights. Each pill keeps its inline
+   background; CSS adds the glow. */
+.palette-neon .pill {
+  box-shadow: 0 0 10px var(--pill-glow, rgba(255, 16, 240, 0.5));
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
 /* Phosphor — dark-only CRT terminal palette. Stays dark in both modes
    on purpose; this is a deliberate "embedded terminal" treatment for
    sections/cards that should evoke a 1980s-vintage monochrome screen.
