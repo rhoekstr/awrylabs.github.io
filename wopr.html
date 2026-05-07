@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WOPR · awryLabs</title>
+  <meta name="description" content="WOPR — five turn-based strategy games on one mobile-first menu, themed around the 1983 film WarGames. Tic-Tac-Toe, Connect Four, Dots & Boxes, Go, and a Global Thermonuclear War simulator." />
+  <link rel="stylesheet" href="assets/awry.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <a class="wordmark" href="/"><span class="awry">awry</span><span class="labs">Labs</span></a>
+    <span class="nav-sep">/</span>
+    <span class="nav-current">WOPR</span>
+  </nav>
+
+  <main class="main">
+
+    <p class="sr-only">WOPR is a mobile-first React app hosting five turn-based strategy games on a single menu, themed around the 1983 film WarGames. The games are Tic-Tac-Toe, Connect Four, Dots and Boxes, Go, and a full Global Thermonuclear War simulation with nuclear-triad units, six CPU personalities, and a five-phase round system. Live at wopr.awrylabs.com, source at github.com/rhoekstr/wopr.</p>
+
+    <!-- ====================================================
+         HERO
+         ==================================================== -->
+    <article class="card card--large palette-phosphor">
+      <div class="status status--corner" role="status">Live · Play now</div>
+      <h1 class="card__title">WOPR</h1>
+      <p class="card__desc">
+        Five turn-based strategy games on a single mobile-first menu, themed
+        around the 1983 film <em>WarGames</em>. Classic abstracts — Tic-Tac-Toe,
+        Connect Four, Dots &amp; Boxes, Go — sit alongside a full Global
+        Thermonuclear War simulator with a nuclear triad, interceptor doctrine,
+        six CPU personalities, and a DEFCON ladder. Pure React, no analytics,
+        no accounts, deliberately written as a single ~2,700-line file.
+      </p>
+      <div style="display: flex; flex-wrap: wrap; gap: 0.6rem;">
+        <a class="repo-link" href="https://wopr.awrylabs.com/" target="_blank" rel="noopener" style="background: #00ff41; color: #000900;">
+          ▶ Play at wopr.awrylabs.com
+        </a>
+        <a class="repo-link" href="https://github.com/rhoekstr/wopr" target="_blank" rel="noopener" style="background: #002b10; color: #00ff41; border: 1px solid #00aa30;">
+          <svg class="repo-link__icon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+          rhoekstr/wopr
+        </a>
+      </div>
+      <footer class="card__footer">Five games · React 18 + Vite 5 · Single-file ~2,700 LOC</footer>
+    </article>
+
+    <!-- ====================================================
+         AT-A-GLANCE KPIs
+         ==================================================== -->
+    <article class="card card--section palette-slate">
+      <h2 class="card__title">At a glance</h2>
+
+      <div class="kpi-row">
+        <div class="kpi" style="--card-accent: #4ade80; --card-surface: rgba(74, 222, 128, 0.14); --card-text-strong: #1E5F23;">
+          <span class="kpi__label">Games</span>
+          <span class="kpi__value">5</span>
+          <span class="kpi__caption">Tic-Tac-Toe · Connect Four · Dots &amp; Boxes · Go · Global Thermonuclear War, all behind one menu.</span>
+        </div>
+        <div class="kpi" style="--card-accent: #B8862B; --card-surface: #FAE6BC; --card-text-strong: #4A3408;">
+          <span class="kpi__label">Source size</span>
+          <span class="kpi__value">~2.7K</span>
+          <span class="kpi__caption">Lines in <code>src/games.jsx</code>. Deliberately one file — easy to grep, easy to ship.</span>
+        </div>
+        <div class="kpi" style="--card-accent: #6B46C1; --card-surface: #E0D0F0; --card-text-strong: #231253;">
+          <span class="kpi__label">Non-React deps</span>
+          <span class="kpi__value">0</span>
+          <span class="kpi__caption">No Tailwind, no game library, no animation library. Inline styles, plain SVG.</span>
+        </div>
+        <div class="kpi" style="--card-accent: var(--color-success); --card-surface: rgba(46, 125, 50, 0.14); --card-text-strong: var(--color-success);">
+          <span class="kpi__label">Tracking</span>
+          <span class="kpi__value">0</span>
+          <span class="kpi__caption">No accounts, no analytics, no localStorage. Each visit is fresh.</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- ====================================================
+         THE FIVE GAMES
+         ==================================================== -->
+    <article class="card card--section" data-theme="published">
+      <h2 class="card__title">The five games</h2>
+      <p class="card__desc">
+        Each game has its own background, accent color, and AI ladder. They
+        share a small set of UI primitives — the Back button, mode toggle,
+        difficulty toggle — so the menu feels like one app rather than five.
+      </p>
+
+      <div class="grid" style="--cols: 2;">
+
+        <div class="obj" style="--card-accent: #4ade80; --card-pill: rgba(74, 222, 128, 0.28);">
+          <div class="obj__num">3 × 3</div>
+          <div class="obj__title">Tic-Tac-Toe</div>
+          <div class="obj__desc">
+            Standard 3×3 with three modes (vs CPU, pass-and-play, CPU vs CPU)
+            and four AI levels topping out at full minimax — Impossible never
+            loses.
+          </div>
+        </div>
+
+        <div class="obj" style="--card-accent: #ef4444; --card-pill: rgba(239, 68, 68, 0.22);">
+          <div class="obj__num">7 × 6</div>
+          <div class="obj__title">Connect Four</div>
+          <div class="obj__desc">
+            Animated piece drop with quadratic easing. Alpha-beta search with
+            center-first move ordering, scaling from depth-2 (Easy) to depth-8
+            (Impossible).
+          </div>
+        </div>
+
+        <div class="obj" style="--card-accent: #c8b89a; --card-pill: rgba(200, 184, 154, 0.32);">
+          <div class="obj__num">Lucas, 1889</div>
+          <div class="obj__title">Dots &amp; Boxes</div>
+          <div class="obj__desc">
+            Three board sizes (4×4 / 6×6 / 8×8). Iterative-deepening alpha-beta
+            with a chain-aware heuristic — Hard and Impossible plan inside a
+            3–6 second time budget.
+          </div>
+        </div>
+
+        <div class="obj" style="--card-accent: #d4b35a; --card-pill: rgba(212, 179, 90, 0.28);">
+          <div class="obj__num">5/7/9</div>
+          <div class="obj__title">Go (囲棋)</div>
+          <div class="obj__desc">
+            Captures, suicide rule, ko via board-position hashing, two-pass
+            end. Chinese-rules scoring with 6.5 komi. AI prefers captures and
+            atari escapes, then heuristic-ranked safe moves.
+          </div>
+        </div>
+
+        <div class="obj" style="--card-accent: #00ff41; --card-pill: rgba(0, 255, 65, 0.22); --card-bg: rgba(0, 9, 0, 0.04); grid-column: span 2;">
+          <div class="obj__num">The big one</div>
+          <div class="obj__title">Global Thermonuclear War</div>
+          <div class="obj__desc">
+            Real Russia and USA SVG outlines. Nuclear triad: silos, SSBNs,
+            bombers — each with different rules for targetability, intercept,
+            and per-round limits. Six CPU personalities (firstStrike,
+            populationStrike, decapitation, defenseHeavy, deescalatory,
+            erratic), five-phase rounds, and four end conditions including
+            DEFCON-2 de-escalation peace.
+          </div>
+        </div>
+
+      </div>
+    </article>
+
+    <!-- ====================================================
+         WOPR DEEP DIVE
+         ==================================================== -->
+    <article class="card card--section palette-phosphor">
+      <h2 class="card__title">Inside Global Thermonuclear War</h2>
+      <p class="card__desc">
+        Most mechanically rich of the five. Models the nuclear triad with
+        strategic AI personalities, a phase machine, and — crucially — a
+        peaceful end condition.
+      </p>
+
+      <div class="grid" style="--cols: 2;">
+        <div class="callout">
+          <span class="callout__title">The triad</span>
+          <p class="callout__text">
+            Each side has 8 silos (2 missiles, targetable, interceptable),
+            2 SSBNs (2 missiles, hidden, interceptable), and 3 bombers (1
+            sortie each, hidden, cannot be intercepted). 23 launches max
+            per side if everything fires.
+          </p>
+        </div>
+        <div class="callout">
+          <span class="callout__title">Phase machine</span>
+          <p class="callout__text">
+            Each round runs <code>us_launch → ru_launch → us_intercept
+            → ru_intercept → resolve</code>. Resolution preempts struck
+            silos before they can fire, rolls intercepts and bomber AAA,
+            then applies casualties and adjusts DEFCON.
+          </p>
+        </div>
+        <div class="callout">
+          <span class="callout__title">Six personalities</span>
+          <p class="callout__text">
+            CPU sides are assigned one personality per game — from
+            <code>firstStrike</code> (95% launch rate, silos first) to
+            <code>deescalatory</code> (10% launch rate, prefers low-population
+            targets when it must fire).
+          </p>
+        </div>
+        <div class="callout">
+          <span class="callout__title">DEFCON ladder</span>
+          <p class="callout__text">
+            Inverted from real-world DEFCON for game clarity. 3 is peace,
+            4–5 is escalation (rises with launches), 2 is the de-escalation
+            floor. Reaching DEFCON 2 with no launches that round ends the
+            game in negotiated peace.
+          </p>
+        </div>
+      </div>
+
+      <div class="callout" style="--card-surface: rgba(0, 255, 65, 0.08); --card-text-strong: #00ff41;">
+        <span class="callout__title">A strange game</span>
+        <p class="callout__text" style="font-style: italic; color: #6ade7a;">
+          From the in-tree CPU-vs-CPU simulator at current settings: ~43%
+          conclusive endings, ~45% negotiated peace via DEFCON-2 de-escalation,
+          ~13% silo stalemate. Average game runs four rounds. The most common
+          outcome is "the only winning move is not to play" — by design.
+        </p>
+      </div>
+    </article>
+
+    <!-- ====================================================
+         ARCHITECTURE
+         ==================================================== -->
+    <article class="card card--section palette-amber">
+      <h2 class="card__title">Single-file by choice</h2>
+      <p class="card__desc">
+        <code>src/games.jsx</code> contains every game's logic and UI in one
+        ~2,700-line module. That sounds heretical, but for a small static SPA
+        it's the right call: one file to grep, one bundle to ship, no
+        cross-file plumbing for what is fundamentally five small pieces of
+        state and five components.
+      </p>
+
+      <div class="grid" style="--cols: 2;">
+        <div class="obj" style="--card-accent: #B8862B; --card-pill: #F5D89A;">
+          <div class="obj__num">React 18</div>
+          <div class="obj__title">Hooks only</div>
+          <div class="obj__desc"><code>useState</code>, <code>useEffect</code>, <code>useRef</code>. No reducers, no context, no third-party state library. <code>GameRoom</code> keeps a single <code>screen</code> string and renders the matching component.</div>
+        </div>
+        <div class="obj" style="--card-accent: #C17D1E; --card-pill: #F3DFB4;">
+          <div class="obj__num">Vite 5</div>
+          <div class="obj__title">Build pipeline</div>
+          <div class="obj__desc">Vite + <code>@vitejs/plugin-react</code>, plain JSX, no TypeScript. <code>npm run build</code> writes <code>dist/</code>; the deploy workflow ships it to GitHub Pages on every push to main.</div>
+        </div>
+        <div class="obj" style="--card-accent: #B8862B; --card-pill: #F5D89A;">
+          <div class="obj__num">Inline styles</div>
+          <div class="obj__title">No CSS toolchain</div>
+          <div class="obj__desc">Every component sets its own styles inline. No Tailwind, no CSS modules, no styled-components. SVG for game boards, HTML for chrome. Each game has its own background-color and accent so identity reads at a glance.</div>
+        </div>
+        <div class="obj" style="--card-accent: #C17D1E; --card-pill: #F3DFB4;">
+          <div class="obj__num">Mobile-first</div>
+          <div class="obj__title">420px column</div>
+          <div class="obj__desc">Every game's root caps width at 420px and centers, so on desktop you get a phone-sized column on a black field. The page looks identical full-screen on a phone.</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ====================================================
+         BUILD & PLAY
+         ==================================================== -->
+    <article class="card card--section" data-theme="launching">
+      <h2 class="card__title">Run it locally</h2>
+
+      <div>
+        <div class="code-label">Clone &amp; serve</div>
+<pre class="code"><code>git clone https://github.com/rhoekstr/wopr.git
+cd wopr
+npm install
+npm run dev          # localhost:5173
+npm run build        # writes dist/
+npm run preview      # serves dist/ locally</code></pre>
+      </div>
+
+      <div class="grid" style="--cols: 2;">
+        <div class="callout" style="--card-surface: rgba(0, 255, 65, 0.1); --card-text-strong: #0B5C42;">
+          <span class="callout__title">Live</span>
+          <p class="callout__text">
+            <a href="https://wopr.awrylabs.com/" target="_blank" rel="noopener">wopr.awrylabs.com</a> —
+            five games, free, no sign-in, mobile-friendly, deployed via GitHub
+            Pages on every push to main.
+          </p>
+        </div>
+        <div class="callout">
+          <span class="callout__title">Source</span>
+          <p class="callout__text">
+            <a href="https://github.com/rhoekstr/wopr" target="_blank" rel="noopener">github.com/rhoekstr/wopr</a> —
+            Apache-friendly fork-and-tinker target. Reference docs live in the
+            repo's <code>REFERENCE.md</code>.
+          </p>
+        </div>
+      </div>
+    </article>
+
+  </main>
+
+  <footer class="footer">
+    <a href="/">awryLabs</a>
+    <span class="sep">·</span>
+    <a href="https://wopr.awrylabs.com/" target="_blank" rel="noopener">Live</a>
+    <span class="sep">·</span>
+    <a href="https://github.com/rhoekstr/wopr" target="_blank" rel="noopener">rhoekstr/wopr</a>
+    <span class="sep">·</span>
+    <a href="privacy.html">Privacy</a>
+    <span class="sep">·</span>
+    <span>© 2026 awryLabs</span>
+  </footer>
+
+</body>
+</html>

@@ -217,6 +217,23 @@ a { color: inherit; }
   --card-status-dot:  #6B46C1;
 }
 
+/* Phosphor — dark-only CRT terminal palette. Stays dark in both modes
+   on purpose; this is a deliberate "embedded terminal" treatment for
+   sections/cards that should evoke a 1980s-vintage monochrome screen. */
+.palette-phosphor {
+  --card-bg:          #000900;
+  --card-surface:     #001a08;
+  --card-border:      #00aa30;
+  --card-pill:        #002b10;
+  --card-accent:      #00ff41;
+  --card-text:        #6ade7a;
+  --card-text-strong: #00ff41;
+  --card-border-style: solid;
+  --card-status-bg:   #001a08;
+  --card-status-text: #00ff41;
+  --card-status-dot:  #00ff41;
+}
+
 @media (prefers-color-scheme: dark) {
   .palette-amber {
     --card-bg:          #2B1F0B;
@@ -1039,6 +1056,11 @@ pre.code code {
 /* ============================================================
    RESPONSIVE
    ============================================================ */
+
+/* Tablet — 3-column top-level grid drops to 2 so cards stay readable. */
+@media (max-width: 960px) and (min-width: 721px) {
+  .main > .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 
 @media (max-width: 720px) {
   .nav { padding: 1.25rem 1.25rem 0; }
