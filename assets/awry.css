@@ -1117,6 +1117,79 @@ pre.code code {
 }
 
 /* ============================================================
+   CONTACT FORM (mailto:) — used on about.html
+   ============================================================ */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.form__label {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--card-accent);
+}
+
+.form input,
+.form textarea {
+  font-family: inherit;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  padding: 0.55rem 0.75rem;
+  background: var(--card-surface);
+  border: 1px solid var(--card-border);
+  border-radius: 6px;
+  color: var(--card-text-strong);
+  width: 100%;
+}
+
+.form input::placeholder,
+.form textarea::placeholder {
+  color: var(--card-text);
+  opacity: 0.55;
+}
+
+.form input:focus,
+.form textarea:focus {
+  outline: 2px solid var(--card-accent);
+  outline-offset: -1px;
+  background: var(--card-bg);
+}
+
+.form textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.form__submit {
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.6rem 1.1rem;
+  background: var(--card-accent);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  width: fit-content;
+  transition: filter 0.15s ease, transform 0.15s ease;
+  margin-top: 0.25rem;
+}
+
+.form__submit:hover { filter: brightness(1.08); transform: translateY(-1px); }
+.form__submit:focus-visible { outline: 2px solid var(--card-accent); outline-offset: 2px; }
+
+/* ============================================================
    RESPONSIVE
    ============================================================ */
 
