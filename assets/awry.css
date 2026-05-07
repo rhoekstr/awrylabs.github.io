@@ -226,12 +226,70 @@ a { color: inherit; }
   --card-border:      #00aa30;
   --card-pill:        #002b10;
   --card-accent:      #00ff41;
-  --card-text:        #6ade7a;
+  --card-text:        #a8eeb4;
   --card-text-strong: #00ff41;
   --card-border-style: solid;
   --card-status-bg:   #001a08;
   --card-status-text: #00ff41;
   --card-status-dot:  #00ff41;
+}
+
+/* ============================================================
+   TINT CLASSES — translucent accent overrides for kpi/callout/obj
+   that respect light/dark mode. Apply to a single child element
+   inside any palette to give it its own accent without breaking
+   contrast in either mode.
+   ============================================================ */
+
+.tint-amber {
+  --card-accent:      #B8862B;
+  --card-text-strong: #B8862B;
+  --card-surface:     rgba(184, 134, 43, 0.16);
+  --card-pill:        rgba(184, 134, 43, 0.28);
+}
+.tint-rose {
+  --card-accent:      #B84545;
+  --card-text-strong: #B84545;
+  --card-surface:     rgba(184, 69, 69, 0.16);
+  --card-pill:        rgba(184, 69, 69, 0.26);
+}
+.tint-teal {
+  --card-accent:      #0E8A80;
+  --card-text-strong: #0E8A80;
+  --card-surface:     rgba(14, 138, 128, 0.16);
+  --card-pill:        rgba(14, 138, 128, 0.26);
+}
+.tint-violet {
+  --card-accent:      #6B46C1;
+  --card-text-strong: #6B46C1;
+  --card-surface:     rgba(107, 70, 193, 0.16);
+  --card-pill:        rgba(107, 70, 193, 0.26);
+}
+.tint-green {
+  --card-accent:      #1E9E70;
+  --card-text-strong: #1E9E70;
+  --card-surface:     rgba(30, 158, 112, 0.16);
+  --card-pill:        rgba(30, 158, 112, 0.26);
+}
+.tint-success {
+  --card-accent:      var(--color-success);
+  --card-text-strong: var(--color-success);
+  --card-surface:     rgba(46, 125, 50, 0.14);
+  --card-pill:        rgba(46, 125, 50, 0.22);
+}
+.tint-danger {
+  --card-accent:      var(--color-danger);
+  --card-text-strong: var(--color-danger);
+  --card-surface:     rgba(198, 40, 40, 0.14);
+  --card-pill:        rgba(198, 40, 40, 0.22);
+}
+
+@media (prefers-color-scheme: dark) {
+  .tint-amber  { --card-accent: #E0B35C; --card-text-strong: #E0B35C; }
+  .tint-rose   { --card-accent: #E07070; --card-text-strong: #E07070; }
+  .tint-teal   { --card-accent: #4FB8AC; --card-text-strong: #4FB8AC; }
+  .tint-violet { --card-accent: #9E80E8; --card-text-strong: #9E80E8; }
+  .tint-green  { --card-accent: #4FBE9A; --card-text-strong: #4FBE9A; }
 }
 
 @media (prefers-color-scheme: dark) {

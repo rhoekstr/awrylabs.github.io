@@ -61,17 +61,17 @@
       </p>
 
       <div class="grid" style="--cols: 2;">
-        <div class="callout" style="--card-surface: #FAD4D4; --card-text-strong: #7A2020;">
+        <div class="callout tint-rose">
           <span class="callout__title">Why it matters</span>
-          <p class="callout__text" style="color: #4A0D0D;">
+          <p class="callout__text">
             Critical-infrastructure plans assume networks stay functional under stress.
             They rarely do. Constrained geographies — mountain passes, coastal corridors,
             single-substation towns — depend on a handful of edges with no viable detours.
           </p>
         </div>
-        <div class="callout" style="--card-surface: #C0E8E2; --card-text-strong: #0B5F58;">
+        <div class="callout tint-teal">
           <span class="callout__title">What Gravel produces</span>
-          <p class="callout__text" style="color: #053530;">
+          <p class="callout__text">
             Quantitative fragility scores that make vulnerabilities comparable across
             regions and domains — so "where is redundancy genuinely absent?" becomes
             a ranked list, not a hunch or a tabletop guess.
@@ -256,17 +256,17 @@ print(f"directional coverage:  {result.directional_coverage:.2f}")</code></pre>
       </table>
 
       <div class="kpi-row">
-        <div class="kpi" style="--card-accent: #B8862B; --card-surface: #FAE6BC; --card-text-strong: #4A3408;">
+        <div class="kpi tint-amber">
           <span class="kpi__label">National per-county</span>
           <span class="kpi__value">3.1 h</span>
           <span class="kpi__caption">Isolation fragility for all 3,221 US counties, end to end.</span>
         </div>
-        <div class="kpi" style="--card-accent: #6B46C1; --card-surface: #E0D0F0; --card-text-strong: #231253;">
+        <div class="kpi tint-violet">
           <span class="kpi__label">Inter-county</span>
           <span class="kpi__value">~22 h</span>
           <span class="kpi__caption">8,547 adjacent county pairs including 1,082 cross-state pairs via <code>osmium merge</code>.</span>
         </div>
-        <div class="kpi" style="--card-accent: var(--color-success); --card-surface: rgba(46, 125, 50, 0.14); --card-text-strong: var(--color-success);">
+        <div class="kpi tint-success">
           <span class="kpi__label">v2.1 → v2.2 speedup</span>
           <span class="kpi__value">~400×</span>
           <span class="kpi__caption">Location fragility rewrite: Dijkstra + IncrementalSSSP on a simplified subgraph.</span>
