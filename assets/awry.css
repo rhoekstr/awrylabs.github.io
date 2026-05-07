@@ -219,8 +219,13 @@ a { color: inherit; }
 
 /* Phosphor — dark-only CRT terminal palette. Stays dark in both modes
    on purpose; this is a deliberate "embedded terminal" treatment for
-   sections/cards that should evoke a 1980s-vintage monochrome screen. */
+   sections/cards that should evoke a 1980s-vintage monochrome screen.
+   Sets background/color directly in addition to the --card-* tokens
+   so the dark surface still applies if anything in the cascade
+   short-circuits the variable lookup. */
 .palette-phosphor {
+  background: #000900;
+  color: #a8eeb4;
   --card-bg:          #000900;
   --card-surface:     #001a08;
   --card-border:      #00aa30;
