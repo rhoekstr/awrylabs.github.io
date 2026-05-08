@@ -1,0 +1,113 @@
+name: Refresh project stats
+
+# Pulls last-commit dates (and Gravel's release tag/date) from the
+# public project repos and bakes them into the awrylabs.com pages at
+# build time. No client-side JS is shipped to visitors; the GitHub
+# API is only ever talked to from this workflow, never from the
+# browser.
+
+on:
+  schedule:
+    - cron: '17 6 * * *'          # daily at 06:17 UTC (off-peak minute)
+  workflow_dispatch:              # manual "run now" button
+
+concurrency:
+  group: refresh-project-stats
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write             # needed to commit refreshed pages
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # ---------------------------------------------------------------
+      # Gravel — versioned library, so refresh tag + release date too.
+      # ---------------------------------------------------------------
+      - name: Refresh Gravel
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          REPO="rhoekstr/gravel"
+          BRANCH=$(gh api "repos/$REPO" --jq .default_branch)
+
+          if REL_JSON=$(gh api "repos/$REPO/releases/latest" 2>/dev/null); then
+            VERSION=$(jq -r .tag_name <<<"$REL_JSON")
+            RELEASED_RAW=$(jq -r .published_at <<<"$REL_JSON")
+            RELEASED=$(date -u -d "$RELEASED_RAW" '+%B %Y')
+          else
+            VERSION="Unreleased"
+            RELEASED="—"
+          fi
+
+          LAST_RAW=$(gh api "repos/$REPO/branches/$BRANCH" \
+                      --jq .commit.commit.committer.date)
+          LAST_COMMIT=$(date -u -d "$LAST_RAW" '+%Y-%m-%d')
+
+          python3 scripts/inject-stats.py \
+            --file gravel.html \
+            --set "version=$VERSION" \
+            --set "released=$RELEASED" \
+            --set "last-commit=$LAST_COMMIT"
+
+          echo "::notice title=Gravel::version=$VERSION · released=$RELEASED · last_commit=$LAST_COMMIT"
+
+      # ---------------------------------------------------------------
+      # WOPR — webapp, no formal versioning. Just last-commit date.
+      # ---------------------------------------------------------------
+      - name: Refresh WOPR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          REPO="rhoekstr/wopr"
+          BRANCH=$(gh api "repos/$REPO" --jq .default_branch)
+          LAST_RAW=$(gh api "repos/$REPO/branches/$BRANCH" \
+                      --jq .commit.commit.committer.date)
+          LAST_COMMIT=$(date -u -d "$LAST_RAW" '+%Y-%m-%d')
+
+          python3 scripts/inject-stats.py \
+            --file wopr.html \
+            --set "last-commit=$LAST_COMMIT"
+
+          echo "::notice title=WOPR::last_commit=$LAST_COMMIT"
+
+      # ---------------------------------------------------------------
+      # Tyche — webapp, no formal versioning. Just last-commit date.
+      # ---------------------------------------------------------------
+      - name: Refresh Tyche
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          REPO="rhoekstr/tyche"
+          BRANCH=$(gh api "repos/$REPO" --jq .default_branch)
+          LAST_RAW=$(gh api "repos/$REPO/branches/$BRANCH" \
+                      --jq .commit.commit.committer.date)
+          LAST_COMMIT=$(date -u -d "$LAST_RAW" '+%Y-%m-%d')
+
+          python3 scripts/inject-stats.py \
+            --file tyche.html \
+            --set "last-commit=$LAST_COMMIT"
+
+          echo "::notice title=Tyche::last_commit=$LAST_COMMIT"
+
+      # ---------------------------------------------------------------
+      # Single commit covering whatever changed. If nothing changed
+      # (no new releases, no new commits since last run), exit clean.
+      # ---------------------------------------------------------------
+      - name: Commit and push if changed
+        run: |
+          if git diff --quiet gravel.html wopr.html tyche.html; then
+            echo "No project pages changed — skipping commit."
+            exit 0
+          fi
+          git config user.name  "awrylabs-stats[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add gravel.html wopr.html tyche.html
+          git commit -m "stats: refresh project pages"
+          git push
