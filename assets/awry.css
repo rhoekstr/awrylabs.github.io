@@ -247,6 +247,40 @@ a { color: inherit; }
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
+/* Scholar — cream-on-navy Tufte / Our World in Data treatment for the
+   Embedding Playground. Light mode is cream + deep navy text + dark
+   gold accents (the cosine ramp aesthetic, gilded margin). Dark mode
+   inverts to deep navy + cream text + warm gold accents — reading by
+   candlelight. */
+.palette-scholar {
+  --card-bg:          #faf7f0;
+  --card-surface:     #f0ebdd;
+  --card-border:      #c9bfa3;
+  --card-pill:        #e4dcc3;
+  --card-accent:      #b8860b;
+  --card-text:        #5a5340;
+  --card-text-strong: #1a2845;
+  --card-border-style: solid;
+  --card-status-bg:   #f0ebdd;
+  --card-status-text: #1a2845;
+  --card-status-dot:  #b8860b;
+}
+
+@media (prefers-color-scheme: dark) {
+  .palette-scholar {
+    --card-bg:          #0e1525;
+    --card-surface:     #1a2540;
+    --card-border:      #4a5870;
+    --card-pill:        #233354;
+    --card-accent:      #e4c46a;
+    --card-text:        #b8b395;
+    --card-text-strong: #f0ebdd;
+    --card-status-bg:   #1a2540;
+    --card-status-text: #f0ebdd;
+    --card-status-dot:  #e4c46a;
+  }
+}
+
 /* Phosphor — dark-only CRT terminal palette. Stays dark in both modes
    on purpose; this is a deliberate "embedded terminal" treatment for
    sections/cards that should evoke a 1980s-vintage monochrome screen.

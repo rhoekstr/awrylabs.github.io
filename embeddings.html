@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Embedding Playground · awryLabs</title>
+  <meta name="description" content="An interactive demonstration that meaning is geometry — and that 'close in that geometry' is why rephrasing a prompt changes an AI's answer. Three modes running on real GloVe word embeddings, live in your browser." />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/awry.css?v=8">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Embedding Playground · awryLabs">
+  <meta property="og:description" content="Words have positions. Measure their distances, do arithmetic on meaning (king − man + woman ≈ queen), and walk through a word's neighborhood. Live in your browser on real GloVe embeddings.">
+  <meta property="og:url" content="https://awrylabs.com/embeddings.html">
+  <meta property="og:image" content="https://awrylabs.com/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="awryLabs">
+  <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+
+  <nav class="nav">
+    <a class="wordmark" href="/"><span class="awry">awry</span><span class="labs">Labs</span></a>
+    <span class="nav-sep">/</span>
+    <span class="nav-current">Embedding Playground</span>
+  </nav>
+
+  <main class="main">
+
+    <p class="sr-only">The Embedding Playground is an interactive, single-page web app that demonstrates how language models place words in a geometric space. Three modes: a color-mapped grid of cosine similarities between any words you choose; an animated visualization of analogy arithmetic such as king minus man plus woman approximately equals queen; and a neighborhood walker that maps a word's nearest neighbors and lets you step through the space link by link. Built on a curated 492-word slice of Stanford NLP's GloVe 300-dimensional word embeddings, with every calculation running client-side in vanilla JavaScript. No backend, no analytics, no network calls after page load. Live at embeddings.awrylabs.com.</p>
+
+    <!-- ====================================================
+         HERO
+         ==================================================== -->
+    <article class="card card--large palette-scholar">
+      <div class="status status--corner" role="status">Live · Open tool</div>
+      <h1 class="card__title">Embedding Playground</h1>
+      <p class="card__desc">
+        An interactive demonstration that <em>meaning is geometry</em> — and
+        that "close in that geometry" is why rephrasing a prompt changes an
+        AI's answer. Three modes: measure distances between any words, do
+        arithmetic on meaning, and walk through a word's neighborhood. Every
+        calculation runs live in your browser on real GloVe word embeddings.
+      </p>
+      <div class="badges">
+        <span class="badge" style="background: #b8860b; color: #faf7f0;">Vanilla HTML/CSS/JS</span>
+        <span class="badge" style="background: #1a2845; color: #faf7f0;">GloVe 6B · 300d</span>
+        <span class="badge" style="background: #5a5340; color: #faf7f0;">Single-file build</span>
+        <span class="badge" style="background: #872d2d; color: #faf7f0;">No tracking</span>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 0.6rem;">
+        <a class="repo-link" href="https://embeddings.awrylabs.com" target="_blank" rel="noopener" style="background: #1a2845; color: #faf7f0;">
+          ✦ Open the playground
+        </a>
+        <a class="repo-link" href="https://github.com/rhoekstr/embedding-playground" target="_blank" rel="noopener" style="background: var(--card-pill); color: var(--card-text-strong); border: 1px solid var(--card-border);">
+          <svg class="repo-link__icon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+          rhoekstr/embedding-playground
+        </a>
+      </div>
+      <footer class="card__footer">embeddings.awrylabs.com &middot; last commit <span data-stat="last-commit">—</span></footer>
+    </article>
+
+    <!-- ====================================================
+         AT-A-GLANCE KPIs
+         ==================================================== -->
+    <article class="card card--section palette-slate">
+      <h2 class="card__title">At a glance</h2>
+
+      <div class="kpi-row">
+        <div class="kpi tint-violet">
+          <span class="kpi__label">Curated words</span>
+          <span class="kpi__value">492</span>
+          <span class="kpi__caption">Slice of GloVe 6B's 400K-word vocabulary, six clusters wide. Each word's true top-20 neighbors are precomputed from the <em>full</em> space.</span>
+        </div>
+        <div class="kpi tint-amber">
+          <span class="kpi__label">Dimensions</span>
+          <span class="kpi__value">300</span>
+          <span class="kpi__caption">Each word is a 300-dim float32 vector. Cosine similarity and analogy arithmetic compute live on every interaction.</span>
+        </div>
+        <div class="kpi tint-teal">
+          <span class="kpi__label">Cosine in JS</span>
+          <span class="kpi__value">~15</span>
+          <span class="kpi__caption">Lines of vanilla JavaScript. No math libraries, no framework, no build step. The whole tool is one HTML file.</span>
+        </div>
+        <div class="kpi tint-success">
+          <span class="kpi__label">Network calls</span>
+          <span class="kpi__value">0</span>
+          <span class="kpi__caption">After page load, no analytics, no requests. Refresh resets state. The offline single-file build is byte-identical.</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- ====================================================
+         THE THREE MODES
+         ==================================================== -->
+    <article class="card card--section" data-theme="published">
+      <h2 class="card__title">Three modes, one geometry</h2>
+      <p class="card__desc">
+        Language models don't look words up — they place them in a geometric
+        space where distance encodes how words behave. Three interactive modes
+        make that geometry tangible.
+      </p>
+
+      <div class="grid" style="--cols: 3;">
+
+        <div class="obj" style="--card-accent: #B84545; --card-pill: rgba(184, 69, 69, 0.32);">
+          <div class="obj__num">Mode A</div>
+          <div class="obj__title">How close are these?</div>
+          <div class="obj__desc">
+            A color-mapped grid of cosine similarities between any words you
+            choose. Jargon clusters densely — the reason phrasing a prompt one
+            way rather than another changes what you get back.
+          </div>
+        </div>
+
+        <div class="obj" style="--card-accent: #6B46C1; --card-pill: rgba(107, 70, 193, 0.32);">
+          <div class="obj__num">Mode B</div>
+          <div class="obj__title">Word math</div>
+          <div class="obj__desc">
+            Subtract <em>man</em> from <em>king</em>, add <em>woman</em>, watch
+            the result resolve to <em>queen</em>. Includes curated examples
+            that <em>fail</em> — because the failures teach as much as the
+            successes.
+          </div>
+        </div>
+
+        <div class="obj" style="--card-accent: #0E8A80; --card-pill: rgba(14, 138, 128, 0.32);">
+          <div class="obj__num">Mode C</div>
+          <div class="obj__title">What's near this word?</div>
+          <div class="obj__desc">
+            Map a word's neighborhood and walk the space link by link. Reveals
+            how <em>plant</em> has its factory and botanical senses collapsed
+            into a single point — the limitation that motivated today's
+            contextual models.
+          </div>
+        </div>
+
+      </div>
+    </article>
+
+    <!-- ====================================================
+         HONESTY BY DESIGN
+         ==================================================== -->
+    <article class="card card--section palette-amber">
+      <h2 class="card__title">Honesty by design</h2>
+      <p class="card__desc">
+        The interface labels its own simplifications. Four small choices that
+        keep the mental model honest while keeping the demo approachable.
+      </p>
+
+      <div class="grid" style="--cols: 2;">
+        <div class="callout tint-rose">
+          <span class="callout__title">2D pictures are flagged</span>
+          <p class="callout__text">
+            Every 2D projection is labeled as a flattening of 300-dimensional
+            math. The math runs in the original space; the picture is a
+            teaching aid, not the answer.
+          </p>
+        </div>
+        <div class="callout tint-teal">
+          <span class="callout__title">Slice vs full vocabulary</span>
+          <p class="callout__text">
+            Within-slice nearest neighbors are contrasted with the true
+            neighbors from the full GloVe vocabulary — so slice-induced quirks
+            don't read as properties of the underlying geometry.
+          </p>
+        </div>
+        <div class="callout tint-violet">
+          <span class="callout__title">Bias, descriptively</span>
+          <p class="callout__text">
+            The tool shows how occupations project onto a he–she axis, framed
+            as "learned from how words co-occur in human writing" — not as a
+            normative judgment.
+          </p>
+        </div>
+        <div class="callout tint-success">
+          <span class="callout__title">The mental model is the point</span>
+          <p class="callout__text">
+            Built as a hands-on teaching tool for a workplace AI-literacy
+            series. Designed so the mental model — not the tool — is what
+            you walk away with.
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <!-- ====================================================
+         TECH SPECS
+         ==================================================== -->
+    <article class="card card--section palette-violet">
+      <h2 class="card__title">Vanilla JS, end to end</h2>
+      <p class="card__desc">
+        ~1 MB of total page weight, ~900 KB of which is the vocabulary itself
+        — shipped at full float32 precision as a base64-packed Float32Array.
+      </p>
+
+      <div class="grid" style="--cols: 2;">
+        <div class="obj" style="--card-accent: #B8862B; --card-pill: rgba(184, 134, 43, 0.32);">
+          <div class="obj__num">Stack</div>
+          <div class="obj__title">No frameworks, no build step</div>
+          <div class="obj__desc">
+            Plain HTML, CSS, and JavaScript. Cosine similarity is ~15 lines.
+            No React, no math libraries, no transpiler, no bundler — just a
+            <code>.html</code> file that runs.
+          </div>
+        </div>
+        <div class="obj" style="--card-accent: #C17D1E; --card-pill: rgba(193, 125, 30, 0.32);">
+          <div class="obj__num">Curation</div>
+          <div class="obj__title">Python preprocessing</div>
+          <div class="obj__desc">
+            Python + NumPy script filters the full 400K-word GloVe vocabulary
+            to a six-cluster lexicon. Precomputes each word's true top-20
+            neighbors from the full space; verifies every curated analogy
+            resolves before it ships.
+          </div>
+        </div>
+        <div class="obj" style="--card-accent: #1D9E75; --card-pill: rgba(29, 158, 117, 0.32);">
+          <div class="obj__num">Browser</div>
+          <div class="obj__title">Live computation</div>
+          <div class="obj__desc">
+            Cosine similarity, analogy vector arithmetic, and PCA-via-power-iteration
+            2D projections all run client-side on every interaction. No
+            backend, no API, no work cached server-side.
+          </div>
+        </div>
+        <div class="obj" style="--card-accent: #4A5A75; --card-pill: rgba(74, 90, 117, 0.32);">
+          <div class="obj__num">Offline</div>
+          <div class="obj__title">Single-file build</div>
+          <div class="obj__desc">
+            A second build target ships as one HTML file containing the
+            vocabulary, code, and styles. Double-click to open in any browser,
+            no internet required. Byte-for-byte the same tool.
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ====================================================
+         OPEN / EMBED / RUN OFFLINE
+         ==================================================== -->
+    <article class="card card--section" data-theme="launching">
+      <h2 class="card__title">Open it. Embed it. Run it offline.</h2>
+
+      <div class="grid" style="--cols: 2;">
+        <div class="callout tint-success">
+          <span class="callout__title">Use it online</span>
+          <p class="callout__text">
+            <a href="https://embeddings.awrylabs.com" target="_blank" rel="noopener">embeddings.awrylabs.com</a>
+            opens straight into Mode A. Designed for desktop widths 1100px+;
+            functional at 1366×768. Evergreen Chrome / Edge / Firefox.
+          </p>
+        </div>
+        <div class="callout tint-violet">
+          <span class="callout__title">Embed it inline</span>
+          <p class="callout__text">
+            No frame restrictions — drop it into any page as an
+            <code>&lt;iframe&gt;</code> for a live demo embedded in your own
+            article or slides.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <div class="code-label">Embed snippet</div>
+<pre class="code"><code>&lt;iframe src="https://embeddings.awrylabs.com"
+        width="1100" height="700" loading="lazy"
+        title="Embedding Playground"&gt;&lt;/iframe&gt;</code></pre>
+      </div>
+
+      <div class="callout tint-amber">
+        <span class="callout__title">Single-file offline version</span>
+        <p class="callout__text">
+          Download <a href="https://github.com/rhoekstr/embedding-playground/blob/main/dist/embedding-playground.html" target="_blank" rel="noopener">embedding-playground.html</a>
+          — one HTML file with the vocabulary, code, and styles bundled in. Double-click to open in any
+          modern browser, no internet required.
+        </p>
+      </div>
+    </article>
+
+    <!-- ====================================================
+         CREDITS
+         ==================================================== -->
+    <article class="card card--section palette-rose">
+      <h2 class="card__title">Credits</h2>
+
+      <div class="grid" style="--cols: 2;">
+        <div class="callout">
+          <span class="callout__title">Word vectors</span>
+          <p class="callout__text">
+            <strong>GloVe</strong> — Pennington, Socher &amp; Manning (2014),
+            <em>GloVe: Global Vectors for Word Representation</em>, EMNLP.
+            Released under the Open Data Commons PDDL. Available at
+            <a href="https://nlp.stanford.edu/projects/glove/" target="_blank" rel="noopener">nlp.stanford.edu/projects/glove</a>.
+          </p>
+        </div>
+        <div class="callout">
+          <span class="callout__title">Concept &amp; direction</span>
+          <p class="callout__text">
+            Robert Hoekstra (awryLabs), 2026. Built for a workplace AI-literacy
+            series. Source under
+            <a href="https://github.com/rhoekstr/embedding-playground" target="_blank" rel="noopener">github.com/rhoekstr/embedding-playground</a>.
+          </p>
+        </div>
+      </div>
+    </article>
+
+  </main>
+
+  <footer class="footer">
+    <a href="/">awryLabs</a>
+    <span class="sep">·</span>
+    <a href="https://embeddings.awrylabs.com" target="_blank" rel="noopener">Live</a>
+    <span class="sep">·</span>
+    <a href="https://github.com/rhoekstr/embedding-playground" target="_blank" rel="noopener">rhoekstr/embedding-playground</a>
+    <span class="sep">·</span>
+    <a href="about.html">About</a>
+    <span class="sep">·</span>
+    <a href="privacy.html">Privacy</a>
+    <span class="sep">·</span>
+    <span>© 2026 awryLabs</span>
+  </footer>
+
+</body>
+</html>

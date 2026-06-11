@@ -97,17 +97,38 @@ jobs:
           echo "::notice title=Tyche::last_commit=$LAST_COMMIT"
 
       # ---------------------------------------------------------------
+      # Embedding Playground — single-file teaching tool. Last-commit
+      # date is the only stat surfaced; no formal versioning either.
+      # ---------------------------------------------------------------
+      - name: Refresh Embeddings
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          REPO="rhoekstr/embedding-playground"
+          BRANCH=$(gh api "repos/$REPO" --jq .default_branch)
+          LAST_RAW=$(gh api "repos/$REPO/branches/$BRANCH" \
+                      --jq .commit.commit.committer.date)
+          LAST_COMMIT=$(date -u -d "$LAST_RAW" '+%Y-%m-%d')
+
+          python3 scripts/inject-stats.py \
+            --file embeddings.html \
+            --set "last-commit=$LAST_COMMIT"
+
+          echo "::notice title=Embeddings::last_commit=$LAST_COMMIT"
+
+      # ---------------------------------------------------------------
       # Single commit covering whatever changed. If nothing changed
       # (no new releases, no new commits since last run), exit clean.
       # ---------------------------------------------------------------
       - name: Commit and push if changed
         run: |
-          if git diff --quiet gravel.html wopr.html tyche.html; then
+          if git diff --quiet gravel.html wopr.html tyche.html embeddings.html; then
             echo "No project pages changed — skipping commit."
             exit 0
           fi
           git config user.name  "awrylabs-stats[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add gravel.html wopr.html tyche.html
+          git add gravel.html wopr.html tyche.html embeddings.html
           git commit -m "stats: refresh project pages"
           git push

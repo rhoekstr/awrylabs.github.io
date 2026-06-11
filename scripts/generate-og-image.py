@@ -83,10 +83,11 @@ def main() -> None:
     label_font = load_font("regular", 28)
 
     projects = [
-        ("Mire",   "#1D9E75"),
-        ("Gravel", "#378ADD"),
-        ("WOPR",   "#00ff41"),
-        ("Tyche",  "#FF10F0"),
+        ("Mire",       "#1D9E75"),
+        ("Gravel",     "#378ADD"),
+        ("WOPR",       "#00ff41"),
+        ("Tyche",      "#FF10F0"),
+        ("Embeddings", "#e4c46a"),
     ]
 
     for i, (name, color) in enumerate(projects):
