@@ -63,26 +63,26 @@
     <!-- ====================================================
          AT-A-GLANCE KPIs
          ==================================================== -->
-    <article class="card card--section palette-slate">
+    <article class="card card--section palette-scholar">
       <h2 class="card__title">At a glance</h2>
 
       <div class="kpi-row">
-        <div class="kpi tint-violet">
+        <div class="kpi">
           <span class="kpi__label">Curated words</span>
           <span class="kpi__value">492</span>
           <span class="kpi__caption">Slice of GloVe 6B's 400K-word vocabulary, six clusters wide. Each word's true top-20 neighbors are precomputed from the <em>full</em> space.</span>
         </div>
-        <div class="kpi tint-amber">
+        <div class="kpi">
           <span class="kpi__label">Dimensions</span>
           <span class="kpi__value">300</span>
           <span class="kpi__caption">Each word is a 300-dim float32 vector. Cosine similarity and analogy arithmetic compute live on every interaction.</span>
         </div>
-        <div class="kpi tint-teal">
+        <div class="kpi">
           <span class="kpi__label">Cosine in JS</span>
           <span class="kpi__value">~15</span>
           <span class="kpi__caption">Lines of vanilla JavaScript. No math libraries, no framework, no build step. The whole tool is one HTML file.</span>
         </div>
-        <div class="kpi tint-success">
+        <div class="kpi">
           <span class="kpi__label">Network calls</span>
           <span class="kpi__value">0</span>
           <span class="kpi__caption">After page load, no analytics, no requests. Refresh resets state. The offline single-file build is byte-identical.</span>
@@ -93,7 +93,7 @@
     <!-- ====================================================
          THE THREE MODES
          ==================================================== -->
-    <article class="card card--section" data-theme="published">
+    <article class="card card--section palette-scholar">
       <h2 class="card__title">Three modes, one geometry</h2>
       <p class="card__desc">
         Language models don't look words up — they place them in a geometric
@@ -103,7 +103,7 @@
 
       <div class="grid" style="--cols: 3;">
 
-        <div class="obj" style="--card-accent: #B84545; --card-pill: rgba(184, 69, 69, 0.32);">
+        <div class="obj">
           <div class="obj__num">Mode A</div>
           <div class="obj__title">How close are these?</div>
           <div class="obj__desc">
@@ -113,7 +113,7 @@
           </div>
         </div>
 
-        <div class="obj" style="--card-accent: #6B46C1; --card-pill: rgba(107, 70, 193, 0.32);">
+        <div class="obj">
           <div class="obj__num">Mode B</div>
           <div class="obj__title">Word math</div>
           <div class="obj__desc">
@@ -124,7 +124,7 @@
           </div>
         </div>
 
-        <div class="obj" style="--card-accent: #0E8A80; --card-pill: rgba(14, 138, 128, 0.32);">
+        <div class="obj">
           <div class="obj__num">Mode C</div>
           <div class="obj__title">What's near this word?</div>
           <div class="obj__desc">
@@ -141,7 +141,7 @@
     <!-- ====================================================
          HONESTY BY DESIGN
          ==================================================== -->
-    <article class="card card--section palette-amber">
+    <article class="card card--section palette-scholar">
       <h2 class="card__title">Honesty by design</h2>
       <p class="card__desc">
         The interface labels its own simplifications. Four small choices that
@@ -149,7 +149,7 @@
       </p>
 
       <div class="grid" style="--cols: 2;">
-        <div class="callout tint-rose">
+        <div class="callout">
           <span class="callout__title">2D pictures are flagged</span>
           <p class="callout__text">
             Every 2D projection is labeled as a flattening of 300-dimensional
@@ -157,7 +157,7 @@
             teaching aid, not the answer.
           </p>
         </div>
-        <div class="callout tint-teal">
+        <div class="callout">
           <span class="callout__title">Slice vs full vocabulary</span>
           <p class="callout__text">
             Within-slice nearest neighbors are contrasted with the true
@@ -165,7 +165,7 @@
             don't read as properties of the underlying geometry.
           </p>
         </div>
-        <div class="callout tint-violet">
+        <div class="callout">
           <span class="callout__title">Bias, descriptively</span>
           <p class="callout__text">
             The tool shows how occupations project onto a he–she axis, framed
@@ -173,7 +173,7 @@
             normative judgment.
           </p>
         </div>
-        <div class="callout tint-success">
+        <div class="callout">
           <span class="callout__title">The mental model is the point</span>
           <p class="callout__text">
             Built as a hands-on teaching tool for a workplace AI-literacy
@@ -187,7 +187,7 @@
     <!-- ====================================================
          TECH SPECS
          ==================================================== -->
-    <article class="card card--section palette-violet">
+    <article class="card card--section palette-scholar">
       <h2 class="card__title">Vanilla JS, end to end</h2>
       <p class="card__desc">
         ~1 MB of total page weight, ~900 KB of which is the vocabulary itself
@@ -195,7 +195,7 @@
       </p>
 
       <div class="grid" style="--cols: 2;">
-        <div class="obj" style="--card-accent: #B8862B; --card-pill: rgba(184, 134, 43, 0.32);">
+        <div class="obj">
           <div class="obj__num">Stack</div>
           <div class="obj__title">No frameworks, no build step</div>
           <div class="obj__desc">
@@ -204,7 +204,7 @@
             <code>.html</code> file that runs.
           </div>
         </div>
-        <div class="obj" style="--card-accent: #C17D1E; --card-pill: rgba(193, 125, 30, 0.32);">
+        <div class="obj">
           <div class="obj__num">Curation</div>
           <div class="obj__title">Python preprocessing</div>
           <div class="obj__desc">
@@ -214,7 +214,7 @@
             resolves before it ships.
           </div>
         </div>
-        <div class="obj" style="--card-accent: #1D9E75; --card-pill: rgba(29, 158, 117, 0.32);">
+        <div class="obj">
           <div class="obj__num">Browser</div>
           <div class="obj__title">Live computation</div>
           <div class="obj__desc">
@@ -223,7 +223,7 @@
             backend, no API, no work cached server-side.
           </div>
         </div>
-        <div class="obj" style="--card-accent: #4A5A75; --card-pill: rgba(74, 90, 117, 0.32);">
+        <div class="obj">
           <div class="obj__num">Offline</div>
           <div class="obj__title">Single-file build</div>
           <div class="obj__desc">
@@ -238,11 +238,11 @@
     <!-- ====================================================
          OPEN / EMBED / RUN OFFLINE
          ==================================================== -->
-    <article class="card card--section" data-theme="launching">
+    <article class="card card--section palette-scholar">
       <h2 class="card__title">Open it. Embed it. Run it offline.</h2>
 
       <div class="grid" style="--cols: 2;">
-        <div class="callout tint-success">
+        <div class="callout">
           <span class="callout__title">Use it online</span>
           <p class="callout__text">
             <a href="https://embeddings.awrylabs.com" target="_blank" rel="noopener">embeddings.awrylabs.com</a>
@@ -250,7 +250,7 @@
             functional at 1366×768. Evergreen Chrome / Edge / Firefox.
           </p>
         </div>
-        <div class="callout tint-violet">
+        <div class="callout">
           <span class="callout__title">Embed it inline</span>
           <p class="callout__text">
             No frame restrictions — drop it into any page as an
@@ -267,7 +267,7 @@
         title="Embedding Playground"&gt;&lt;/iframe&gt;</code></pre>
       </div>
 
-      <div class="callout tint-amber">
+      <div class="callout">
         <span class="callout__title">Single-file offline version</span>
         <p class="callout__text">
           Download <a href="https://github.com/rhoekstr/embedding-playground/blob/main/dist/embedding-playground.html" target="_blank" rel="noopener">embedding-playground.html</a>
@@ -280,7 +280,7 @@
     <!-- ====================================================
          CREDITS
          ==================================================== -->
-    <article class="card card--section palette-rose">
+    <article class="card card--section palette-scholar">
       <h2 class="card__title">Credits</h2>
 
       <div class="grid" style="--cols: 2;">
