@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Embedding Playground · awryLabs</title>
-  <meta name="description" content="An interactive demonstration that meaning is geometry — and that 'close in that geometry' is why rephrasing a prompt changes an AI's answer. Three modes running on real GloVe word embeddings, live in your browser." />
+  <meta name="description" content="An interactive demonstration that meaning is geometry — and that 'close in that geometry' is why rephrasing a prompt changes an AI's answer. Four modes running on real GloVe word embeddings, live in your browser." />
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/awry.css?v=8">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Embedding Playground · awryLabs">
-  <meta property="og:description" content="Words have positions. Measure their distances, do arithmetic on meaning (king − man + woman ≈ queen), and walk through a word's neighborhood. Live in your browser on real GloVe embeddings.">
+  <meta property="og:description" content="Words have positions. Measure their distances, do arithmetic on meaning (king − man + woman ≈ queen), walk a word's neighborhood, and watch a word's competing senses fight over a single vector. Live in your browser on real GloVe embeddings.">
   <meta property="og:url" content="https://awrylabs.com/embeddings.html">
   <meta property="og:image" content="https://awrylabs.com/assets/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -27,7 +27,7 @@
 
   <main class="main">
 
-    <p class="sr-only">The Embedding Playground is an interactive, single-page web app that demonstrates how language models place words in a geometric space. Three modes: a color-mapped grid of cosine similarities between any words you choose; an animated visualization of analogy arithmetic such as king minus man plus woman approximately equals queen; and a neighborhood walker that maps a word's nearest neighbors and lets you step through the space link by link. Built on a curated 492-word slice of Stanford NLP's GloVe 300-dimensional word embeddings, with every calculation running client-side in vanilla JavaScript. No backend, no analytics, no network calls after page load. Live at embeddings.awrylabs.com.</p>
+    <p class="sr-only">The Embedding Playground is an interactive, single-page web app that demonstrates how language models place words in a geometric space. Four modes: a color-mapped grid of cosine similarities between any words you choose; an animated visualization of analogy arithmetic such as king minus man plus woman approximately equals queen; a neighborhood walker that maps a word's nearest neighbors and lets you step through the space link by link; and a sense-disambiguation radial that puts a polysemous word like court at the center, shows its competing senses on spokes, and shifts the distribution live as you add context words. Built on a curated 755-word slice of Stanford NLP's GloVe 300-dimensional word embeddings, with every calculation running client-side in vanilla JavaScript. No backend, no analytics, no network calls after page load. Live at embeddings.awrylabs.com.</p>
 
     <!-- ====================================================
          HERO
@@ -38,8 +38,9 @@
       <p class="card__desc">
         An interactive demonstration that <em>meaning is geometry</em> — and
         that "close in that geometry" is why rephrasing a prompt changes an
-        AI's answer. Three modes: measure distances between any words, do
-        arithmetic on meaning, and walk through a word's neighborhood. Every
+        AI's answer. Four modes: measure distances between any words, do
+        arithmetic on meaning, walk through a word's neighborhood, and watch
+        a polysemous word's competing senses shift live with context. Every
         calculation runs live in your browser on real GloVe word embeddings.
       </p>
       <div class="badges">
@@ -69,8 +70,8 @@
       <div class="kpi-row">
         <div class="kpi">
           <span class="kpi__label">Curated words</span>
-          <span class="kpi__value">492</span>
-          <span class="kpi__caption">Slice of GloVe 6B's 400K-word vocabulary, six clusters wide. Each word's true top-20 neighbors are precomputed from the <em>full</em> space.</span>
+          <span class="kpi__value">755</span>
+          <span class="kpi__caption">Slice of GloVe 6B's 400K-word vocabulary, six thematic clusters. Each word's true top-20 neighbors are precomputed from the <em>full</em> space.</span>
         </div>
         <div class="kpi">
           <span class="kpi__label">Dimensions</span>
@@ -91,17 +92,17 @@
     </article>
 
     <!-- ====================================================
-         THE THREE MODES
+         THE FOUR MODES
          ==================================================== -->
     <article class="card card--section palette-scholar">
-      <h2 class="card__title">Three modes, one geometry</h2>
+      <h2 class="card__title">Four modes, one geometry</h2>
       <p class="card__desc">
         Language models don't look words up — they place them in a geometric
-        space where distance encodes how words behave. Three interactive modes
+        space where distance encodes how words behave. Four interactive modes
         make that geometry tangible.
       </p>
 
-      <div class="grid" style="--cols: 3;">
+      <div class="grid" style="--cols: 2;">
 
         <div class="obj">
           <div class="obj__num">Mode A</div>
@@ -117,10 +118,11 @@
           <div class="obj__num">Mode B</div>
           <div class="obj__title">Word math</div>
           <div class="obj__desc">
-            Subtract <em>man</em> from <em>king</em>, add <em>woman</em>, watch
-            the result resolve to <em>queen</em>. Includes curated examples
-            that <em>fail</em> — because the failures teach as much as the
-            successes.
+            Subtracting builds a difference arrow; adding carries it to a new
+            word. The result resolves to the nearest real word — with
+            statistical ties shown honestly. <em>doctor − man + woman</em>
+            lands in a designed dead heat between <em>physician</em> and
+            <em>nurse</em>; the closeness is the lesson.
           </div>
         </div>
 
@@ -132,6 +134,19 @@
             how <em>plant</em> has its factory and botanical senses collapsed
             into a single point — the limitation that motivated today's
             contextual models.
+          </div>
+        </div>
+
+        <div class="obj">
+          <div class="obj__num">Mode D</div>
+          <div class="obj__title">Which meaning wins?</div>
+          <div class="obj__desc">
+            A many-sense word like <em>court</em> sits at the center of a
+            radial map — legal, royal, sports, and dating senses each on
+            their own spoke at their true distance. Type context words and
+            watch the distribution shift live: add <em>wedding</em> and the
+            dating sense rushes in from the margins. A hand-made version of
+            what contextual language models do automatically.
           </div>
         </div>
 
@@ -150,11 +165,12 @@
 
       <div class="grid" style="--cols: 2;">
         <div class="callout">
-          <span class="callout__title">2D pictures are flagged</span>
+          <span class="callout__title">Simplifications, flagged</span>
           <p class="callout__text">
             Every 2D projection is labeled as a flattening of 300-dimensional
-            math. The math runs in the original space; the picture is a
-            teaching aid, not the answer.
+            math — the picture is a teaching aid, not the answer. Near-tie
+            analogy results draw <em>both</em> candidate words with their
+            cosine values, rather than pretending to a single winner.
           </p>
         </div>
         <div class="callout">
@@ -190,7 +206,7 @@
     <article class="card card--section palette-scholar">
       <h2 class="card__title">Vanilla JS, end to end</h2>
       <p class="card__desc">
-        ~1 MB of total page weight, ~900 KB of which is the vocabulary itself
+        ~1.4 MB of total page weight, most of which is the vocabulary itself
         — shipped at full float32 precision as a base64-packed Float32Array.
       </p>
 
@@ -210,8 +226,9 @@
           <div class="obj__desc">
             Python + NumPy script filters the full 400K-word GloVe vocabulary
             to a six-cluster lexicon. Precomputes each word's true top-20
-            neighbors from the full space; verifies every curated analogy
-            resolves before it ships.
+            neighbors from the full space, validates the sense-anchor sets,
+            and verifies every curated analogy resolves before it ships —
+            35 pre-baked scenarios across the four modes.
           </div>
         </div>
         <div class="obj">
