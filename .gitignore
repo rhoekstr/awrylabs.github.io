@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Editor / IDE
+.vscode/
+.idea/
+.claude/
+
+# Accidental duplicates (Finder sometimes creates "<name> 2")
+*\ 2
+*\ 2.*
