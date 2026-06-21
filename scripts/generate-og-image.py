@@ -83,7 +83,7 @@ def main() -> None:
     label_font = load_font("regular", 28)
 
     projects = [
-        ("Mire",       "#1D9E75"),
+        ("Morass",     "#1D9E75"),
         ("Gravel",     "#378ADD"),
         ("WOPR",       "#00ff41"),
         ("Tyche",      "#FF10F0"),

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Morass · awryLabs</title>
+  <meta name="description" content="Morass — a calm, turn-based strategy game of territory on living terrain. Place pins, read the terrain, hold the line. Free, no ads, no tracking. iPhone, iPad, Mac, Apple Watch." />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/awry.css?v=8">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Morass · awryLabs">
+  <meta property="og:description" content="A calm, turn-based strategy game of territory on living terrain. Place pins, read the terrain, hold the line. Free, no ads, no tracking.">
+  <meta property="og:url" content="https://awrylabs.com/morass">
+  <meta property="og:image" content="https://awrylabs.com/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="awryLabs">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    /* Morass-specific components — built on awryLabs tokens so they
+       inherit each card's palette and respect light/dark mode. */
+    .ms { --morass-rust: #B5532A; }
+    @media (prefers-color-scheme: dark) { .ms { --morass-rust: #D08A5E; } }
+
+    /* Device bezel for screenshots */
+    .ms-shot { background: #0c0b0a; border-radius: 22px; padding: 6px;
+      box-shadow: 0 14px 32px -18px rgba(0, 0, 0, 0.55); }
+    .ms-shot img { width: 100%; display: block; border-radius: 17px; }
+
+    /* Hero */
+    .ms-hero { display: grid; grid-template-columns: 1.08fr 0.92fr; gap: 1.5rem; align-items: center; }
+    .ms-hero__art { justify-self: center; width: 100%; max-width: 270px; }
+    .ms-tag { color: var(--morass-rust); font-weight: 700; font-size: 1.05rem;
+      letter-spacing: -0.01em; margin: 0; }
+
+    /* How it plays — steps */
+    .ms-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .ms-step { display: flex; flex-direction: column; gap: 0.55rem; }
+    .ms-step__cap h3 { font-size: 0.98rem; font-weight: 600; color: var(--card-text-strong);
+      line-height: 1.3; margin: 0 0 0.2rem; }
+    .ms-step__cap p { font-size: 0.85rem; line-height: 1.55; color: var(--card-text); opacity: 0.9; margin: 0; }
+    .ms-step .n { color: var(--card-accent); font-weight: 700; }
+
+    /* Feeling / name statements */
+    .ms-statement { font-size: 1.12rem; line-height: 1.6; font-weight: 500;
+      color: var(--card-text-strong); text-align: center; max-width: 36ch; margin: 0.25rem auto; }
+    .ms-statement .rust { color: var(--morass-rust); font-weight: 650; }
+
+    /* Coffee tiers */
+    .ms-tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.65rem; }
+    .ms-tier { background: var(--card-surface); border-radius: 8px; padding: 0.9rem 0.75rem;
+      text-align: center; display: flex; flex-direction: column; gap: 0.25rem; }
+    .ms-tier__cups { font-size: 1.05rem; line-height: 1; }
+    .ms-tier__name { font-weight: 600; color: var(--card-text-strong); font-size: 0.86rem; }
+    .ms-tier__price { font-size: 1.35rem; font-weight: 700; color: var(--card-text-strong);
+      font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+
+    /* Gallery */
+    .ms-gallery { display: flex; gap: 1rem; overflow-x: auto; padding: 0.25rem 0 1rem;
+      scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+    .ms-gallery figure { margin: 0; flex: 0 0 auto; width: 196px; scroll-snap-align: center; }
+    .ms-gallery figcaption { font-size: 0.76rem; color: var(--page-text-mute);
+      margin-top: 0.6rem; text-align: center; line-height: 1.4; }
+
+    /* Coming-soon CTA */
+    .ms-finalcta { text-align: center; padding: 1rem 0 0.25rem; }
+    .ms-finalcta h2 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.015em; margin: 0 0 0.35rem; }
+    .ms-finalcta p { color: var(--page-text-mute); font-size: 0.92rem; margin: 0 0 1rem; }
+    .ms-store { display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--card-accent); color: #fff; padding: 0.6rem 1.15rem; border-radius: 9px;
+      font-weight: 600; font-size: 0.92rem; letter-spacing: -0.005em; }
+    .ms-store small { font-weight: 500; opacity: 0.85; font-size: 0.78rem; }
+
+    @media (max-width: 720px) {
+      .ms-hero { grid-template-columns: 1fr; text-align: center; }
+      .ms-hero__art { max-width: 230px; order: -1; }
+      .ms-hero .badges, .ms-hero .status { justify-content: center; }
+      .ms-steps { grid-template-columns: 1fr; max-width: 280px; margin: 0 auto; }
+      .ms-tiers { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body class="ms">
+
+  <nav class="nav">
+    <a class="wordmark" href="/"><span class="awry">awry</span><span class="labs">Labs</span></a>
+    <span class="nav-sep">/</span>
+    <span class="nav-current">Morass</span>
+  </nav>
+
+  <main class="main">
+
+    <p class="sr-only">Morass product page. A calm, turn-based strategy game of territory on living terrain, for iPhone, iPad, Mac, and Apple Watch. Free, with no ads and no tracking.</p>
+
+    <!-- Hero -->
+    <article class="card card--large" data-theme="launching">
+      <div class="status status--corner" role="status">In development</div>
+      <div class="ms-hero">
+        <div>
+          <h1 class="card__title">Morass</h1>
+          <p class="ms-tag">Claim the shifting ground.</p>
+          <p class="card__desc" style="margin-top:0.6rem;">
+            A calm, turn-based strategy game about the hardest line to draw: the edge of
+            what you hold. Place pins on living terrain and watch the border between your
+            ground and theirs settle like water finding its level.
+          </p>
+          <div class="badges" style="margin-top:0.9rem;">
+            <span class="badge">Free</span>
+            <span class="badge">No ads</span>
+            <span class="badge">No tracking</span>
+            <span class="badge">Rated 4+</span>
+          </div>
+        </div>
+        <div class="ms-hero__art">
+          <div class="ms-shot"><img src="/morass/screenshots/02-game.png" alt="A live Morass board — pins on terrain, territory redrawn after every move." loading="eager"></div>
+        </div>
+      </div>
+      <footer class="card__footer">One universal app · iPhone, iPad, Mac &amp; Apple Watch</footer>
+    </article>
+
+    <!-- The feeling -->
+    <article class="card card--section palette-amber">
+      <p class="ms-statement">
+        After every move, Morass reads the terrain and redraws the borders — your ground
+        against theirs. No timers, no noise. Just you, the board, and the slow tightening
+        of <span class="rust">an edge</span>.
+      </p>
+    </article>
+
+    <!-- How it plays -->
+    <article class="card card--section palette-slate">
+      <h2 class="card__title">Learns in one round. Stays with you for a hundred.</h2>
+      <p class="card__desc">Three taps to understand it; a long time to exhaust it.</p>
+      <div class="ms-steps">
+        <div class="ms-step">
+          <div class="ms-shot"><img src="/morass/screenshots/02-game.png" alt="Tapping an open spot to place a pin" loading="lazy"></div>
+          <div class="ms-step__cap">
+            <h3><span class="n">1.</span> Place a pin</h3>
+            <p>Tap an open spot. Each pin extends your claim, shaped by the land around it.</p>
+          </div>
+        </div>
+        <div class="ms-step">
+          <div class="ms-shot"><img src="/morass/screenshots/09-game-cliff.png" alt="Territory redrawing around a cliff ridge" loading="lazy"></div>
+          <div class="ms-step__cap">
+            <h3><span class="n">2.</span> Watch the ground answer</h3>
+            <p>High ground reaches further; clustered pins harden into a stronghold; a cliff bends the border.</p>
+          </div>
+        </div>
+        <div class="ms-step">
+          <div class="ms-shot"><img src="/morass/screenshots/03-result.png" alt="The end-card showing the final share of ground" loading="lazy"></div>
+          <div class="ms-step__cap">
+            <h3><span class="n">3.</span> Win the settle</h3>
+            <p>When the borders stop moving, the larger share of ground takes it.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Play your way -->
+    <article class="card card--section palette-teal">
+      <h2 class="card__title">A game for a quiet minute, or a long duel.</h2>
+      <div class="grid" style="--cols: 2;">
+        <div class="obj">
+          <div class="obj__num">Solo</div>
+          <div class="obj__title">Adaptive opponent</div>
+          <div class="obj__desc">An AI that scales to your skill — and stays honestly beatable at the very top. It plays to give you a real game, not to roll over or humiliate.</div>
+        </div>
+        <div class="obj">
+          <div class="obj__num">Practice</div>
+          <div class="obj__title">Undo on, rating off</div>
+          <div class="obj__desc">Try a line without consequence. Take a move back, follow a what-if, learn the terrain.</div>
+        </div>
+        <div class="obj">
+          <div class="obj__num">Pass-and-play</div>
+          <div class="obj__title">Two players, one device</div>
+          <div class="obj__desc">Hand the phone across the table. Same board, same rules, no account needed.</div>
+        </div>
+        <div class="obj">
+          <div class="obj__num">Online</div>
+          <div class="obj__title">Quick match &amp; friends</div>
+          <div class="obj__desc">Turn-based matches and friend challenges through Game Center. Take your turn when it suits you.</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Built to be calm -->
+    <article class="card card--section palette-amber">
+      <h2 class="card__title">No ads. No noise. Nothing taken.</h2>
+      <div class="grid" style="--cols: 3;">
+        <div class="callout">
+          <span class="callout__title">Free, and it stays that way</span>
+          <p class="callout__text">No ads, no energy timers, no streak guilt. The only purchase is a tip jar.</p>
+        </div>
+        <div class="callout">
+          <span class="callout__title">It collects nothing</span>
+          <p class="callout__text">No tracking, no analytics, no account. <a href="/morass/privacy/">See the privacy page →</a></p>
+        </div>
+        <div class="callout">
+          <span class="callout__title">Fine for everyone</span>
+          <p class="callout__text">Rated 4+, age-aware, and respectful of Screen Time. <a href="/morass/children/">For parents →</a></p>
+        </div>
+      </div>
+    </article>
+
+    <!-- The name -->
+    <article class="card card--section palette-violet">
+      <h2 class="card__title">The name</h2>
+      <p class="ms-statement" style="font-weight:400;">
+        A morass is boundary ground — a bog or marsh, the place where solid land and open
+        water stop being distinct. You can't point to the line where one becomes the other,
+        because the line is a <span class="rust">gradient</span>. That's the whole game.
+      </p>
+    </article>
+
+    <!-- A closer look -->
+    <section>
+      <p class="section-label">A closer look</p>
+      <div class="ms-gallery">
+        <figure><div class="ms-shot"><img src="/morass/screenshots/01-home.png" alt="Your games at a glance" loading="lazy"></div><figcaption>Your games, and where each is settling.</figcaption></figure>
+        <figure><div class="ms-shot"><img src="/morass/screenshots/02-game.png" alt="A live board" loading="lazy"></div><figcaption>Pins on terrain; territory redrawn each move.</figcaption></figure>
+        <figure><div class="ms-shot"><img src="/morass/screenshots/07-game-lake.png" alt="Open water on the board" loading="lazy"></div><figcaption>Water carves open, unclaimable ground.</figcaption></figure>
+        <figure><div class="ms-shot"><img src="/morass/screenshots/08-game-river.png" alt="A river splitting the map" loading="lazy"></div><figcaption>A river splits the map in two.</figcaption></figure>
+        <figure><div class="ms-shot"><img src="/morass/screenshots/09-game-cliff.png" alt="A cliff ridge on the board" loading="lazy"></div><figcaption>A cliff bends the border around it.</figcaption></figure>
+        <figure><div class="ms-shot"><img src="/morass/screenshots/10-trend.png" alt="Ownership over time chart" loading="lazy"></div><figcaption>Ownership over time — the lead tightening.</figcaption></figure>
+        <figure><div class="ms-shot"><img src="/morass/screenshots/03-result.png" alt="The settle end-card" loading="lazy"></div><figcaption>The settle — the final share of ground.</figcaption></figure>
+        <figure><div class="ms-shot"><img src="/morass/screenshots/04-newgame.png" alt="New game options" loading="lazy"></div><figcaption>Solo, practice, pass-and-play, or online.</figcaption></figure>
+        <figure><div class="ms-shot"><img src="/morass/screenshots/05-tutorial.png" alt="The tutorial" loading="lazy"></div><figcaption>Three short lessons.</figcaption></figure>
+        <figure><div class="ms-shot"><img src="/morass/screenshots/06-coffee.png" alt="The optional tip jar" loading="lazy"></div><figcaption>The only purchase: a tip jar.</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- Availability & the coffee -->
+    <article class="card card--section" data-theme="launching">
+      <h2 class="card__title">Free to play — and a coffee, if it earns one</h2>
+      <p class="card__desc">
+        Every mode, every feature, no ads, no subscription. The only thing you can buy is a
+        small optional tip — a way to thank the one person who makes it. It unlocks nothing,
+        and it's hidden for younger players.
+      </p>
+      <div class="ms-tiers">
+        <div class="ms-tier">
+          <div class="ms-tier__cups">☕</div>
+          <div class="ms-tier__name">A small coffee</div>
+          <div class="ms-tier__price">$1</div>
+        </div>
+        <div class="ms-tier">
+          <div class="ms-tier__cups">☕☕</div>
+          <div class="ms-tier__name">A nice coffee</div>
+          <div class="ms-tier__price">$3</div>
+        </div>
+        <div class="ms-tier">
+          <div class="ms-tier__cups">☕☕☕</div>
+          <div class="ms-tier__name">A whole pot</div>
+          <div class="ms-tier__price">$5</div>
+        </div>
+      </div>
+      <div class="alert alert--info">
+        Not yet on the App Store. It's in development now — check back, or
+        <a href="mailto:coffee@awrylabs.com" style="color:inherit;">drop a line</a> to hear when it lands.
+      </div>
+    </article>
+
+    <!-- Final CTA -->
+    <section class="ms-finalcta" data-theme="launching">
+      <h2>Find the line.</h2>
+      <p>Coming to iPhone, iPad, Mac, and Apple Watch.</p>
+      <span class="ms-store">&#63743;&nbsp; <span>Coming soon to the<br><small>App Store</small></span></span>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <a href="/">awryLabs</a>
+    <span class="sep">·</span>
+    <a href="/about.html">About</a>
+    <span class="sep">·</span>
+    <a href="/morass/privacy/">Privacy</a>
+    <span class="sep">·</span>
+    <a href="/morass/children/">For parents</a>
+    <span class="sep">·</span>
+    <span>© 2026 awryLabs</span>
+  </footer>
+
+</body>
+</html>
