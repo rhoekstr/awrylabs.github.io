@@ -240,13 +240,31 @@
 
         <p>
           Version 2.1 of the location-fragility analysis was about four hundred times slower
-          than 2.2. Not a typo: 400×. The first implementation was the honest, naive thing,
-          recomputing far too much on the full graph. It worked, and it was unusable at national
-          scale. The fix in 2.2 was not cleverness so much as humility: run Dijkstra with an
-          incremental shortest-path update on a simplified subgraph, and stop pretending the
-          whole continent has to be in memory for every county. A 400× speedup is a number you
-          can only be proud of if you are willing to say out loud that the previous version
-          earned it by being bad.
+          than 2.2. Not a typo: 400×. The speedup did not come from more cores or a smaller
+          memory footprint. It came from running the whole thing backwards.
+        </p>
+
+        <p>
+          Fragility, mechanically, is a demolition. I take the road network and pull edges out
+          one at a time, recomputing connectivity after each removal to see who just got
+          stranded. Version 2.1 did exactly that, in order, and it was honest and unusable at
+          national scale. What I had not noticed is an asymmetry buried in the
+          contraction-hierarchy index that makes the queries fast in the first place: pulling
+          an edge out forces a full re-evaluation of the tree, because a deletion can
+          invalidate shortcuts anywhere in it, while adding an edge back only triggers a small
+          incremental update right where it lands. Deletion is global and expensive. Insertion
+          is local and almost free. The two operations were doing the same work, and only one
+          of them was paying full price for it.
+        </p>
+
+        <p>
+          So I stopped deleting. I pull out every edge I mean to remove up front, drop the
+          network into its most-degraded state, then add them back one at a time and read the
+          same measurements off in reverse. Identical sequence of network states, identical
+          fragility numbers, at a fraction of the cost, because every step is now a cheap
+          insertion instead of an expensive teardown. That is a 400× speedup I am only allowed
+          to be proud of if I also admit the first version earned it by doing the obvious thing
+          in the obvious, expensive direction.
         </p>
 
         <p>
@@ -262,8 +280,14 @@
           So here is the question I would actually want you to sit with. Pick a system you
           depend on (your commute, your power, the one road off your street) and ask not whether
           it is in good repair, but whether it has an alternative. If the honest answer is no,
-          that is fragility, and now there is a way to put a number on it. Gravel is open
-          source, Apache 2.0, at
+          that is fragility, and now there is a way to put a number on it.
+        </p>
+
+        <p>
+          There is a line I use about my own work: I find where systems fail people, and then
+          rebuild them. Gravel is the first half made literal, the finding, turned into a score
+          you can rank and act on. The rebuilding is still the hard part, and still ours. It is
+          open source, Apache 2.0, at
           <a href="https://github.com/rhoekstr/gravel" target="_blank" rel="noopener">github.com/rhoekstr/gravel</a>...
         </p>
 

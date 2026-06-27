@@ -434,7 +434,7 @@ print(f"directional coverage:  {result.directional_coverage:.2f}")</code></pre>
         <div class="kpi tint-success">
           <span class="kpi__label">v2.1 → v2.2 speedup</span>
           <span class="kpi__value">~400×</span>
-          <span class="kpi__caption">Location fragility rewrite: Dijkstra + IncrementalSSSP on a simplified subgraph.</span>
+          <span class="kpi__caption">Run the edge removals in reverse: a deletion forces a full CH-tree recompute, an insertion is a cheap IncrementalSSSP update. Remove all, add back, same answer, far less compute.</span>
         </div>
       </div>
     </article>
