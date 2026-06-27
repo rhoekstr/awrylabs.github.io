@@ -4,7 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Embedding Playground · awryLabs</title>
-  <meta name="description" content="An interactive demonstration that meaning is geometry — and that 'close in that geometry' is why rephrasing a prompt changes an AI's answer. Four modes running on real GloVe word embeddings, live in your browser." />
+  <meta name="description" content="An interactive demonstration that meaning is geometry, and that 'close in that geometry' is why rephrasing a prompt changes an AI's answer. Four modes running on real GloVe word embeddings, live in your browser." />
+  <meta name="author" content="Robert Hoekstra">
+  <link rel="canonical" href="https://awrylabs.com/embeddings.html">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/awry.css?v=8">
   <meta property="og:type" content="website">
@@ -16,6 +18,34 @@
   <meta property="og:image:height" content="630">
   <meta property="og:site_name" content="awryLabs">
   <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["WebApplication", "LearningResource"],
+        "name": "Embedding Playground",
+        "url": "https://awrylabs.com/embeddings.html",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Web browser",
+        "browserRequirements": "Requires JavaScript",
+        "codeRepository": "https://github.com/rhoekstr/embedding-playground",
+        "installUrl": "https://embeddings.awrylabs.com/",
+        "description": "An interactive demonstration that meaning is geometry: measure the distance between words, do arithmetic on meaning (king − man + woman ≈ queen), walk a word's neighborhood, and watch a polysemous word's senses compete over one vector, live in your browser on real GloVe word embeddings.",
+        "author": { "@id": "https://awrylabs.com/#robert" },
+        "publisher": { "@id": "https://awrylabs.com/#organization" },
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "awryLabs", "item": "https://awrylabs.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Embedding Playground", "item": "https://awrylabs.com/embeddings.html" }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -36,7 +66,7 @@
       <div class="status status--corner" role="status">Live · Open tool</div>
       <h1 class="card__title">Embedding Playground</h1>
       <p class="card__desc">
-        An interactive demonstration that <em>meaning is geometry</em> — and
+        An interactive demonstration that <em>meaning is geometry</em>, and
         that "close in that geometry" is why rephrasing a prompt changes an
         AI's answer. Four modes: measure distances between any words, do
         arithmetic on meaning, walk through a word's neighborhood, and watch
@@ -46,7 +76,7 @@
       <div class="badges">
         <span class="badge" style="background: #b8860b; color: #faf7f0;">Vanilla HTML/CSS/JS</span>
         <span class="badge" style="background: #1a2845; color: #faf7f0;">GloVe 6B · 300d</span>
-        <span class="badge" style="background: #5a5340; color: #faf7f0;">Single-file build</span>
+        <span class="badge" style="background: #5a5340; color: #faf7f0;">No build step</span>
         <span class="badge" style="background: #872d2d; color: #faf7f0;">No tracking</span>
       </div>
       <div style="display: flex; flex-wrap: wrap; gap: 0.6rem;">
@@ -59,6 +89,76 @@
         </a>
       </div>
       <footer class="card__footer">embeddings.awrylabs.com &middot; last commit <span data-stat="last-commit">2026-06-11</span></footer>
+    </article>
+
+    <!-- ====================================================
+         VISUAL: meaning as geometry (analogy parallelogram)
+         ==================================================== -->
+    <article class="card card--section palette-scholar">
+      <h2 class="card__title">Meaning, as geometry</h2>
+      <p class="card__desc">
+        The same step that turns <em>man</em> into <em>king</em> turns <em>woman</em> into
+        <em>queen</em>. That parallel <em>is</em> the analogy — and it's why you can do
+        arithmetic on words.
+      </p>
+
+      <svg class="em-fig" viewBox="0 0 640 300" role="img"
+           aria-label="Four words plotted as points forming a parallelogram: man and woman along the bottom, king and queen above them. The vector from man to king equals the vector from woman to queen, illustrating king minus man plus woman approximately equals queen.">
+        <style>
+          .em-fig { width: 100%; height: auto; display: block; }
+          .em-fig .grid { stroke: var(--card-border); stroke-width: 1; opacity: 0.4; }
+          .em-fig .thin { stroke: var(--card-text); stroke-width: 1.5; opacity: 0.3; stroke-dasharray: 3 4; fill: none; }
+          .em-fig .vec  { stroke: var(--card-accent); stroke-width: 3; fill: none; }
+          .em-fig .vecd { stroke: var(--card-accent); stroke-width: 3; fill: none; stroke-dasharray: 7 5; }
+          .em-fig .pt   { fill: var(--card-text-strong); }
+          .em-fig .res  { fill: none; stroke: var(--card-accent); stroke-width: 2.5; }
+          .em-fig .wl   { fill: var(--card-text-strong); font: 700 15px Georgia, "Times New Roman", serif; }
+          .em-fig .vl   { fill: var(--card-accent); font: 600 12px -apple-system, system-ui, sans-serif; }
+          .em-fig .eq   { fill: var(--card-text-strong); font: 600 16px Georgia, serif; }
+          .em-fig .eqa  { fill: var(--card-accent); font: 700 16px Georgia, serif; }
+        </style>
+        <defs>
+          <marker id="em-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="var(--card-accent)"/>
+          </marker>
+        </defs>
+
+        <!-- equation -->
+        <text class="eq" x="320" y="32" text-anchor="middle">king <tspan class="eqa">−</tspan> man <tspan class="eqa">+</tspan> woman <tspan class="eqa">≈</tspan> queen</text>
+
+        <!-- faint axes -->
+        <line class="grid" x1="60" y1="262" x2="600" y2="262"/>
+        <line class="grid" x1="60" y1="262" x2="60" y2="70"/>
+
+        <!-- gender direction (faint, completes the parallelogram) -->
+        <line class="thin" x1="150" y1="228" x2="415" y2="243"/>
+        <line class="thin" x1="195" y1="96"  x2="460" y2="111"/>
+
+        <!-- royalty step: man → king (solid) -->
+        <line class="vec" x1="150" y1="228" x2="195" y2="100" marker-end="url(#em-ah)"/>
+        <text class="vl" x="92" y="162">king − man</text>
+        <!-- the SAME step applied to woman → queen (dashed) -->
+        <line class="vecd" x1="415" y1="243" x2="460" y2="115" marker-end="url(#em-ah)"/>
+        <text class="vl" x="478" y="182">+ the same step</text>
+
+        <!-- points -->
+        <circle class="pt" cx="150" cy="228" r="6"/>
+        <text class="wl" x="150" y="252" text-anchor="middle">man</text>
+        <circle class="pt" cx="195" cy="96" r="6"/>
+        <text class="wl" x="195" y="86" text-anchor="middle">king</text>
+        <circle class="pt" cx="415" cy="243" r="6"/>
+        <text class="wl" x="415" y="267" text-anchor="middle">woman</text>
+        <!-- queen = computed result -->
+        <circle class="res" cx="460" cy="111" r="11"/>
+        <circle class="pt" cx="460" cy="111" r="6"/>
+        <text class="wl" x="476" y="101" text-anchor="start">queen</text>
+      </svg>
+
+      <p class="card__desc" style="opacity: 0.8; font-size: 0.86rem; margin-top: 0.4rem;">
+        Add the gendered offset to <em>king</em> and you land on (or very near) <em>queen</em>.
+        Mode B animates this on the real 300-dimensional vectors: no hand-waving, just the
+        nearest word to the result.
+      </p>
     </article>
 
     <!-- ====================================================
@@ -81,12 +181,12 @@
         <div class="kpi">
           <span class="kpi__label">Cosine in JS</span>
           <span class="kpi__value">~15</span>
-          <span class="kpi__caption">Lines of vanilla JavaScript. No math libraries, no framework, no build step. The whole tool is one HTML file.</span>
+          <span class="kpi__caption">Lines for the whole cosine and analogy kernel. No math libraries, no framework, no build step. The page, its logic, and the packed vectors are three small static files.</span>
         </div>
         <div class="kpi">
           <span class="kpi__label">Network calls</span>
           <span class="kpi__value">0</span>
-          <span class="kpi__caption">After page load, no analytics, no requests. Refresh resets state. The offline single-file build is byte-identical.</span>
+          <span class="kpi__caption">After page load, no analytics, no requests. Everything runs client-side; a refresh resets state.</span>
         </div>
       </div>
     </article>
@@ -97,7 +197,7 @@
     <article class="card card--section palette-scholar">
       <h2 class="card__title">Four modes, one geometry</h2>
       <p class="card__desc">
-        Language models don't look words up — they place them in a geometric
+        Language models don't look words up. They place them in a geometric
         space where distance encodes how words behave. Four interactive modes
         make that geometry tangible.
       </p>
@@ -109,7 +209,7 @@
           <div class="obj__title">How close are these?</div>
           <div class="obj__desc">
             A color-mapped grid of cosine similarities between any words you
-            choose. Jargon clusters densely — the reason phrasing a prompt one
+            choose. Jargon clusters densely: the reason phrasing a prompt one
             way rather than another changes what you get back.
           </div>
         </div>
@@ -119,7 +219,7 @@
           <div class="obj__title">Word math</div>
           <div class="obj__desc">
             Subtracting builds a difference arrow; adding carries it to a new
-            word. The result resolves to the nearest real word — with
+            word. The result resolves to the nearest real word, with
             statistical ties shown honestly. <em>doctor − man + woman</em>
             lands in a designed dead heat between <em>physician</em> and
             <em>nurse</em>; the closeness is the lesson.
@@ -132,7 +232,7 @@
           <div class="obj__desc">
             Map a word's neighborhood and walk the space link by link. Reveals
             how <em>plant</em> has its factory and botanical senses collapsed
-            into a single point — the limitation that motivated today's
+            into a single point: the limitation that motivated today's
             contextual models.
           </div>
         </div>
@@ -142,7 +242,7 @@
           <div class="obj__title">Which meaning wins?</div>
           <div class="obj__desc">
             A many-sense word like <em>court</em> sits at the center of a
-            radial map — legal, royal, sports, and dating senses each on
+            radial map: legal, royal, sports, and dating senses each on
             their own spoke at their true distance. Type context words and
             watch the distribution shift live: add <em>wedding</em> and the
             dating sense rushes in from the margins. A hand-made version of
@@ -168,7 +268,7 @@
           <span class="callout__title">Simplifications, flagged</span>
           <p class="callout__text">
             Every 2D projection is labeled as a flattening of 300-dimensional
-            math — the picture is a teaching aid, not the answer. Near-tie
+            math. The picture is a teaching aid, not the answer. Near-tie
             analogy results draw <em>both</em> candidate words with their
             cosine values, rather than pretending to a single winner.
           </p>
@@ -177,7 +277,7 @@
           <span class="callout__title">Slice vs full vocabulary</span>
           <p class="callout__text">
             Within-slice nearest neighbors are contrasted with the true
-            neighbors from the full GloVe vocabulary — so slice-induced quirks
+            neighbors from the full GloVe vocabulary, so slice-induced quirks
             don't read as properties of the underlying geometry.
           </p>
         </div>
@@ -185,7 +285,7 @@
           <span class="callout__title">Bias, descriptively</span>
           <p class="callout__text">
             The tool shows how occupations project onto a he–she axis, framed
-            as "learned from how words co-occur in human writing" — not as a
+            as "learned from how words co-occur in human writing", not as a
             normative judgment.
           </p>
         </div>
@@ -193,7 +293,7 @@
           <span class="callout__title">The mental model is the point</span>
           <p class="callout__text">
             Built as a hands-on teaching tool for a workplace AI-literacy
-            series. Designed so the mental model — not the tool — is what
+            series. Designed so the mental model, not the tool, is what
             you walk away with.
           </p>
         </div>
@@ -206,8 +306,8 @@
     <article class="card card--section palette-scholar">
       <h2 class="card__title">Vanilla JS, end to end</h2>
       <p class="card__desc">
-        ~1.4 MB of total page weight, most of which is the vocabulary itself
-        — shipped at full float32 precision as a base64-packed Float32Array.
+        ~1.4 MB of total page weight, most of which is the vocabulary itself,
+        shipped at full float32 precision as a base64-packed Float32Array.
       </p>
 
       <div class="grid" style="--cols: 2;">
@@ -215,9 +315,10 @@
           <div class="obj__num">Stack</div>
           <div class="obj__title">No frameworks, no build step</div>
           <div class="obj__desc">
-            Plain HTML, CSS, and JavaScript. Cosine similarity is ~15 lines.
-            No React, no math libraries, no transpiler, no bundler — just a
-            <code>.html</code> file that runs.
+            Plain HTML, CSS, and JavaScript across three static files (page,
+            logic, and the packed vectors). Cosine similarity is the dot product
+            of two normalized vectors. No React, no math libraries, no transpiler,
+            no bundler, nothing to build.
           </div>
         </div>
         <div class="obj">
@@ -227,7 +328,7 @@
             Python + NumPy script filters the full 400K-word GloVe vocabulary
             to a six-cluster lexicon. Precomputes each word's true top-20
             neighbors from the full space, validates the sense-anchor sets,
-            and verifies every curated analogy resolves before it ships —
+            and verifies every curated analogy resolves before it ships:
             35 pre-baked scenarios across the four modes.
           </div>
         </div>
@@ -270,7 +371,7 @@
         <div class="callout">
           <span class="callout__title">Embed it inline</span>
           <p class="callout__text">
-            No frame restrictions — drop it into any page as an
+            No frame restrictions. Drop it into any page as an
             <code>&lt;iframe&gt;</code> for a live demo embedded in your own
             article or slides.
           </p>
@@ -287,8 +388,8 @@
       <div class="callout">
         <span class="callout__title">Single-file offline version</span>
         <p class="callout__text">
-          Download <a href="https://github.com/rhoekstr/embedding-playground/blob/main/dist/embedding-playground.html" target="_blank" rel="noopener">embedding-playground.html</a>
-          — one HTML file with the vocabulary, code, and styles bundled in. Double-click to open in any
+          Download <a href="https://github.com/rhoekstr/embedding-playground/blob/main/dist/embedding-playground.html" target="_blank" rel="noopener">embedding-playground.html</a>,
+          one HTML file with the vocabulary, code, and styles bundled in. Double-click to open in any
           modern browser, no internet required.
         </p>
       </div>
@@ -304,7 +405,7 @@
         <div class="callout">
           <span class="callout__title">Word vectors</span>
           <p class="callout__text">
-            <strong>GloVe</strong> — Pennington, Socher &amp; Manning (2014),
+            <strong>GloVe</strong>, Pennington, Socher &amp; Manning (2014),
             <em>GloVe: Global Vectors for Word Representation</em>, EMNLP.
             Released under the Open Data Commons PDDL. Available at
             <a href="https://nlp.stanford.edu/projects/glove/" target="_blank" rel="noopener">nlp.stanford.edu/projects/glove</a>.

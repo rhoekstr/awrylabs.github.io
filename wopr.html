@@ -4,7 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>WOPR · awryLabs</title>
-  <meta name="description" content="WOPR — five turn-based strategy games on one mobile-first menu, themed around the 1983 film WarGames. Tic-Tac-Toe, Connect Four, Dots & Boxes, Go, and a Global Thermonuclear War simulator." />
+  <meta name="description" content="WOPR: five turn-based strategy games on one mobile-first menu, themed around the 1983 film WarGames. Tic-Tac-Toe, Connect Four, Dots & Boxes, Go, and a Global Thermonuclear War simulator." />
+  <meta name="author" content="Robert Hoekstra">
+  <link rel="canonical" href="https://awrylabs.com/wopr.html">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/awry.css?v=8">
   <meta property="og:type" content="website">
@@ -16,6 +18,35 @@
   <meta property="og:image:height" content="630">
   <meta property="og:site_name" content="awryLabs">
   <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["WebApplication", "VideoGame"],
+        "name": "WOPR",
+        "url": "https://awrylabs.com/wopr.html",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Web browser",
+        "browserRequirements": "Requires JavaScript",
+        "gamePlatform": "Web browser",
+        "codeRepository": "https://github.com/rhoekstr/wopr",
+        "installUrl": "https://wopr.awrylabs.com/",
+        "description": "Five turn-based strategy games on one mobile-first menu, themed around the 1983 film WarGames: Tic-Tac-Toe, Connect Four, Dots & Boxes, Go, and a Global Thermonuclear War simulator with a nuclear triad, six CPU personalities, and a DEFCON ladder.",
+        "author": { "@id": "https://awrylabs.com/#robert" },
+        "publisher": { "@id": "https://awrylabs.com/#organization" },
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "awryLabs", "item": "https://awrylabs.com/" },
+          { "@type": "ListItem", "position": 2, "name": "WOPR", "item": "https://awrylabs.com/wopr.html" }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -37,8 +68,8 @@
       <h1 class="card__title">WOPR</h1>
       <p class="card__desc">
         Five turn-based strategy games on a single mobile-first menu, themed
-        around the 1983 film <em>WarGames</em>. Classic abstracts — Tic-Tac-Toe,
-        Connect Four, Dots &amp; Boxes, Go — sit alongside a full Global
+        around the 1983 film <em>WarGames</em>. Classic abstracts (Tic-Tac-Toe,
+        Connect Four, Dots &amp; Boxes, Go) sit alongside a full Global
         Thermonuclear War simulator with a nuclear triad, interceptor doctrine,
         six CPU personalities, and a DEFCON ladder. Pure React, no analytics,
         no accounts, deliberately written as a single ~2,700-line file.
@@ -70,7 +101,7 @@
         <div class="kpi tint-amber">
           <span class="kpi__label">Source size</span>
           <span class="kpi__value">~2.7K</span>
-          <span class="kpi__caption">Lines in <code>src/games.jsx</code>. Deliberately one file — easy to grep, easy to ship.</span>
+          <span class="kpi__caption">Lines in <code>src/games.jsx</code>. Deliberately one file: easy to grep, easy to ship.</span>
         </div>
         <div class="kpi tint-violet">
           <span class="kpi__label">Non-React deps</span>
@@ -92,8 +123,8 @@
       <h2 class="card__title">The five games</h2>
       <p class="card__desc">
         Each game has its own background, accent color, and AI ladder. They
-        share a small set of UI primitives — the Back button, mode toggle,
-        difficulty toggle — so the menu feels like one app rather than five.
+        share a small set of UI primitives (the Back button, mode toggle,
+        difficulty toggle) so the menu feels like one app rather than five.
       </p>
 
       <div class="grid" style="--cols: 2;">
@@ -103,7 +134,7 @@
           <div class="obj__title">Tic-Tac-Toe</div>
           <div class="obj__desc">
             Standard 3×3 with three modes (vs CPU, pass-and-play, CPU vs CPU)
-            and four AI levels topping out at full minimax — Impossible never
+            and four AI levels topping out at full minimax. Impossible never
             loses.
           </div>
         </div>
@@ -123,7 +154,7 @@
           <div class="obj__title">Dots &amp; Boxes</div>
           <div class="obj__desc">
             Three board sizes (4×4 / 6×6 / 8×8). Iterative-deepening alpha-beta
-            with a chain-aware heuristic — Hard and Impossible plan inside a
+            with a chain-aware heuristic. Hard and Impossible plan inside a
             3–6 second time budget.
           </div>
         </div>
@@ -143,7 +174,7 @@
           <div class="obj__title">Global Thermonuclear War</div>
           <div class="obj__desc">
             Real Russia and USA SVG outlines. Nuclear triad: silos, SSBNs,
-            bombers — each with different rules for targetability, intercept,
+            bombers, each with different rules for targetability, intercept,
             and per-round limits. Six CPU personalities (firstStrike,
             populationStrike, decapitation, defenseHeavy, deescalatory,
             erratic), five-phase rounds, and four end conditions including
@@ -161,9 +192,47 @@
       <h2 class="card__title">Inside Global Thermonuclear War</h2>
       <p class="card__desc">
         Most mechanically rich of the five. Models the nuclear triad with
-        strategic AI personalities, a phase machine, and — crucially — a
+        strategic AI personalities, a phase machine, and, crucially, a
         peaceful end condition.
       </p>
+
+      <svg class="wp-fig" viewBox="0 0 760 168" role="img"
+           aria-label="The five-phase round loop: US launch, then RU launch, then US intercept, then RU intercept, then resolve, which loops back to the start of the next round.">
+        <style>
+          .wp-fig { width: 100%; height: auto; display: block; }
+          .wp-fig .box { fill: var(--card-surface); stroke: var(--card-accent); stroke-width: 1.5; }
+          .wp-fig .ph  { fill: var(--card-text-strong); font: 700 13px ui-monospace, "SF Mono", Menlo, monospace; }
+          .wp-fig .arr { stroke: var(--card-accent); stroke-width: 2; fill: none; }
+          .wp-fig .loop{ stroke: var(--card-accent); stroke-width: 2; fill: none; stroke-dasharray: 5 4; opacity: 0.8; }
+          .wp-fig .lol { fill: var(--card-text); opacity: 0.85; font: 600 11px ui-monospace, monospace; }
+        </style>
+        <defs>
+          <marker id="wp-ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="var(--card-accent)"/>
+          </marker>
+        </defs>
+        <!-- five phase boxes -->
+        <g>
+          <rect class="box" x="8"   y="40" width="128" height="44" rx="7"/>
+          <text class="ph" x="72"  y="67" text-anchor="middle">us_launch</text>
+          <rect class="box" x="164" y="40" width="128" height="44" rx="7"/>
+          <text class="ph" x="228" y="67" text-anchor="middle">ru_launch</text>
+          <rect class="box" x="320" y="40" width="140" height="44" rx="7"/>
+          <text class="ph" x="390" y="67" text-anchor="middle">us_intercept</text>
+          <rect class="box" x="488" y="40" width="140" height="44" rx="7"/>
+          <text class="ph" x="558" y="67" text-anchor="middle">ru_intercept</text>
+          <rect class="box" x="656" y="40" width="96" height="44" rx="7"/>
+          <text class="ph" x="704" y="67" text-anchor="middle">resolve</text>
+        </g>
+        <!-- forward arrows -->
+        <line class="arr" x1="136" y1="62" x2="160" y2="62" marker-end="url(#wp-ah)"/>
+        <line class="arr" x1="292" y1="62" x2="316" y2="62" marker-end="url(#wp-ah)"/>
+        <line class="arr" x1="460" y1="62" x2="484" y2="62" marker-end="url(#wp-ah)"/>
+        <line class="arr" x1="628" y1="62" x2="652" y2="62" marker-end="url(#wp-ah)"/>
+        <!-- loop-back: resolve → us_launch (next round) -->
+        <path class="loop" d="M704 84 L704 132 L72 132 L72 88" marker-end="url(#wp-ah)"/>
+        <text class="lol" x="388" y="150" text-anchor="middle">next round · DEFCON adjusts · struck silos preempted</text>
+      </svg>
 
       <div class="grid" style="--cols: 2;">
         <div class="callout">
@@ -187,7 +256,7 @@
         <div class="callout">
           <span class="callout__title">Six personalities</span>
           <p class="callout__text">
-            CPU sides are assigned one personality per game — from
+            CPU sides are assigned one personality per game, from
             <code>firstStrike</code> (95% launch rate, silos first) to
             <code>deescalatory</code> (10% launch rate, prefers low-population
             targets when it must fire).
@@ -272,7 +341,7 @@ npm run preview      # serves dist/ locally</code></pre>
         <div class="callout tint-success">
           <span class="callout__title">Live</span>
           <p class="callout__text">
-            <a href="https://wopr.awrylabs.com/" target="_blank" rel="noopener">wopr.awrylabs.com</a> —
+            <a href="https://wopr.awrylabs.com/" target="_blank" rel="noopener">wopr.awrylabs.com</a>:
             five games, free, no sign-in, mobile-friendly, deployed via GitHub
             Pages on every push to main.
           </p>
@@ -280,7 +349,7 @@ npm run preview      # serves dist/ locally</code></pre>
         <div class="callout tint-violet">
           <span class="callout__title">Source</span>
           <p class="callout__text">
-            <a href="https://github.com/rhoekstr/wopr" target="_blank" rel="noopener">github.com/rhoekstr/wopr</a> —
+            <a href="https://github.com/rhoekstr/wopr" target="_blank" rel="noopener">github.com/rhoekstr/wopr</a>:
             Apache-friendly fork-and-tinker target. Reference docs live in the
             repo's <code>REFERENCE.md</code>.
           </p>

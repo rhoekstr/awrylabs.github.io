@@ -4,7 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tyche · awryLabs</title>
-  <meta name="description" content="Tyche — a psychedelic randomizer for the small decisions you can't make. 27 official lists, five animation styles, build your own, no telemetry. Named for the Greek goddess of fortune." />
+  <meta name="description" content="Tyche: a psychedelic randomizer for the small decisions you can't make. 27 official lists, five animation styles, build your own, no telemetry. Named for the Greek goddess of fortune." />
+  <meta name="author" content="Robert Hoekstra">
+  <link rel="canonical" href="https://awrylabs.com/tyche.html">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/awry.css?v=8">
   <meta property="og:type" content="website">
@@ -16,6 +18,34 @@
   <meta property="og:image:height" content="630">
   <meta property="og:site_name" content="awryLabs">
   <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Tyche",
+        "url": "https://awrylabs.com/tyche.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web browser",
+        "browserRequirements": "Requires JavaScript",
+        "codeRepository": "https://github.com/rhoekstr/tyche",
+        "installUrl": "https://tyche.awrylabs.com/",
+        "description": "A psychedelic randomizer for the small decisions you can't make. 27 official lists, five animation styles (slot, coin, dice, card, RPS prism), custom lists, and multi-slot rolls. Named for the Greek goddess of fortune.",
+        "author": { "@id": "https://awrylabs.com/#robert" },
+        "publisher": { "@id": "https://awrylabs.com/#organization" },
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "awryLabs", "item": "https://awrylabs.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Tyche", "item": "https://awrylabs.com/tyche.html" }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -27,7 +57,7 @@
 
   <main class="main">
 
-    <p class="sr-only">Tyche is a psychedelic single-page web app that picks something random from a list — 27 official lists shipped (cuisines, dishes, Disney rides, workouts, party games, scenarios, etc) plus custom lists you can build yourself. Five animation styles wrap the same randomizer logic: slot machine, coin flip, tumbling die, card flip, and a triangular rock-paper-scissors prism. No backend, no accounts, no telemetry — everything lives in browser localStorage. Live at tyche.awrylabs.com.</p>
+    <p class="sr-only">Tyche is a psychedelic single-page web app that picks something random from a list: 27 official lists shipped (cuisines, dishes, Disney rides, workouts, party games, scenarios, etc) plus custom lists you can build yourself. Five animation styles wrap the same randomizer logic: slot machine, coin flip, tumbling die, card flip, and a triangular rock-paper-scissors prism. No backend, no accounts, no telemetry. Everything lives in browser localStorage. Live at tyche.awrylabs.com.</p>
 
     <!-- ====================================================
          HERO
@@ -41,7 +71,7 @@
         five animation styles wrap the same randomizer logic so the visual
         matches the metaphor of the choice. Build your own lists, combine
         them into multi-slot rolls, or just use the standalone coin / dice /
-        cards / RPS utilities. Named for <strong>Τύχη</strong> — the Greek
+        cards / RPS utilities. Named for <strong>Τύχη</strong>, the Greek
         goddess of fortune, chance, and providence.
       </p>
       <div class="badges">
@@ -63,6 +93,72 @@
     </article>
 
     <!-- ====================================================
+         VISUAL: the five animation styles
+         ==================================================== -->
+    <article class="card card--section palette-neon">
+      <h2 class="card__title">Five spins, one randomizer</h2>
+      <p class="card__desc">
+        Every list runs through the same engine — only the animation changes. Pick the
+        one whose metaphor fits the choice.
+      </p>
+
+      <svg class="ty-fig" viewBox="0 0 720 152" role="img"
+           aria-label="The five Tyche animation styles, left to right: slot machine, coin flip, tumbling die, card flip, and a triangular rock-paper-scissors prism.">
+        <style>
+          .ty-fig { width: 100%; height: auto; display: block; }
+          .ty-fig .gl   { filter: drop-shadow(0 0 5px currentColor); }
+          .ty-fig .st   { fill: none; stroke: currentColor; stroke-width: 3.4; stroke-linejoin: round; stroke-linecap: round; }
+          .ty-fig .fl   { fill: currentColor; stroke: none; }
+          .ty-fig .gt   { fill: currentColor; font: 800 22px -apple-system, system-ui, sans-serif; text-anchor: middle; }
+          .ty-fig .lab  { fill: #F0E6FF; font: 700 12px -apple-system, system-ui, sans-serif; text-anchor: middle; letter-spacing: 0.12em; }
+        </style>
+
+        <!-- slot -->
+        <g class="gl" style="color:#FF10F0">
+          <rect class="st" x="36" y="34" width="72" height="60" rx="10"/>
+          <text class="gt" x="54"  y="78">7</text>
+          <text class="gt" x="72"  y="78">7</text>
+          <text class="gt" x="90"  y="78">7</text>
+        </g>
+        <text class="lab" x="72" y="128">SLOT</text>
+
+        <!-- coin -->
+        <g class="gl" style="color:#00E5FF">
+          <circle class="st" cx="216" cy="64" r="32"/>
+          <circle class="st" cx="216" cy="64" r="22" style="stroke-width:2.2"/>
+          <text class="gt" x="216" y="74" style="font-size:28px">★</text>
+        </g>
+        <text class="lab" x="216" y="128">COIN</text>
+
+        <!-- dice -->
+        <g class="gl" style="color:#FFE600">
+          <rect class="st" x="328" y="32" width="64" height="64" rx="13"/>
+          <circle class="fl" cx="360" cy="64" r="4.5"/>
+          <circle class="fl" cx="343" cy="47" r="4.5"/>
+          <circle class="fl" cx="377" cy="47" r="4.5"/>
+          <circle class="fl" cx="343" cy="81" r="4.5"/>
+          <circle class="fl" cx="377" cy="81" r="4.5"/>
+        </g>
+        <text class="lab" x="360" y="128">DICE</text>
+
+        <!-- card -->
+        <g class="gl" style="color:#B45CFF">
+          <rect class="st" x="476" y="28" width="56" height="74" rx="8"/>
+          <text class="fl" x="487" y="46" style="font:700 13px -apple-system,system-ui,sans-serif; text-anchor:middle;">A</text>
+          <text class="gt" x="504" y="80" style="font-size:28px">♥</text>
+        </g>
+        <text class="lab" x="504" y="128">CARD</text>
+
+        <!-- RPS prism -->
+        <g class="gl" style="color:#39FF14">
+          <path class="st" d="M648 32 L682 94 L614 94 Z"/>
+          <line class="st" x1="648" y1="32" x2="648" y2="94" style="stroke-width:2.2; opacity:0.85"/>
+        </g>
+        <text class="lab" x="648" y="128">RPS</text>
+      </svg>
+    </article>
+
+    <!-- ====================================================
          AT-A-GLANCE KPIs
          ==================================================== -->
     <article class="card card--section palette-slate">
@@ -72,7 +168,7 @@
         <div class="kpi tint-violet">
           <span class="kpi__label">Official lists</span>
           <span class="kpi__value">27</span>
-          <span class="kpi__caption">Cuisines, dishes, Disney rides, workouts, party games, scenarios, and more — fetched from a manifest at app load.</span>
+          <span class="kpi__caption">Cuisines, dishes, Disney rides, workouts, party games, scenarios, and more, fetched from a manifest at app load.</span>
         </div>
         <div class="kpi tint-amber">
           <span class="kpi__label">Animations</span>
@@ -87,7 +183,7 @@
         <div class="kpi tint-success">
           <span class="kpi__label">Tracking</span>
           <span class="kpi__value">0</span>
-          <span class="kpi__caption">No accounts, no analytics. All state — preferences, custom lists, configs — lives in browser localStorage.</span>
+          <span class="kpi__caption">No accounts, no analytics. All state (preferences, custom lists, configs) lives in browser localStorage.</span>
         </div>
       </div>
     </article>
@@ -152,7 +248,7 @@
           <div class="obj__desc">
             Three faces at 120° intervals. Result face is chosen at spin
             start; content swap happens when that face goes back-facing.
-            Works on any pool size — original 3-item RPS or a 36-item
+            Works on any pool size: original 3-item RPS or a 36-item
             adjective list both land cleanly.
           </div>
         </div>
@@ -188,7 +284,7 @@
           <div class="obj__title">List editor</div>
           <div class="obj__desc">
             Form builder for title, icon, optional filter dimensions, and
-            per-item rows — or paste a Pack JSON object directly. Bulk-add
+            per-item rows, or paste a Pack JSON object directly. Bulk-add
             textarea for fast value-only entry. Lists save to localStorage
             and hot-inject into the same pack cache the official lists use,
             so they show up everywhere immediately.
@@ -214,7 +310,7 @@
           Lists can declare optional filter dimensions (e.g. <em>course</em>,
           <em>cuisine</em>, <em>dietary</em>) and items declare which values
           they belong to. The runtime treats empty arrays as "no filter on
-          this dimension — accept anything," so the default state of every
+          this dimension: accept anything," so the default state of every
           list is "all chips deselected, full pool." Users opt in by
           selecting chips. AND across dimensions, OR within.
         </p>
@@ -254,7 +350,7 @@
     <article class="card card--section palette-rose">
       <h2 class="card__title">Why "Tyche"</h2>
       <p class="card__desc">
-        <strong>Τύχη</strong> — Tyche — was the Greek goddess of fortune,
+        <strong>Τύχη</strong>, Tyche, was the Greek goddess of fortune,
         chance, and providence. Romans called her Fortuna. She's typically
         depicted with a rudder (steering fates), a cornucopia (abundance),
         and a wheel that turns up and down without warning. Cities adopted
@@ -288,7 +384,7 @@ npm run deploy       # build + cp 404.html + gh-pages -d dist</code></pre>
       <p class="card__desc">
         Adding a list is a two-file change: drop a <code>Pack</code> JSON
         into <code>public/data/packs/</code> and add a manifest entry. No
-        rebuild needed in dev — just refresh.
+        rebuild needed in dev, just refresh.
       </p>
     </article>
 
