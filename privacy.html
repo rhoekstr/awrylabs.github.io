@@ -4,12 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Privacy · awryLabs</title>
-  <meta name="description" content="awrylabs.com uses no cookies, no analytics, and no tracking of any kind." />
+  <meta name="description" content="awrylabs.com sets no cookies and ships no client-side tracking. The only analytics are cookieless, aggregate traffic counts handled at the network edge by Cloudflare: no profile of you, nothing stored in your browser." />
+  <meta name="author" content="Robert Hoekstra">
+  <link rel="canonical" href="https://awrylabs.com/privacy.html">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/awry.css?v=8">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Privacy · awryLabs">
-  <meta property="og:description" content="awrylabs.com uses no cookies, no analytics, and no tracking of any kind.">
+  <meta property="og:description" content="No cookies, no client-side tracking, no ad SDKs. The only analytics are cookieless, aggregate counts at the network edge.">
   <meta property="og:url" content="https://awrylabs.com/privacy.html">
   <meta property="og:image" content="https://awrylabs.com/assets/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -29,26 +31,32 @@
 
     <header class="page-header">
       <h1>Website privacy policy</h1>
-      <p>Last updated February 2026 &nbsp;·&nbsp; Applies to awrylabs.com</p>
+      <p>Last updated June 2026 &nbsp;·&nbsp; Applies to awrylabs.com</p>
     </header>
 
     <div class="tldr">
       <div class="tldr__label">In brief</div>
       <p>
-        awrylabs.com uses no cookies, no analytics, and no tracking of any kind.
-        We don't know you visited. That's by design.
+        awrylabs.com sets no cookies and ships no tracking scripts to your browser.
+        The only analytics are cookieless, aggregate visit counts measured at the
+        network edge: enough to know a page was viewed, never enough to know it was
+        you. That's by design.
       </p>
     </div>
 
     <div class="policy">
 
       <section>
-        <h2>Data we collect <span class="chip chip--green">None</span></h2>
-        <p>None. This website does not collect, transmit, or store any personal data.</p>
+        <h2>Personal data <span class="chip chip--green">None</span></h2>
         <p>
-          There are no analytics scripts, no session tracking, no advertising pixels,
-          no fingerprinting, and no third-party SDKs of any kind embedded in this site.
-          It's static HTML. It loads, you read it, nothing is recorded.
+          This website collects no personal data. No accounts, no forms, no profiles,
+          no advertising pixels, no fingerprinting, and no third-party SDKs embedded in
+          the page. It's static HTML. It loads, you read it.
+        </p>
+        <p>
+          The one exception is coarse, anonymous traffic measurement, described under
+          <a href="#analytics">Analytics</a> below: aggregate counts that can't be tied
+          back to you.
         </p>
       </section>
 
@@ -59,22 +67,44 @@
         </p>
       </section>
 
+      <section id="analytics">
+        <h2>Analytics <span class="chip chip--info">Cookieless</span></h2>
+        <p>
+          awrylabs.com is served through Cloudflare, which measures basic traffic at the
+          network edge (page views, rough geographic region, referrer, and device type)
+          in aggregate. This is <strong>server-side and cookieless</strong>: no script is
+          added to the page, nothing is written to your browser, and no identifier follows
+          you between visits or across sites.
+        </p>
+        <p>
+          The result is a count of how many times a page was loaded, not a record of who
+          loaded it. There is no cross-site tracking, no advertising use, and no sale of
+          data. Cloudflare processes this on awryLabs' behalf; their
+          <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">privacy policy</a>
+          applies to the edge infrastructure.
+        </p>
+      </section>
+
       <section>
         <h2>Third-party scripts <span class="chip chip--green">None</span></h2>
         <p>
           None. No external JavaScript, no CDN-hosted libraries, no social embeds, no comment systems.
-          Every asset on this site is served directly — no third party can track your visit through
+          Every asset on this site is served directly. No third party can track your visit through
           a resource load.
         </p>
       </section>
 
       <section>
-        <h2>Hosting <span class="chip chip--amber">GitHub Pages</span></h2>
+        <h2>Hosting &amp; infrastructure <span class="chip chip--amber">GitHub Pages · Cloudflare</span></h2>
         <p>
-          This site is hosted on GitHub Pages. GitHub may collect server-level access logs
-          (IP address, request timestamp, user agent) as part of standard web infrastructure.
-          This is outside awryLabs' control. GitHub's privacy policy applies:
-          <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">docs.github.com</a>.
+          This site's files are hosted on GitHub Pages and served through Cloudflare, which
+          sits in front as the DNS and CDN layer (and provides the cookieless edge analytics
+          above). Both may process standard server-level request data (IP address, timestamp,
+          user agent) as an unavoidable part of delivering any web page. This is outside
+          awryLabs' direct control. Their privacy policies apply:
+          <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub</a>
+          and
+          <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare</a>.
         </p>
       </section>
 
@@ -82,7 +112,7 @@
         <h2>External links <span class="chip chip--amber">Third-party</span></h2>
         <p>
           This site links to third-party destinations such as the Apple App Store. Those destinations
-          have their own data practices — we don't control what happens once you leave awrylabs.com.
+          have their own data practices. We don't control what happens once you leave awrylabs.com.
         </p>
       </section>
 
@@ -99,8 +129,7 @@
         <h2>Changes to this policy</h2>
         <p>
           If we ever change our practices in a way that warrants updating this page,
-          we will. The effective date at the top will reflect it. Given that the policy
-          is "collect nothing," material changes seem unlikely.
+          we will. The effective date at the top will reflect it.
         </p>
       </section>
 
