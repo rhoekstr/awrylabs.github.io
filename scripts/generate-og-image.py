@@ -73,8 +73,8 @@ def main() -> None:
 
     # Tagline
     tag = load_font("regular", 42)
-    draw.text((margin_x, 308), "Independent software.", font=tag, fill="#dddddd")
-    draw.text((margin_x, 364), "Solving problems, having fun — one project at a time.", font=tag, fill="#dddddd")
+    draw.text((margin_x, 308), "Independent software,", font=tag, fill="#dddddd")
+    draw.text((margin_x, 364), "a little off on purpose.", font=tag, fill="#dddddd")
 
     # Project list — colored dots + names
     dot_y = 510
