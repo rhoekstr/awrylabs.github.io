@@ -204,15 +204,18 @@
         <h2>What I got wrong, or chose wrong</h2>
 
         <p>
-          Two confessions. First, the whole thing lives in a single file: <code>src/games.jsx</code>,
-          around 2,700 lines, every game's logic and interface in one module. That sounds
-          heretical, and for a large app it would be. For five small games behind one menu it is
-          the right call, one file to grep and one bundle to ship, but I will not pretend it is a
-          pattern to copy into your day job. Second, the DEFCON ladder is upside down. I inverted
-          it from the real-world scale for in-game clarity, so a higher number reads as worse,
-          which is backwards from how the actual system is numbered. That is a deliberate
-          inaccuracy in a game whose entire reason to exist is to take the subject seriously, and
-          the honest move is to name it rather than hope nobody who knows catches it.
+          Two design calls worth owning. First, the whole thing lives in a single file:
+          <code>src/games.jsx</code>, around 2,700 lines, every game's logic and interface in
+          one module. That sounds heretical, and for a large app it would be. But the point was
+          portability, not tidiness. There is no build, no repository to clone, nothing to
+          install. You save one file and the game runs, the way a 1980s type-in program ran: a
+          JavaScript game that just works. Second, and this one I got plainly wrong: I built the
+          DEFCON ladder upside down, climbing toward danger with 5 as all-out war, because
+          higher-is-worse felt more legible on screen. Then I checked the real scale. DEFCON 1 is
+          war, DEFCON 5 is peacetime, and I had it exactly inverted. So I turned it around: it now
+          ticks down toward 1 as the launches fly and climbs back toward 5 as the rounds go quiet,
+          and reaching 5 again is the de-escalation that ends the game. The lesson lands harder
+          when the gauge is the real one.
         </p>
 
         <p>
