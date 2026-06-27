@@ -1,0 +1,5 @@
+# awrylabs.com — static site, everything is public and crawlable.
+User-agent: *
+Allow: /
+
+Sitemap: https://awrylabs.com/sitemap.xml
