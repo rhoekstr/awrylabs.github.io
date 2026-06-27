@@ -195,15 +195,26 @@
         </p>
 
         <p>
-          Try <code>doctor − man + woman</code> and it does not land on anything flattering.
-          It comes to rest in a near-dead heat between <code>physician</code> and
-          <code>nurse</code>, because the geometry learned its sense of <em>doctor</em> from
-          the same writing we did, and that writing has a gender in it. I left that example in
-          on purpose, and I gave the tool a setting whose only job is to show the analogies
-          that break, because the failures are not bugs in the math. They are the math
-          reporting what it absorbed. That is the part the royalty demo always skips: the
-          exact same trick that looks like magic on kings and queens looks like bias on jobs — and
-          it is genuinely the same trick.
+          The bias is sneakier than royalty ever shows you, and the cleanest place to catch it
+          is <code>doctor − man + woman</code>. The top answer the tool returns is
+          <code>physician</code>, and for a second that is a relief: physician is just a neutral,
+          respectable word for doctor, no stereotype in sight. Then you read one line down.
+          <code>nurse</code> sits at essentially the same similarity score as
+          <code>physician</code> (0.61 against 0.61), a designed dead heat. Asked for a woman's
+          version of a doctor, the geometry says "physician" out loud and "nurse" just as loudly,
+          because it learned its sense of <em>doctor</em> from the same writing we did, and that
+          writing has a gender in it. The tell is not that the model blurts out something ugly.
+          It is that the ugly answer is tied for first, hiding behind a respectable one.
+        </p>
+
+        <p>
+          A single analogy can bury that under its top result, which is why the playground has a
+          whole mode that does nothing but project jobs onto a <em>he</em>–<em>she</em> axis. The
+          pattern stops hiding: nurse and homemaker and receptionist drift one way, engineer and
+          mechanic and soldier the other, and the model is not claiming anyone <em>should</em> do
+          these jobs. It is reporting, descriptively, how the words sit together across everything
+          people have written. King and queen never show you that — and that is the part the
+          magic trick skips. The royalty demo is the delight; the doctor one is the lesson.
         </p>
 
         <h2>What I got wrong on purpose</h2>
