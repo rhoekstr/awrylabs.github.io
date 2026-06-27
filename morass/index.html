@@ -4,20 +4,49 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Morass · awryLabs</title>
-  <meta name="description" content="Morass — a calm, turn-based strategy game of territory on living terrain. Place pins, read the terrain, hold the line. Free, no ads, no tracking. iPhone, iPad, Mac, Apple Watch." />
+  <meta name="description" content="Morass: a calm, turn-based strategy game of territory on living terrain. Place pins, read the terrain, hold the line. Free, no ads, no tracking. iPhone, iPad, Mac, Apple Watch." />
+  <meta name="author" content="Robert Hoekstra">
+  <link rel="canonical" href="https://awrylabs.com/morass/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/awry.css?v=8">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Morass · awryLabs">
   <meta property="og:description" content="A calm, turn-based strategy game of territory on living terrain. Place pins, read the terrain, hold the line. Free, no ads, no tracking.">
-  <meta property="og:url" content="https://awrylabs.com/morass">
+  <meta property="og:url" content="https://awrylabs.com/morass/">
   <meta property="og:image" content="https://awrylabs.com/assets/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:site_name" content="awryLabs">
   <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["MobileApplication", "VideoGame"],
+        "name": "Morass",
+        "url": "https://awrylabs.com/morass/",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "iOS, iPadOS, macOS, watchOS",
+        "gamePlatform": ["iOS", "iPadOS", "macOS", "watchOS"],
+        "image": "https://awrylabs.com/morass/screenshots/02-game.png",
+        "description": "A calm, turn-based strategy game of territory on living terrain. Place pins and watch the border between your ground and theirs settle like water finding its level. One universal app for iPhone, iPad, Mac, and Apple Watch. Free, no ads, no tracking.",
+        "author": { "@id": "https://awrylabs.com/#robert" },
+        "publisher": { "@id": "https://awrylabs.com/#organization" },
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "awryLabs", "item": "https://awrylabs.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Morass", "item": "https://awrylabs.com/morass/" }
+        ]
+      }
+    ]
+  }
+  </script>
   <style>
-    /* Morass-specific components — built on awryLabs tokens so they
+    /* Morass-specific components, built on awryLabs tokens so they
        inherit each card's palette and respect light/dark mode. */
     .ms { --morass-rust: #B5532A; }
     @media (prefers-color-scheme: dark) { .ms { --morass-rust: #D08A5E; } }
@@ -33,7 +62,7 @@
     .ms-tag { color: var(--morass-rust); font-weight: 700; font-size: 1.05rem;
       letter-spacing: -0.01em; margin: 0; }
 
-    /* How it plays — steps */
+    /* How it plays: steps */
     .ms-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
     .ms-step { display: flex; flex-direction: column; gap: 0.55rem; }
     .ms-step__cap h3 { font-size: 0.98rem; font-weight: 600; color: var(--card-text-strong);
@@ -112,7 +141,7 @@
           </div>
         </div>
         <div class="ms-hero__art">
-          <div class="ms-shot"><img src="/morass/screenshots/02-game.png" alt="A live Morass board — pins on terrain, territory redrawn after every move." loading="eager"></div>
+          <div class="ms-shot"><img src="/morass/screenshots/02-game.png" alt="A live Morass board: pins on terrain, territory redrawn after every move." loading="eager"></div>
         </div>
       </div>
       <footer class="card__footer">One universal app · iPhone, iPad, Mac &amp; Apple Watch</footer>
@@ -121,7 +150,7 @@
     <!-- The feeling -->
     <article class="card card--section palette-amber">
       <p class="ms-statement">
-        After every move, Morass reads the terrain and redraws the borders — your ground
+        After every move, Morass reads the terrain and redraws the borders, your ground
         against theirs. No timers, no noise. Just you, the board, and the slow tightening
         of <span class="rust">an edge</span>.
       </p>
@@ -163,7 +192,7 @@
         <div class="obj">
           <div class="obj__num">Solo</div>
           <div class="obj__title">Adaptive opponent</div>
-          <div class="obj__desc">An AI that scales to your skill — and stays honestly beatable at the very top. It plays to give you a real game, not to roll over or humiliate.</div>
+          <div class="obj__desc">An AI that scales to your skill, and stays honestly beatable at the very top. It plays to give you a real game, not to roll over or humiliate.</div>
         </div>
         <div class="obj">
           <div class="obj__num">Practice</div>
@@ -207,19 +236,19 @@
       <h2 class="card__title">Accessibility</h2>
       <p class="card__desc">
         Morass is an inherently visual, spatial game, so we put the work into the accessibility
-        that suits it — and we're honest about the parts we didn't build.
+        that suits it, and we're honest about the parts we didn't build.
       </p>
       <div class="callout">
         <span class="callout__title">Differentiate without color</span>
         <p class="callout__text">
-          Your pins and your opponent's are different <em>shapes</em>, not just different colors —
-          so the board stays readable when color alone is hard to tell apart.
+          Your pins and your opponent's are different <em>shapes</em>, not just different colors.
+          So the board stays readable when color alone is hard to tell apart.
         </p>
       </div>
       <div class="grid" style="--cols: 2;">
         <div class="callout">
           <span class="callout__title">Larger text</span>
-          <p class="callout__text">Respects Dynamic Type — the interface scales with your system text size. <em>(iPhone &amp; iPad)</em></p>
+          <p class="callout__text">Respects Dynamic Type: the interface scales with your system text size. <em>(iPhone &amp; iPad)</em></p>
         </div>
         <div class="callout">
           <span class="callout__title">Dark interface</span>
@@ -231,14 +260,14 @@
         </div>
         <div class="callout">
           <span class="callout__title">Reduced motion</span>
-          <p class="callout__text">Honors Reduce Motion — the territory settles without the extra animation.</p>
+          <p class="callout__text">Honors Reduce Motion: the territory settles without the extra animation.</p>
         </div>
       </div>
       <div class="callout">
-        <span class="callout__title">What we didn't build — and why</span>
+        <span class="callout__title">What we didn't build, and why</span>
         <p class="callout__text">
           Morass is about reading terrain at a glance, and we couldn't make that work honestly
-          through VoiceOver or Voice Control — so rather than ship something that only half-works,
+          through VoiceOver or Voice Control. So rather than ship something that only half-works,
           we left them out, and we'd rather say so plainly. If a change would make Morass work
           better for you, <a href="mailto:coffee@awrylabs.com">tell us</a>.
         </p>
@@ -249,9 +278,9 @@
     <article class="card card--section palette-violet">
       <h2 class="card__title">The name</h2>
       <p class="ms-statement" style="font-weight:400;">
-        A morass is boundary ground — a bog or marsh, the place where solid land and open
+        A morass is boundary ground, a bog or marsh, the place where solid land and open
         water stop being distinct. You can't point to the line where one becomes the other,
-        because the line is a <span class="rust">gradient</span>. That's the whole game.
+        because the line is a <span class="rust">gradient</span> — that's the whole game.
       </p>
     </article>
 
@@ -264,8 +293,8 @@
         <figure><div class="ms-shot"><img src="/morass/screenshots/07-game-lake.png" alt="Open water on the board" loading="lazy"></div><figcaption>Water carves open, unclaimable ground.</figcaption></figure>
         <figure><div class="ms-shot"><img src="/morass/screenshots/08-game-river.png" alt="A river splitting the map" loading="lazy"></div><figcaption>A river splits the map in two.</figcaption></figure>
         <figure><div class="ms-shot"><img src="/morass/screenshots/09-game-cliff.png" alt="A cliff ridge on the board" loading="lazy"></div><figcaption>A cliff bends the border around it.</figcaption></figure>
-        <figure><div class="ms-shot"><img src="/morass/screenshots/10-trend.png" alt="Ownership over time chart" loading="lazy"></div><figcaption>Ownership over time — the lead tightening.</figcaption></figure>
-        <figure><div class="ms-shot"><img src="/morass/screenshots/03-result.png" alt="The settle end-card" loading="lazy"></div><figcaption>The settle — the final share of ground.</figcaption></figure>
+        <figure><div class="ms-shot"><img src="/morass/screenshots/10-trend.png" alt="Ownership over time chart" loading="lazy"></div><figcaption>Ownership over time, the lead tightening.</figcaption></figure>
+        <figure><div class="ms-shot"><img src="/morass/screenshots/03-result.png" alt="The settle end-card" loading="lazy"></div><figcaption>The settle, the final share of ground.</figcaption></figure>
         <figure><div class="ms-shot"><img src="/morass/screenshots/04-newgame.png" alt="New game options" loading="lazy"></div><figcaption>Solo, practice, pass-and-play, or online.</figcaption></figure>
         <figure><div class="ms-shot"><img src="/morass/screenshots/05-tutorial.png" alt="The tutorial" loading="lazy"></div><figcaption>Three short lessons.</figcaption></figure>
         <figure><div class="ms-shot"><img src="/morass/screenshots/06-coffee.png" alt="The optional tip jar" loading="lazy"></div><figcaption>The only purchase: a tip jar.</figcaption></figure>
@@ -274,10 +303,10 @@
 
     <!-- Availability & the coffee -->
     <article class="card card--section" data-theme="launching">
-      <h2 class="card__title">Free to play — and a coffee, if it earns one</h2>
+      <h2 class="card__title">Free to play, and a coffee, if it earns one</h2>
       <p class="card__desc">
         Every mode, every feature, no ads, no subscription. The only thing you can buy is a
-        small optional tip — a way to thank the one person who makes it. It unlocks nothing,
+        small optional tip, a way to thank the one person who makes it. It unlocks nothing,
         and it's hidden for younger players.
       </p>
       <div class="ms-tiers">
@@ -298,7 +327,7 @@
         </div>
       </div>
       <div class="alert alert--info">
-        Not yet on the App Store. It's in development now — check back, or
+        Not yet on the App Store. It's in development now. Check back, or
         <a href="mailto:coffee@awrylabs.com" style="color:inherit;">drop a line</a> to hear when it lands.
       </div>
     </article>

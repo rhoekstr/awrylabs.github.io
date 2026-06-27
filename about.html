@@ -4,18 +4,41 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About · awryLabs</title>
-  <meta name="description" content="awryLabs is the work of Robert Hoekstra — a one-person operation building independent software. Games, libraries, web apps. No subscriptions, no analytics, no roadmap to monetize you." />
+  <meta name="description" content="awryLabs is the independent software practice of Robert Hoekstra, a one-person operation building games, libraries, and web apps. No subscriptions, no ad SDKs, no roadmap to monetize you." />
+  <meta name="author" content="Robert Hoekstra">
+  <link rel="canonical" href="https://awrylabs.com/about.html">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/awry.css?v=8">
   <meta property="og:type" content="website">
   <meta property="og:title" content="About · awryLabs">
-  <meta property="og:description" content="awryLabs is the work of Robert Hoekstra — a one-person operation building independent software. Games, libraries, web apps. No subscriptions, no analytics, no roadmap to monetize you.">
+  <meta property="og:description" content="awryLabs is the independent software practice of Robert Hoekstra, a one-person operation building games, libraries, and web apps. No subscriptions, no ad SDKs, no roadmap to monetize you.">
   <meta property="og:url" content="https://awrylabs.com/about.html">
   <meta property="og:image" content="https://awrylabs.com/assets/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:site_name" content="awryLabs">
   <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "AboutPage",
+        "url": "https://awrylabs.com/about.html",
+        "name": "About · awryLabs",
+        "about": { "@id": "https://awrylabs.com/#organization" },
+        "isPartOf": { "@id": "https://awrylabs.com/#website" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "awryLabs", "item": "https://awrylabs.com/" },
+          { "@type": "ListItem", "position": 2, "name": "About", "item": "https://awrylabs.com/about.html" }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -27,26 +50,26 @@
 
   <main class="main main--narrow">
 
-    <p class="sr-only">About awryLabs. The work of Robert Hoekstra. Independent software, one-person operation, no analytics or subscriptions. Includes links to GitHub, LinkedIn, and an email link to coffee at awrylabs dot com.</p>
+    <p class="sr-only">About awryLabs. The independent software practice of Robert Hoekstra. One-person operation, no ad SDKs or subscriptions. Includes links to a personal profile, GitHub, LinkedIn, and an email link to coffee at awrylabs dot com.</p>
 
     <!-- ====================================================
          HERO
          ==================================================== -->
     <article class="card card--large" data-theme="published">
-      <h1 class="card__title">About</h1>
+      <h1 class="card__title">About awryLabs</h1>
       <p class="card__desc">
-        awryLabs is the work of <strong>Robert Hoekstra</strong> — a
-        one-person operation building independent software. The mix changes
-        from project to project: a strategy game, a research library, a small
-        web app. The posture stays the same: solve a problem worth solving,
-        ship something worth finishing, and keep visitors and users out of
-        the data-collection pipeline.
+        awryLabs is the independent software practice of
+        <a href="/me/">Robert Hoekstra</a>, a one-person operation. The mix
+        changes from project to project: a strategy game, a research library,
+        a small web app. The posture stays the same: solve a problem worth
+        solving, ship something worth finishing, and keep the people who use
+        it out of the data-collection machine.
       </p>
       <p class="card__desc">
-        No funding, no analytics, no roadmap to "monetize the audience." If
-        a project finds an audience, fine; if it teaches me something useful,
-        better. Most of what's published here started as a personal itch
-        and ended up worth letting other people use.
+        No funding, no ad SDKs, no roadmap to "monetize the audience." If a
+        project finds an audience, fine; if it teaches me something useful,
+        better. Most of what's published here started as a personal itch and
+        ended up worth letting other people use.
       </p>
     </article>
 
@@ -69,7 +92,7 @@
         <a class="obj" style="--card-accent: #378ADD; --card-pill: rgba(55, 138, 221, 0.32); text-decoration: none;" href="gravel.html">
           <div class="obj__num">Published</div>
           <div class="obj__title">Gravel</div>
-          <div class="obj__desc">C++ / Python library for network graph fragility analysis. Roads, electrical grids, telecom — anything with edges.</div>
+          <div class="obj__desc">C++ / Python library for network graph fragility analysis. Roads, electrical grids, telecom, anything with edges.</div>
         </a>
         <a class="obj" style="--card-accent: #00aa30; --card-pill: rgba(0, 170, 48, 0.28); text-decoration: none;" href="wopr.html">
           <div class="obj__num">Live</div>
@@ -84,18 +107,30 @@
         <a class="obj" style="--card-accent: #b8860b; --card-pill: rgba(184, 134, 11, 0.28); text-decoration: none;" href="embeddings.html">
           <div class="obj__num">Live</div>
           <div class="obj__title">Embedding Playground</div>
-          <div class="obj__desc">Interactive demonstration that meaning is geometry. Vanilla-JS exploration of word embeddings — similarity grids, analogy arithmetic, neighborhood walks, and sense competition.</div>
+          <div class="obj__desc">Interactive demonstration that meaning is geometry. Vanilla-JS exploration of word embeddings: similarity grids, analogy arithmetic, neighborhood walks, and sense competition.</div>
         </a>
       </div>
     </article>
 
     <!-- ====================================================
-         WHERE TO FIND ME
+         WHO'S BEHIND IT  (hands off to the personal profile)
          ==================================================== -->
     <article class="card card--section palette-violet">
-      <h2 class="card__title">Where else to find me</h2>
+      <h2 class="card__title">Who's behind it</h2>
+      <p class="card__desc">
+        awryLabs is one person. For a proper introduction (how I work, what
+        I've built, and where to reach me) see <a href="/me/">my profile</a>.
+      </p>
 
-      <div class="grid" style="--cols: 2;">
+      <div class="grid" style="--cols: 3;">
+
+        <a class="callout" href="/me/" style="text-decoration: none;">
+          <span class="callout__title">Profile</span>
+          <p class="callout__text">
+            <strong>Robert Hoekstra →</strong> the person behind the projects,
+            and the full set of links.
+          </p>
+        </a>
 
         <a class="callout" href="https://github.com/rhoekstr" target="_blank" rel="noopener" style="text-decoration: none;">
           <span class="callout__title">
@@ -103,8 +138,8 @@
             GitHub
           </span>
           <p class="callout__text">
-            <strong>github.com/rhoekstr</strong> — Gravel, WOPR, and other public
-            repositories. Issues and pull requests welcome.
+            <strong>github.com/rhoekstr</strong>, public repositories.
+            Issues and pull requests welcome.
           </p>
         </a>
 
@@ -114,8 +149,8 @@
             LinkedIn
           </span>
           <p class="callout__text">
-            <strong>www.linkedin.com/in/rhoekstr</strong> — for professional
-            inquiries, work history, and connections.
+            <strong>linkedin.com/in/rhoekstr</strong>, professional
+            inquiries and work history.
           </p>
         </a>
 
@@ -129,7 +164,7 @@
       <h2 class="card__title">Get in touch</h2>
       <p class="card__desc">
         Email is the best channel. The button below opens your email app
-        with the address pre-filled — no form, no third-party service in
+        with the address pre-filled: no form, no third-party service in
         the middle, your message goes straight from your mail app to my
         inbox.
       </p>
@@ -145,6 +180,8 @@
     <span>© 2026 awryLabs</span>
     <span class="sep">·</span>
     <a href="/">Home</a>
+    <span class="sep">·</span>
+    <a href="/me/">Robert Hoekstra</a>
     <span class="sep">·</span>
     <a href="privacy.html">Privacy</a>
   </footer>
