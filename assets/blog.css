@@ -1,0 +1,228 @@
+/* ============================================================
+   awryLabs — long-form article styles (Medium-inspired)
+   Loaded only on /blog/ pages, on top of awry.css. Headings use
+   the system sans; body is serif for a calm reading column. Built
+   on the --page-* tokens so it respects light/dark automatically.
+   Each post may override --article-accent to tie to its project.
+   ============================================================ */
+
+:root {
+  --article-accent: #4A5A75;        /* restrained slate by default */
+  --article-measure: 680px;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --article-accent: #8A9AB0; }
+}
+
+/* ---- Index ------------------------------------------------- */
+
+.notes-head { padding: 0.5rem 0 0.5rem; }
+.notes-head h1 {
+  font-size: clamp(1.9rem, 4vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+.notes-head p {
+  font-size: 1.05rem;
+  color: var(--page-text-mute);
+  max-width: 60ch;
+  line-height: 1.6;
+}
+
+.notes-list { display: flex; flex-direction: column; gap: 0; margin-top: 0.5rem; }
+
+.note-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.4rem 1.5rem;
+  align-items: baseline;
+  padding: 1.4rem 0;
+  border-top: 1px solid var(--page-rule);
+  text-decoration: none;
+  color: var(--page-text);
+}
+.note-row:last-child { border-bottom: 1px solid var(--page-rule); }
+.note-row:hover .note-row__title { color: var(--article-accent); }
+
+.note-row__eyebrow {
+  grid-column: 1 / -1;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--article-accent);
+}
+.note-row__title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+  transition: color 0.15s ease;
+}
+.note-row__dek {
+  grid-column: 1 / -1;
+  font-size: 0.98rem;
+  color: var(--page-text-mute);
+  line-height: 1.55;
+  max-width: 62ch;
+}
+.note-row__meta {
+  font-size: 0.8rem;
+  color: var(--page-text-mute);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.note-row--soon { opacity: 0.55; cursor: default; }
+.note-row--soon:hover .note-row__title { color: inherit; }
+
+/* ---- Article ----------------------------------------------- */
+
+.article {
+  max-width: var(--article-measure);
+  margin: 0 auto;
+  width: 100%;
+}
+
+.article__eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--article-accent);
+  margin-bottom: 0.85rem;
+}
+
+.article__title {
+  font-size: clamp(2rem, 5vw, 2.85rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  margin-bottom: 0.7rem;
+}
+
+.article__standfirst {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.15rem, 2.5vw, 1.35rem);
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--page-text-mute);
+  margin-bottom: 1.6rem;
+}
+
+.article__byline {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 1.1rem 0;
+  border-top: 1px solid var(--page-rule);
+  border-bottom: 1px solid var(--page-rule);
+  margin-bottom: 2.2rem;
+}
+.article__avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  object-fit: cover; flex-shrink: 0;
+}
+.article__byline-who { display: flex; flex-direction: column; gap: 0.1rem; }
+.article__byline-name { font-weight: 700; font-size: 0.95rem; color: var(--page-text); text-decoration: none; }
+.article__byline-name:hover { text-decoration: underline; }
+.article__byline-meta { font-size: 0.82rem; color: var(--page-text-mute); }
+
+/* Reading column: serif body, generous leading. */
+.article__body {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.22rem;
+  line-height: 1.75;
+  color: var(--page-text);
+  letter-spacing: -0.003em;
+}
+.article__body > p { margin-bottom: 1.55rem; }
+
+.article__body > p:first-of-type::first-letter {
+  font-size: 3.3rem;
+  font-weight: 700;
+  float: left;
+  line-height: 0.82;
+  padding: 0.05em 0.12em 0 0;
+  color: var(--article-accent);
+  font-family: Georgia, serif;
+}
+
+.article__body h2 {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+  margin: 2.6rem 0 0.9rem;
+}
+
+.article__body a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--article-accent);
+  text-underline-offset: 2px;
+}
+.article__body a:hover { text-decoration-thickness: 2px; }
+
+.article__body strong { font-weight: 700; }
+.article__body em { font-style: italic; }
+
+.article__body code {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.85em;
+  background: var(--page-rule);
+  padding: 0.1em 0.36em;
+  border-radius: 4px;
+}
+
+/* Pull quote */
+.article__body .pull {
+  border: none;
+  margin: 2.2rem 0;
+  padding: 0 0 0 1.4rem;
+  border-left: 3px solid var(--article-accent);
+  font-size: 1.5rem;
+  line-height: 1.4;
+  font-style: italic;
+  color: var(--page-text);
+}
+
+/* Figure (holds an inline SVG diagram or image) */
+.article__figure { margin: 2.2rem 0; }
+.article__figure svg, .article__figure img { width: 100%; height: auto; display: block; border-radius: 10px; }
+.article__figure figcaption {
+  font-family: -apple-system, system-ui, sans-serif;
+  font-size: 0.82rem;
+  color: var(--page-text-mute);
+  text-align: center;
+  margin-top: 0.7rem;
+  line-height: 1.45;
+}
+
+/* End matter: author card + back link */
+.article__end {
+  margin-top: 3rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--page-rule);
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.article__end img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+.article__end-body { font-size: 0.92rem; line-height: 1.6; color: var(--page-text-mute); }
+.article__end-body strong { color: var(--page-text); }
+.article__end-body a { color: var(--page-text); text-decoration: underline; text-decoration-color: var(--article-accent); }
+
+.article__more {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+}
+.article__more a { color: var(--article-accent); text-decoration: none; font-weight: 600; }
+.article__more a:hover { text-decoration: underline; }
+
+@media (max-width: 720px) {
+  .article__body { font-size: 1.12rem; }
+  .article__body > p:first-of-type::first-letter { font-size: 2.8rem; }
+}

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Outsourcing the small decisions · awryLabs</title>
+  <meta name="description" content="The backstory behind Tyche: why a randomizer for trivial choices is really about getting your attention back, and the sharper trick hiding inside a coin flip." />
+  <meta name="author" content="Robert Hoekstra">
+  <link rel="canonical" href="https://awrylabs.com/blog/outsourcing-the-small-decisions/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/awry.css?v=8">
+  <link rel="stylesheet" href="/assets/blog.css?v=1">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Outsourcing the small decisions">
+  <meta property="og:description" content="Why a randomizer for trivial choices is really about getting your attention back, and the sharper trick hiding inside a coin flip.">
+  <meta property="og:url" content="https://awrylabs.com/blog/outsourcing-the-small-decisions/">
+  <meta property="og:image" content="https://awrylabs.com/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="awryLabs">
+  <meta property="article:published_time" content="2026-06-26">
+  <meta property="article:author" content="Robert Hoekstra">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "headline": "Outsourcing the small decisions",
+        "description": "Why a randomizer for trivial choices is really about getting your attention back, and the sharper trick hiding inside a coin flip.",
+        "url": "https://awrylabs.com/blog/outsourcing-the-small-decisions/",
+        "mainEntityOfPage": "https://awrylabs.com/blog/outsourcing-the-small-decisions/",
+        "datePublished": "2026-06-26",
+        "dateModified": "2026-06-26",
+        "image": "https://awrylabs.com/assets/og-image.png",
+        "author": { "@id": "https://awrylabs.com/#robert" },
+        "publisher": { "@id": "https://awrylabs.com/#organization" },
+        "isPartOf": { "@id": "https://awrylabs.com/#website" },
+        "about": "Tyche (randomizer app)"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "awryLabs", "item": "https://awrylabs.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Notes", "item": "https://awrylabs.com/blog/" },
+          { "@type": "ListItem", "position": 3, "name": "Outsourcing the small decisions", "item": "https://awrylabs.com/blog/outsourcing-the-small-decisions/" }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <nav class="nav">
+    <a class="wordmark" href="/"><span class="awry">awry</span><span class="labs">Labs</span></a>
+    <span class="nav-sep">/</span>
+    <a class="nav-crumb" href="/blog/">Notes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-current">Outsourcing the small decisions</span>
+  </nav>
+
+  <main class="main" style="--article-accent: #9D2BD8;">
+
+    <article class="article">
+
+      <p class="article__eyebrow">Backstory · Tyche</p>
+      <h1 class="article__title">Outsourcing the small decisions</h1>
+      <p class="article__standfirst">
+        The strange relief of letting a coin decide where to eat. And the sharper trick hiding
+        inside the flip.
+      </p>
+
+      <div class="article__byline">
+        <img class="article__avatar" src="/assets/robert-hoekstra.jpg" width="44" height="44" alt="Robert Hoekstra">
+        <span class="article__byline-who">
+          <a class="article__byline-name" href="/me/">Robert Hoekstra</a>
+          <span class="article__byline-meta">June 2026 · 4 min read</span>
+        </span>
+      </div>
+
+      <div class="article__body">
+
+        <p>
+          The relief of flipping a coin to decide where to eat is real, and it has almost
+          nothing to do with the coin. I built a randomizer around that relief, gave it five
+          ways to land an answer, and named it after a goddess. The coin is the least
+          interesting part. What it does to you is the whole point.
+        </p>
+
+        <p>
+          Tyche is a small web app that picks something from a list. Twenty-seven lists ship
+          with it (cuisines, dishes, Disney rides, workouts, party games) and you can build your
+          own. The same randomizer logic wears five different animations: a slot machine, a
+          coin, a tumbling die, a flipping card, and a rock-paper-scissors prism. It is named
+          for Τύχη, the Greek goddess of fortune and chance. It started life under the
+          considerably worse name "So Random!", which I will keep here as a lesson in not naming
+          things at 11pm.
+        </p>
+
+        <h2>Decide, versus relieve</h2>
+
+        <p>
+          There are two honest positions on letting chance make your choices, and the argument
+          between them never ends because each is right about a different kind of decision. The
+          rationalist position is that you should decide by reasons: weigh the options, optimize,
+          own the call. The relief position is that for trivial choices, deliberation is pure
+          cost, a tax you pay in attention for an outcome that barely matters. The rationalist is
+          right about the decisions that deserve reasons. The relief camp is right that most of
+          what we agonize over does not, and that the agonizing, not the choice, is the actual
+          problem.
+        </p>
+
+        <p>
+          Tyche lives only in the second category, and it is unapologetic about it. It will not
+          help you choose a career. It picks dinner, so the part of you that would have spent
+          twenty minutes on dinner can go be useful somewhere else. The value is not a better
+          answer. It is the attention you get back.
+        </p>
+
+        <figure class="article__figure"
+                style="background:linear-gradient(135deg,#1A0633 0%,#4D1494 55%,#8B26FF 100%);
+                       border-radius:12px; padding:1.3rem 1rem;">
+          <svg class="ty-fig" viewBox="0 0 720 152" role="img"
+               aria-label="The five Tyche animation styles, left to right: slot machine, coin flip, tumbling die, card flip, and a triangular rock-paper-scissors prism.">
+            <style>
+              .ty-fig { width: 100%; height: auto; display: block; }
+              .ty-fig .gl   { filter: drop-shadow(0 0 5px currentColor); }
+              .ty-fig .st   { fill: none; stroke: currentColor; stroke-width: 3.4; stroke-linejoin: round; stroke-linecap: round; }
+              .ty-fig .fl   { fill: currentColor; stroke: none; }
+              .ty-fig .gt   { fill: currentColor; font: 800 22px -apple-system, system-ui, sans-serif; text-anchor: middle; }
+              .ty-fig .lab  { fill: #F0E6FF; font: 700 12px -apple-system, system-ui, sans-serif; text-anchor: middle; letter-spacing: 0.12em; }
+            </style>
+            <g class="gl" style="color:#FF10F0">
+              <rect class="st" x="36" y="34" width="72" height="60" rx="10"/>
+              <text class="gt" x="54"  y="78">7</text>
+              <text class="gt" x="72"  y="78">7</text>
+              <text class="gt" x="90"  y="78">7</text>
+            </g>
+            <text class="lab" x="72" y="128">SLOT</text>
+            <g class="gl" style="color:#00E5FF">
+              <circle class="st" cx="216" cy="64" r="32"/>
+              <circle class="st" cx="216" cy="64" r="22" style="stroke-width:2.2"/>
+              <text class="gt" x="216" y="74" style="font-size:28px">★</text>
+            </g>
+            <text class="lab" x="216" y="128">COIN</text>
+            <g class="gl" style="color:#FFE600">
+              <rect class="st" x="328" y="32" width="64" height="64" rx="13"/>
+              <circle class="fl" cx="360" cy="64" r="4.5"/>
+              <circle class="fl" cx="343" cy="47" r="4.5"/>
+              <circle class="fl" cx="377" cy="47" r="4.5"/>
+              <circle class="fl" cx="343" cy="81" r="4.5"/>
+              <circle class="fl" cx="377" cy="81" r="4.5"/>
+            </g>
+            <text class="lab" x="360" y="128">DICE</text>
+            <g class="gl" style="color:#B45CFF">
+              <rect class="st" x="476" y="28" width="56" height="74" rx="8"/>
+              <text class="fl" x="487" y="46" style="font:700 13px -apple-system,system-ui,sans-serif; text-anchor:middle;">A</text>
+              <text class="gt" x="504" y="80" style="font-size:28px">♥</text>
+            </g>
+            <text class="lab" x="504" y="128">CARD</text>
+            <g class="gl" style="color:#39FF14">
+              <path class="st" d="M648 32 L682 94 L614 94 Z"/>
+              <line class="st" x1="648" y1="32" x2="648" y2="94" style="stroke-width:2.2; opacity:0.85"/>
+            </g>
+            <text class="lab" x="648" y="128">RPS</text>
+          </svg>
+          <figcaption>Five animations, one randomizer underneath. Slot, coin, dice, card, and a rock-paper-scissors prism.</figcaption>
+        </figure>
+
+        <h2>What the flip actually measures</h2>
+
+        <p>
+          Here is the part I find genuinely interesting. A coin flip is supposed to remove your
+          preference — and instead it reveals it. The moment the coin is in the air you notice
+          which side you are quietly rooting for, and the flash of disappointment or relief when
+          it lands is data you did not have a second earlier.
+        </p>
+
+        <p class="pull">
+          You are not asking fortune to choose. You are using fortune to surprise your gut into
+          admitting what it already wanted.
+        </p>
+
+        <p>
+          Used that way, the randomizer is not a decision-maker at all. It is a preference probe.
+          I did not design that in. It is just what randomness does to a mind that thought it was
+          indifferent, and once you notice it, the coin earns its keep even when you overrule it.
+        </p>
+
+        <h2>The honest part</h2>
+
+        <p>
+          Two admissions. First, this is the least serious thing I have built, and I will not
+          dress it up: it is a toy, the world did not need it, and I made it anyway because it
+          was fun and it scratched a real itch. Second, and this is the same compression-lie the
+          embedding playground has, the five animations are pure theater. Underneath the slot
+          machine and the prism and the tumbling die is exactly one random number generator, the
+          same call every time. The slot does not roll differently than the coin. The variety
+          lives entirely in the wrapper, and the wrapper exists so the metaphor of the spin
+          matches the feel of the choice, not because it changes the odds. I think that is fine.
+          But you should be able to see the magician's hands, even when the trick is harmless.
+        </p>
+
+        <p>
+          Tyche got temples for deciding the fates of whole cities. Using her to settle tacos
+          versus ramen is a demotion she would probably find funny. So here is my question, and
+          I mean it as a real one, not a closer: what is a decision you would actually hand to a
+          coin, if you trusted yourself to read your own face when it landed? Tyche is live, it
+          keeps nothing, every list and config lives in your browser.
+          <a href="https://tyche.awrylabs.com/" target="_blank" rel="noopener">tyche.awrylabs.com</a>...
+        </p>
+
+      </div>
+
+      <div class="article__end">
+        <img src="/assets/robert-hoekstra.jpg" width="56" height="56" alt="Robert Hoekstra">
+        <div class="article__end-body">
+          <strong>Robert Hoekstra</strong> builds independent software as
+          <a href="/">awryLabs</a>: games, libraries, and small tools, one project at a time.
+          More <a href="/me/">about me</a>, or see <a href="/tyche.html">Tyche</a> itself.
+        </div>
+      </div>
+
+      <p class="article__more"><a href="/blog/">← All notes</a></p>
+
+    </article>
+
+  </main>
+
+  <footer class="footer">
+    <a href="/">awryLabs</a>
+    <span class="sep">·</span>
+    <a href="/blog/">Notes</a>
+    <span class="sep">·</span>
+    <a href="/me/">Robert Hoekstra</a>
+    <span class="sep">·</span>
+    <a href="/privacy.html">Privacy</a>
+    <span class="sep">·</span>
+    <span>© 2026 awryLabs</span>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meaning is geometry · awryLabs</title>
+  <meta name="description" content="The backstory behind the Embedding Playground: why a word, to a language model, is a place rather than a string, and what the famous king − man + woman ≈ queen trick quietly hides." />
+  <meta name="author" content="Robert Hoekstra">
+  <link rel="canonical" href="https://awrylabs.com/blog/meaning-is-geometry/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/awry.css?v=8">
+  <link rel="stylesheet" href="/assets/blog.css?v=1">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Meaning is geometry">
+  <meta property="og:description" content="The backstory behind the Embedding Playground: why a word, to a language model, is a place rather than a string, and what the famous king − man + woman ≈ queen trick quietly hides.">
+  <meta property="og:url" content="https://awrylabs.com/blog/meaning-is-geometry/">
+  <meta property="og:image" content="https://awrylabs.com/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="awryLabs">
+  <meta property="article:published_time" content="2026-06-26">
+  <meta property="article:author" content="Robert Hoekstra">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "headline": "Meaning is geometry",
+        "description": "The backstory behind the Embedding Playground: why a word, to a language model, is a place rather than a string, and what the famous king − man + woman ≈ queen trick quietly hides.",
+        "url": "https://awrylabs.com/blog/meaning-is-geometry/",
+        "mainEntityOfPage": "https://awrylabs.com/blog/meaning-is-geometry/",
+        "datePublished": "2026-06-26",
+        "dateModified": "2026-06-26",
+        "image": "https://awrylabs.com/assets/og-image.png",
+        "author": { "@id": "https://awrylabs.com/#robert" },
+        "publisher": { "@id": "https://awrylabs.com/#organization" },
+        "isPartOf": { "@id": "https://awrylabs.com/#website" },
+        "about": "Word embeddings"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "awryLabs", "item": "https://awrylabs.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Notes", "item": "https://awrylabs.com/blog/" },
+          { "@type": "ListItem", "position": 3, "name": "Meaning is geometry", "item": "https://awrylabs.com/blog/meaning-is-geometry/" }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <nav class="nav">
+    <a class="wordmark" href="/"><span class="awry">awry</span><span class="labs">Labs</span></a>
+    <span class="nav-sep">/</span>
+    <a class="nav-crumb" href="/blog/">Notes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-current">Meaning is geometry</span>
+  </nav>
+
+  <main class="main" style="--article-accent: #b8860b;">
+
+    <article class="article">
+
+      <p class="article__eyebrow">Backstory · Embedding Playground</p>
+      <h1 class="article__title">Meaning is geometry</h1>
+      <p class="article__standfirst">
+        Why a word, to a language model, is a place rather than a string. And what the
+        famous <code>king − man + woman ≈ queen</code> trick quietly leaves out.
+      </p>
+
+      <div class="article__byline">
+        <img class="article__avatar" src="/assets/robert-hoekstra.jpg" width="44" height="44" alt="Robert Hoekstra">
+        <span class="article__byline-who">
+          <a class="article__byline-name" href="/me/">Robert Hoekstra</a>
+          <span class="article__byline-meta">June 2026 · 4 min read</span>
+        </span>
+      </div>
+
+      <div class="article__body">
+
+        <p>
+          To a language model, a word is not a string of letters. It is a place. Every word
+          it knows sits at a fixed point in a space of a few hundred dimensions, and the only
+          thing that carries meaning in that space is distance. Words that behave alike sit
+          close together. Words that don't sit far apart. That is the entire trick, and it is
+          stranger than it sounds.
+        </p>
+
+        <p>
+          I kept trying to explain this to people and watching it not land. You can say "the
+          model represents words as vectors," get a nod, and the nod means nothing, because
+          nobody can picture three hundred dimensions and nobody should try. The idea only
+          arrives when you can move a point yourself and watch the meaning move with it. So I
+          built a place to do that. It is called the
+          <a href="/embeddings.html">Embedding Playground</a>, it runs entirely in your
+          browser, and it does its arithmetic on real word vectors rather than a cartoon of
+          them.
+        </p>
+
+        <h2>Two wrong ways to describe it</h2>
+
+        <p>
+          There are two camps on what a thing like this knows, and both are half right. One
+          camp says it is a lookup table with delusions of grandeur, a stochastic parrot
+          matching patterns with no grasp of anything. The other says the representations are
+          rich and structured, that the model in some real sense understands. The lookup camp
+          is right that there is no referent in here: the word <code>king</code> does not
+          point at a king, and there is no crown anywhere in the numbers. The representation
+          camp is right that the structure is real and not an accident, because you can do
+          arithmetic on it and get sensible answers back.
+        </p>
+
+        <p>
+          The frame that holds both is older than the model. "You shall know a word by the
+          company it keeps," the linguist J.R. Firth wrote in 1957. Meaning in this space is
+          not a definition, it is a position relative to everything else, learned from the
+          company each word keeps across billions of sentences. The model does not know what
+          a king <em>is</em>. It knows where <code>king</code> sits relative to
+          <code>queen</code>, <code>throne</code>, <code>monarch</code>, and <code>man</code>.
+          That turns out to be enough to be useful and not enough to be trusted, and most of
+          the confusion about these systems lives in the gap between those two facts.
+        </p>
+
+        <figure class="article__figure">
+          <svg viewBox="0 0 640 300" role="img"
+               aria-label="Four words plotted as points forming a parallelogram: man and woman along the bottom, king and queen above them. The vector from man to king equals the vector from woman to queen.">
+            <style>
+              .ab-fig .grid { stroke: var(--page-rule); stroke-width: 1; }
+              .ab-fig .thin { stroke: var(--page-text-mute); stroke-width: 1.5; opacity: 0.4; stroke-dasharray: 3 4; fill: none; }
+              .ab-fig .vec  { stroke: var(--article-accent); stroke-width: 3; fill: none; }
+              .ab-fig .vecd { stroke: var(--article-accent); stroke-width: 3; fill: none; stroke-dasharray: 7 5; }
+              .ab-fig .pt   { fill: var(--page-text); }
+              .ab-fig .res  { fill: none; stroke: var(--article-accent); stroke-width: 2.5; }
+              .ab-fig .wl   { fill: var(--page-text); font: 700 15px Georgia, serif; }
+              .ab-fig .vl   { fill: var(--article-accent); font: 600 12px -apple-system, system-ui, sans-serif; }
+              .ab-fig .eq   { fill: var(--page-text); font: 600 16px Georgia, serif; }
+              .ab-fig .eqa  { fill: var(--article-accent); font: 700 16px Georgia, serif; }
+            </style>
+            <g class="ab-fig">
+              <defs>
+                <marker id="ab-ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
+                  <path d="M0 0 L10 5 L0 10 z" fill="var(--article-accent)"/>
+                </marker>
+              </defs>
+              <text class="eq" x="320" y="30" text-anchor="middle">king <tspan class="eqa">−</tspan> man <tspan class="eqa">+</tspan> woman <tspan class="eqa">≈</tspan> queen</text>
+              <line class="grid" x1="60" y1="262" x2="600" y2="262"/>
+              <line class="grid" x1="60" y1="262" x2="60" y2="70"/>
+              <line class="thin" x1="150" y1="228" x2="415" y2="243"/>
+              <line class="thin" x1="195" y1="96"  x2="460" y2="111"/>
+              <line class="vec" x1="150" y1="228" x2="195" y2="100" marker-end="url(#ab-ah)"/>
+              <text class="vl" x="92" y="162">king − man</text>
+              <line class="vecd" x1="415" y1="243" x2="460" y2="115" marker-end="url(#ab-ah)"/>
+              <text class="vl" x="478" y="182">+ the same step</text>
+              <circle class="pt" cx="150" cy="228" r="6"/>
+              <text class="wl" x="150" y="252" text-anchor="middle">man</text>
+              <circle class="pt" cx="195" cy="96" r="6"/>
+              <text class="wl" x="195" y="86" text-anchor="middle">king</text>
+              <circle class="pt" cx="415" cy="243" r="6"/>
+              <text class="wl" x="415" y="267" text-anchor="middle">woman</text>
+              <circle class="res" cx="460" cy="111" r="11"/>
+              <circle class="pt" cx="460" cy="111" r="6"/>
+              <text class="wl" x="476" y="101" text-anchor="start">queen</text>
+            </g>
+          </svg>
+          <figcaption>The same offset that separates <em>man</em> from <em>king</em> separates <em>woman</em> from <em>queen</em>. That parallel is the analogy.</figcaption>
+        </figure>
+
+        <h2>The famous trick, and the thumb on the scale</h2>
+
+        <p>
+          The canonical demo is <code>king − man + woman ≈ queen</code>. It is genuinely
+          remarkable that it works at all, and I put it front and center in the tool. I also
+          left in something the demos usually hide. The arithmetic does not actually land on
+          <code>queen</code>. It lands near it, and the tool then reports the nearest word
+          after quietly excluding the three input words from the running. Take that exclusion
+          away and the honest answer to <code>king − man + woman</code> is often
+          <code>king</code> again, because you only nudged it a little. The clean examples are
+          real. They are also curated, and most analogies you try yourself will be messier
+          than the one on the poster...
+        </p>
+
+        <p>
+          Try <code>doctor − man + woman</code> and it does not land on anything flattering.
+          It comes to rest in a near-dead heat between <code>physician</code> and
+          <code>nurse</code>, because the geometry learned its sense of <em>doctor</em> from
+          the same writing we did, and that writing has a gender in it. I left that example in
+          on purpose, and I gave the tool a setting whose only job is to show the analogies
+          that break, because the failures are not bugs in the math. They are the math
+          reporting what it absorbed. That is the part the royalty demo always skips: the
+          exact same trick that looks like magic on kings and queens looks like bias on jobs — and
+          it is genuinely the same trick.
+        </p>
+
+        <h2>What I got wrong on purpose</h2>
+
+        <p>
+          Two things in the playground are lies of compression, and I would rather name them
+          than have you catch them. First, every picture you see is two-dimensional, and the
+          space is three hundred. Flattening 300 down to 2 throws away almost everything, so
+          the tidy little maps are a projection, not the territory. The tool tries to make
+          good on this by printing the true 300-dimensional cosine next to each word, so when
+          the picture lies about a distance, the number beside it does not. Second, only a
+          slice of the vocabulary ships. GloVe has four hundred thousand words; I send 755 of
+          them, because the full set is gigabytes and this has to load in a browser. So the
+          words you can do live arithmetic on are a vocabulary I chose. What I did not fake is
+          the neighborhoods: each word's nearest neighbors are precomputed against the entire
+          400,000-word space and shipped alongside the slice, so "who is closest to
+          <code>king</code>" is the real answer, not an artifact of what I happened to include.
+        </p>
+
+        <p class="pull">
+          Few things shape what you conclude from a space like this more than the ruler you
+          measure it with.
+        </p>
+
+        <p>
+          The measure underneath all of it is cosine similarity, the dot product of two
+          normalized vectors and about two lines of JavaScript, and like every instrument it
+          has a bias. It reads the angle between two vectors and ignores their length, which
+          makes it blind to some things and loud about others. The playground is, in the end, an argument that you should be able to hold
+          the ruler yourself instead of taking my word, or a vendor's, for what the geometry
+          says.
+        </p>
+
+        <h2>Why bother</h2>
+
+        <p>
+          Because the most useful intuition about these systems is also the most undersold.
+          When you reword a prompt and suddenly get a better answer, you did not say the magic
+          words. You moved your request to a slightly different place in a space like this one,
+          closer to the region the model associates with what you actually wanted. Nothing
+          understood you better. The geometry just put you in a better neighborhood. Once that
+          clicks, a lot of prompt folklore stops looking like folklore and starts looking like
+          navigation.
+        </p>
+
+        <p>
+          The whole thing is <a href="https://embeddings.awrylabs.com" target="_blank" rel="noopener">live</a>,
+          it stores nothing, and it makes no network calls once it loads. Go move some words
+          around. And if you do: what is a prompt that worked better the moment you reworded
+          it? That is this geometry, felt from the outside...
+        </p>
+
+      </div>
+
+      <div class="article__end">
+        <img src="/assets/robert-hoekstra.jpg" width="56" height="56" alt="Robert Hoekstra">
+        <div class="article__end-body">
+          <strong>Robert Hoekstra</strong> builds independent software as
+          <a href="/">awryLabs</a>: games, libraries, and small tools, one project at a time.
+          More <a href="/me/">about me</a>, or see the
+          <a href="/embeddings.html">Embedding Playground</a> this note is about.
+        </div>
+      </div>
+
+      <p class="article__more"><a href="/blog/">← All notes</a></p>
+
+    </article>
+
+  </main>
+
+  <footer class="footer">
+    <a href="/">awryLabs</a>
+    <span class="sep">·</span>
+    <a href="/blog/">Notes</a>
+    <span class="sep">·</span>
+    <a href="/me/">Robert Hoekstra</a>
+    <span class="sep">·</span>
+    <a href="/privacy.html">Privacy</a>
+    <span class="sep">·</span>
+    <span>© 2026 awryLabs</span>
+  </footer>
+
+</body>
+</html>

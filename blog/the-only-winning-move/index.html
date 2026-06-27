@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The only winning move · awryLabs</title>
+  <meta name="description" content="The backstory behind WOPR: building a rigorous nuclear war simulator whose most common ending, by design and by measurement, is the one where nobody plays." />
+  <meta name="author" content="Robert Hoekstra">
+  <link rel="canonical" href="https://awrylabs.com/blog/the-only-winning-move/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/awry.css?v=8">
+  <link rel="stylesheet" href="/assets/blog.css?v=1">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="The only winning move">
+  <meta property="og:description" content="Building a rigorous nuclear war simulator whose most common ending, by design and by measurement, is the one where nobody plays.">
+  <meta property="og:url" content="https://awrylabs.com/blog/the-only-winning-move/">
+  <meta property="og:image" content="https://awrylabs.com/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="awryLabs">
+  <meta property="article:published_time" content="2026-06-26">
+  <meta property="article:author" content="Robert Hoekstra">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "headline": "The only winning move",
+        "description": "Building a rigorous nuclear war simulator whose most common ending, by design and by measurement, is the one where nobody plays.",
+        "url": "https://awrylabs.com/blog/the-only-winning-move/",
+        "mainEntityOfPage": "https://awrylabs.com/blog/the-only-winning-move/",
+        "datePublished": "2026-06-26",
+        "dateModified": "2026-06-26",
+        "image": "https://awrylabs.com/assets/og-image.png",
+        "author": { "@id": "https://awrylabs.com/#robert" },
+        "publisher": { "@id": "https://awrylabs.com/#organization" },
+        "isPartOf": { "@id": "https://awrylabs.com/#website" },
+        "about": "WOPR (strategy games)"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "awryLabs", "item": "https://awrylabs.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Notes", "item": "https://awrylabs.com/blog/" },
+          { "@type": "ListItem", "position": 3, "name": "The only winning move", "item": "https://awrylabs.com/blog/the-only-winning-move/" }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <nav class="nav">
+    <a class="wordmark" href="/"><span class="awry">awry</span><span class="labs">Labs</span></a>
+    <span class="nav-sep">/</span>
+    <a class="nav-crumb" href="/blog/">Notes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-current">The only winning move</span>
+  </nav>
+
+  <main class="main" style="--article-accent: #1F8F3F;">
+
+    <article class="article">
+
+      <p class="article__eyebrow">Backstory · WOPR</p>
+      <h1 class="article__title">The only winning move</h1>
+      <p class="article__standfirst">
+        I built a nuclear war simulator whose most common ending is the one where nobody wins.
+        That was the point.
+      </p>
+
+      <div class="article__byline">
+        <img class="article__avatar" src="/assets/robert-hoekstra.jpg" width="44" height="44" alt="Robert Hoekstra">
+        <span class="article__byline-who">
+          <a class="article__byline-name" href="/me/">Robert Hoekstra</a>
+          <span class="article__byline-meta">June 2026 · 5 min read</span>
+        </span>
+      </div>
+
+      <div class="article__body">
+
+        <p>
+          The most interesting ending in my nuclear war game is the one where nothing happens.
+          Both sides stand down, the missiles stay in their silos, and the screen tells you the
+          war is over because nobody started it. I spent more time getting that ending right
+          than I spent on any of the ways to win.
+        </p>
+
+        <p>
+          WOPR is five turn-based games on one menu, themed after <em>WarGames</em>, the 1983
+          film where a military computer learns the futility of nuclear war by playing
+          tic-tac-toe against itself. Four of the five are honest classics: Tic-Tac-Toe,
+          Connect Four, Dots &amp; Boxes, Go. The fifth is Global Thermonuclear War, and it is
+          the reason the project exists. I wanted to build the thing the movie warns about, and
+          then make it teach the same lesson the movie does — not by lecturing but by being
+          played.
+        </p>
+
+        <h2>Toothless, versus preachy</h2>
+
+        <p>
+          There are two ways to build a game with a message, and they fail in opposite
+          directions. Make it too soft and it is toothless: if the war systems are fake, the
+          "don't" lands like a greeting card. Make it too pointed and it is preachy: if every
+          path is rigged to punish you, players feel the rails and stop believing the world.
+          The toothless version is right that the lesson is the point. The preachy version is
+          right that the systems have to be real enough to respect. The job is to honor both:
+          build a genuinely rigorous simulation, then let its own logic, not your thumb on the
+          scale, push toward the door marked peace.
+        </p>
+
+        <p>
+          So the war is real. Each side has a nuclear triad: silos, missile submarines, and
+          bombers, each with different rules for what can target them and what can shoot their
+          missiles down. A round runs as a five-phase machine, launches then intercepts then
+          resolution, and resolution preempts a struck silo before it can fire. That one detail
+          means a first strike can actually work, which is part of the horror. Six CPU
+          personalities encode six theories of how power behaves, from a first-strike doctrine
+          that launches 95% of the time to a de-escalatory one that launches 10% and aims for
+          empty ground when it has to fire at all.
+        </p>
+
+        <figure class="article__figure"
+                style="background:#000900; border-radius:12px; padding:1.3rem 1.1rem 1.1rem;
+                       --card-accent:#00ff41; --card-text-strong:#00ff41; --card-text:#a8eeb4;
+                       --card-surface:#001a08; --card-border:#00aa30;">
+          <svg class="wp-fig" viewBox="0 0 760 168" role="img"
+               aria-label="The five-phase round loop: US launch, then RU launch, then US intercept, then RU intercept, then resolve, which loops back to the start of the next round.">
+            <style>
+              .wp-fig { width: 100%; height: auto; display: block; }
+              .wp-fig .box { fill: var(--card-surface); stroke: var(--card-accent); stroke-width: 1.5; }
+              .wp-fig .ph  { fill: var(--card-text-strong); font: 700 13px ui-monospace, "SF Mono", Menlo, monospace; }
+              .wp-fig .arr { stroke: var(--card-accent); stroke-width: 2; fill: none; }
+              .wp-fig .loop{ stroke: var(--card-accent); stroke-width: 2; fill: none; stroke-dasharray: 5 4; opacity: 0.8; }
+              .wp-fig .lol { fill: var(--card-text); opacity: 0.85; font: 600 11px ui-monospace, monospace; }
+            </style>
+            <defs>
+              <marker id="wp2-ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" fill="var(--card-accent)"/>
+              </marker>
+            </defs>
+            <g>
+              <rect class="box" x="8"   y="40" width="128" height="44" rx="7"/>
+              <text class="ph" x="72"  y="67" text-anchor="middle">us_launch</text>
+              <rect class="box" x="164" y="40" width="128" height="44" rx="7"/>
+              <text class="ph" x="228" y="67" text-anchor="middle">ru_launch</text>
+              <rect class="box" x="320" y="40" width="140" height="44" rx="7"/>
+              <text class="ph" x="390" y="67" text-anchor="middle">us_intercept</text>
+              <rect class="box" x="488" y="40" width="140" height="44" rx="7"/>
+              <text class="ph" x="558" y="67" text-anchor="middle">ru_intercept</text>
+              <rect class="box" x="656" y="40" width="96" height="44" rx="7"/>
+              <text class="ph" x="704" y="67" text-anchor="middle">resolve</text>
+            </g>
+            <line class="arr" x1="136" y1="62" x2="160" y2="62" marker-end="url(#wp2-ah)"/>
+            <line class="arr" x1="292" y1="62" x2="316" y2="62" marker-end="url(#wp2-ah)"/>
+            <line class="arr" x1="460" y1="62" x2="484" y2="62" marker-end="url(#wp2-ah)"/>
+            <line class="arr" x1="628" y1="62" x2="652" y2="62" marker-end="url(#wp2-ah)"/>
+            <path class="loop" d="M704 84 L704 132 L72 132 L72 88" marker-end="url(#wp2-ah)"/>
+            <text class="lol" x="388" y="150" text-anchor="middle">next round · DEFCON adjusts · struck silos preempted</text>
+          </svg>
+          <figcaption>One round, five phases. Resolution preempts struck silos, then adjusts DEFCON. Then it loops.</figcaption>
+        </figure>
+
+        <h2>What the simulation believes</h2>
+
+        <p>
+          I let the CPU play itself thousands of times to see what the system actually believes,
+          as opposed to what I hoped it would. At the current settings: about 43% of games end
+          conclusively, about 45% end in a negotiated peace through DEFCON de-escalation, and
+          about 13% stall into a silo stalemate. The average game lasts four rounds.
+        </p>
+
+        <p class="pull">
+          The single most common outcome, by design and by measurement, is that the only winning
+          move is not to play.
+        </p>
+
+        <p>
+          Read that middle number again. I did not script the peace ending to dominate. I tuned
+          the incentives until the math arrived there on its own, which is the only version of
+          the lesson I actually trust. A message you can measure in the system is worth more
+          than one you printed on the loading screen.
+        </p>
+
+        <h2>What I got wrong, or chose wrong</h2>
+
+        <p>
+          Two confessions. First, the whole thing lives in a single file: <code>src/games.jsx</code>,
+          around 2,700 lines, every game's logic and interface in one module. That sounds
+          heretical, and for a large app it would be. For five small games behind one menu it is
+          the right call, one file to grep and one bundle to ship, but I will not pretend it is a
+          pattern to copy into your day job. Second, the DEFCON ladder is upside down. I inverted
+          it from the real-world scale for in-game clarity, so a higher number reads as worse,
+          which is backwards from how the actual system is numbered. That is a deliberate
+          inaccuracy in a game whose entire reason to exist is to take the subject seriously, and
+          the honest move is to name it rather than hope nobody who knows catches it.
+        </p>
+
+        <p>
+          There is a line in the film, "a strange game; the only winning move is not to play,"
+          and most of the engineering here is just an attempt to make that line true inside a
+          system instead of stamping it on a screen. It is live, it runs in your browser, it
+          keeps no account and no analytics, and it will absolutely let you start a nuclear war
+          if you insist. The interesting question is whether, after a few rounds, you still want
+          to. Would you like to play a game?
+          <a href="https://wopr.awrylabs.com/" target="_blank" rel="noopener">wopr.awrylabs.com</a>...
+        </p>
+
+      </div>
+
+      <div class="article__end">
+        <img src="/assets/robert-hoekstra.jpg" width="56" height="56" alt="Robert Hoekstra">
+        <div class="article__end-body">
+          <strong>Robert Hoekstra</strong> builds independent software as
+          <a href="/">awryLabs</a>: games, libraries, and small tools, one project at a time.
+          More <a href="/me/">about me</a>, or see <a href="/wopr.html">WOPR</a> itself.
+        </div>
+      </div>
+
+      <p class="article__more"><a href="/blog/">← All notes</a></p>
+
+    </article>
+
+  </main>
+
+  <footer class="footer">
+    <a href="/">awryLabs</a>
+    <span class="sep">·</span>
+    <a href="/blog/">Notes</a>
+    <span class="sep">·</span>
+    <a href="/me/">Robert Hoekstra</a>
+    <span class="sep">·</span>
+    <a href="/privacy.html">Privacy</a>
+    <span class="sep">·</span>
+    <span>© 2026 awryLabs</span>
+  </footer>
+
+</body>
+</html>
