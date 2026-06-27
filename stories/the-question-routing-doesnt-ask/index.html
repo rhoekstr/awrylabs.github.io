@@ -76,25 +76,52 @@
         <img class="article__avatar" src="/assets/robert-hoekstra.jpg" width="44" height="44" alt="Robert Hoekstra">
         <span class="article__byline-who">
           <a class="article__byline-name" href="/me/">Robert Hoekstra</a>
-          <span class="article__byline-meta">June 2026 · 5 min read</span>
+          <span class="article__byline-meta">June 2026 · 6 min read</span>
         </span>
       </div>
 
       <div class="article__body">
 
         <p>
-          Every routing library on earth can tell you the shortest path from here to there.
-          Almost none of them can tell you what happens to that path when a single road washes
-          out. I wrote Gravel to answer the second question, because in the places that matter
-          most, it is the only one worth asking.
+          I did not set out to write Gravel. I set out to renew a badge. My Department of Labor
+          credential was up, and the nearest office, by straight-line distance, was in
+          Gatlinburg, Tennessee. On a map that looks like a forty-five minute drive. In reality
+          the only sensible road climbs over the Great Smoky Mountains, so it is closer to an
+          hour and a half. That is fine. That is just geography, and routing already knows how to
+          handle geography.
         </p>
 
         <p>
-          It started with roads, because roads are where I could get clean data. OpenStreetMap
-          will hand you a whole county as a graph: intersections as nodes, road segments as
-          weighted edges. But the thing I was actually chasing was never about roads. It was a
-          property every network has and that shortest-path routing is structurally blind to:
-          dependence.
+          Then the one road over the park, US 441, closed for weather. With 441 gone, the detour
+          around the range turns a ninety-minute trip into two and a half hours each way. A full
+          day, erased, because a single road shut for an afternoon. I sat with that number and
+          got annoyed in a very specific, professional way. This was not bad luck. It was a
+          property of the network, and the network had been quietly telling me it had no second
+          way out the whole time.
+        </p>
+
+        <p>
+          The annoyance landed on top of something I was already living in. My dissertation is on
+          how communities absorb disasters, and I spent years in disaster response watching this
+          exact thing at much higher stakes: a road closes and a neighborhood is not
+          inconvenienced but cut off, and the mutual-aid networks we picture as resilient turn
+          out to hang on a few fragile threads. I had just watched Helene tear through western
+          North Carolina and sever whole communities in the mountains, where an alternate route
+          is a luxury the terrain refuses to give you. My badge renewal was the same problem in
+          miniature. The question underneath both is the one I could not put down: how do you put
+          a number on how cut off a place can become?
+        </p>
+
+        <p>
+          That is a network problem, and network problems are a real, slightly strange passion of
+          mine. Social networks, flow networks, all of it. My LinkedIn banner is a map of
+          international arms flows between countries, if that tells you anything about how I relax.
+          So I jumped in, with three questions stacked on top of each other. How do you quantify
+          whether a community is fragile? How do you tell, before the storm, that a place is about
+          to become hard to reach? And, much closer to home, how do I keep my own employer from
+          sending me down a route one closure can erase? Gravel is my answer to all three, and
+          getting there turned out to be a genuinely novel measurement problem sitting on top of a
+          genuinely brutal performance one.
         </p>
 
         <h2>Old, versus alone</h2>
@@ -222,7 +249,10 @@
           Great Plains came out most resilient (Kansas lowest, at 0.146): flat terrain,
           rectangular road grids, redundancy everywhere. The mountain and coastal states came
           out most fragile (New Hampshire highest, at 0.638): constrained geography forces
-          traffic through single corridors.
+          traffic through single corridors. And the mountain county this whole story starts in
+          scores worse than any state's average. Jackson County, North Carolina comes in at
+          0.673: the terrain telling you, in one number, that it never built you a second way
+          out.
         </p>
 
         <p class="pull">
