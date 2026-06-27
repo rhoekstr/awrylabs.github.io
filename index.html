@@ -4,11 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>awryLabs</title>
-  <meta name="description" content="awryLabs — independent software. A strategy game, a research library, three web apps, and a privacy-first ethos running through all of them." />
+  <meta name="description" content="awryLabs: independent software. A strategy game, a research library, three web apps, and a privacy-first ethos running through all of them." />
+  <meta name="author" content="Robert Hoekstra">
+  <link rel="canonical" href="https://awrylabs.com/">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/awry.css?v=8">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="awryLabs — independent software, one project at a time">
+  <meta property="og:title" content="awryLabs: independent software, one project at a time">
   <meta property="og:description" content="A strategy game, a research library, three web apps, and a privacy-first ethos running through all of them.">
   <meta property="og:url" content="https://awrylabs.com/">
   <meta property="og:image" content="https://awrylabs.com/assets/og-image.png">
@@ -16,6 +18,44 @@
   <meta property="og:image:height" content="630">
   <meta property="og:site_name" content="awryLabs">
   <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://awrylabs.com/#organization",
+        "name": "awryLabs",
+        "url": "https://awrylabs.com/",
+        "logo": "https://awrylabs.com/assets/og-image.png",
+        "description": "Independent software: a strategy game, a research library, and web apps, with a privacy-first ethos running through all of them.",
+        "founder": { "@id": "https://awrylabs.com/#robert" },
+        "sameAs": [ "https://github.com/rhoekstr" ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://awrylabs.com/#website",
+        "url": "https://awrylabs.com/",
+        "name": "awryLabs",
+        "description": "Independent software, one project at a time.",
+        "publisher": { "@id": "https://awrylabs.com/#organization" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://awrylabs.com/#robert",
+        "name": "Robert Hoekstra",
+        "url": "https://awrylabs.com/me/",
+        "image": "https://awrylabs.com/assets/robert-hoekstra.jpg",
+        "jobTitle": "Software Engineer",
+        "worksFor": { "@id": "https://awrylabs.com/#organization" },
+        "sameAs": [
+          "https://github.com/rhoekstr",
+          "https://www.linkedin.com/in/rhoekstr"
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -47,7 +87,7 @@
         <p class="card__desc">
           A calm, turn-based strategy game of territory on living terrain. Place pins,
           watch the border between your ground and theirs settle like water finding its
-          level. One universal app — and it collects nothing.
+          level. One universal app. And it collects nothing.
         </p>
         <div class="pills">
           <span class="pill">iOS · iPadOS</span>
@@ -64,8 +104,8 @@
         <p class="card__desc">
           A C++ library with Python bindings for network graph fragility analysis.
           Built-in OpenStreetMap support for road networks; the same engine operates
-          on any directed weighted graph — electrical grids, telecom, water, or
-          your own edge list — for disaster and national-security planning.
+          on any directed weighted graph (electrical grids, telecom, water, or
+          your own edge list) for disaster and national-security planning.
         </p>
         <div class="pills">
           <span class="pill">C++20</span>
@@ -99,8 +139,8 @@
         <h2 class="card__title">Tyche</h2>
         <p class="card__desc">
           A psychedelic randomizer for the small decisions you can't make.
-          27 official lists ship with the app — cuisines, dishes, Disney
-          rides, workouts, scenarios — plus custom lists, multi-slot rolls,
+          27 official lists ship with the app (cuisines, dishes, Disney
+          rides, workouts, scenarios) plus custom lists, multi-slot rolls,
           and five animation styles (slot, coin, dice, card, RPS prism).
           Named for the Greek goddess of fortune.
         </p>
@@ -126,7 +166,7 @@
         <div class="pills">
           <span class="pill">Vanilla JS</span>
           <span class="pill">GloVe 300d</span>
-          <span class="pill">Single-file</span>
+          <span class="pill">No build step</span>
           <span class="pill">No tracking</span>
         </div>
         <footer class="card__footer">embeddings.awrylabs.com · github.com/rhoekstr/embedding-playground</footer>
@@ -140,6 +180,10 @@
     <span>© 2026 awryLabs</span>
     <span class="sep">·</span>
     <a href="about.html">About</a>
+    <span class="sep">·</span>
+    <a href="/blog/">Notes</a>
+    <span class="sep">·</span>
+    <a href="/me/">Robert Hoekstra</a>
     <span class="sep">·</span>
     <a href="privacy.html">Privacy</a>
   </footer>
