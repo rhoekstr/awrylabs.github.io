@@ -76,7 +76,7 @@
         <img class="article__avatar" src="/assets/robert-hoekstra.jpg" width="44" height="44" alt="Robert Hoekstra">
         <span class="article__byline-who">
           <a class="article__byline-name" href="/me/">Robert Hoekstra</a>
-          <span class="article__byline-meta">June 2026 · 4 min read</span>
+          <span class="article__byline-meta">June 2026 · 5 min read</span>
         </span>
       </div>
 
@@ -91,14 +91,17 @@
         </p>
 
         <p>
-          I kept trying to explain this to people and watching it not land. You can say "the
-          model represents words as vectors," get a nod, and the nod means nothing, because
-          nobody can picture three hundred dimensions and nobody should try. The idea only
-          arrives when you can move a point yourself and watch the meaning move with it. So I
-          built a place to do that. It is called the
-          <a href="/embeddings.html">Embedding Playground</a>, it runs entirely in your
-          browser, and it does its arithmetic on real word vectors rather than a cartoon of
-          them.
+          I run a weekly coffee series at work on understanding AI, and this was the session I
+          was most impatient to teach, because it is the one where the abstraction finally turns
+          into something you can touch. I kept trying to explain the idea in words and watching
+          it not land. You can say "the model represents words as vectors," get a nod, and the
+          nod means nothing, because nobody can picture three hundred dimensions and nobody
+          should try. The idea only arrives when you can move a point yourself and watch the
+          meaning move with it. So I built a place to do that. It is called the
+          <a href="/embeddings.html">Embedding Playground</a>, it does its arithmetic on real
+          word vectors rather than a cartoon of them, and it runs entirely in your browser for a
+          deliberately boring reason: everyone in the room could open it from a single link, with
+          no install and no account, and start playing while I talked.
         </p>
 
         <h2>Two wrong ways to describe it</h2>
@@ -205,8 +208,11 @@
           good on this by printing the true 300-dimensional cosine next to each word, so when
           the picture lies about a distance, the number beside it does not. Second, only a
           slice of the vocabulary ships. GloVe has four hundred thousand words; I send 755 of
-          them, because the full set is gigabytes and this has to load in a browser. So the
-          words you can do live arithmetic on are a vocabulary I chose. What I did not fake is
+          them. Partly that is bandwidth: the full set is gigabytes and this had to open from a
+          link in a meeting. Mostly it is on purpose. This was built for a lesson, not for total
+          exploration of the language, so I curated the words to make the neighborhoods and the
+          analogies land, and kept the vocabulary small so the point stays sharp. The words you
+          can do live arithmetic on are a vocabulary I chose, deliberately. What I did not fake is
           the neighborhoods: each word's nearest neighbors are precomputed against the entire
           400,000-word space and shipped alongside the slice, so "who is closest to
           <code>king</code>" is the real answer, not an artifact of what I happened to include.
@@ -236,6 +242,17 @@
           understood you better. The geometry just put you in a better neighborhood. Once that
           clicks, a lot of prompt folklore stops looking like folklore and starts looking like
           navigation.
+        </p>
+
+        <p>
+          One honest scope note, because this is where people overreach. Embeddings are the
+          floor, not the whole building: a modern language model stacks a great deal on top of
+          this geometry, and the playground only ever shows you the floor. But the floor is where
+          a surprising amount gets decided, and it is the part you can actually feel. Your word
+          choice does not just pick a meaning, it drags in everything sitting next to that
+          meaning, the connotations and associations and the bias the doctor example pulled into
+          the open. You ask for one thing and the geometry hands the model that thing plus its
+          whole neighborhood. Words matter, and this is the most literal sense in which they do.
         </p>
 
         <p>
