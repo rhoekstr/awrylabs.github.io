@@ -20,41 +20,31 @@
   </entry>
 
   <entry>
-    <title>Meaning is geometry</title>
-    <link href="https://awrylabs.com/stories/meaning-is-geometry/" rel="alternate" type="text/html"/>
-    <id>https://awrylabs.com/stories/meaning-is-geometry/</id>
-    <published>2026-06-26T12:00:00Z</published>
-    <updated>2026-06-26T12:00:00Z</updated>
-    <category term="Embedding Playground"/>
-    <summary>The backstory behind the Embedding Playground: why a word, to a language model, is a place rather than a string, and what the famous king − man + woman ≈ queen trick quietly hides.</summary>
-  </entry>
-
-  <entry>
     <title>The line you can't quite draw</title>
     <link href="https://awrylabs.com/stories/the-line-you-cant-draw/" rel="alternate" type="text/html"/>
     <id>https://awrylabs.com/stories/the-line-you-cant-draw/</id>
-    <published>2026-06-26T12:00:00Z</published>
-    <updated>2026-06-26T12:00:00Z</updated>
+    <published>2026-06-21T12:00:00Z</published>
+    <updated>2026-06-21T12:00:00Z</updated>
     <category term="Morass"/>
     <summary>The backstory behind Morass: a calm strategy game born where power theory, national-security competition, and clustering algorithms turn out to be the same problem.</summary>
   </entry>
 
   <entry>
-    <title>The question routing libraries don't ask</title>
-    <link href="https://awrylabs.com/stories/the-question-routing-doesnt-ask/" rel="alternate" type="text/html"/>
-    <id>https://awrylabs.com/stories/the-question-routing-doesnt-ask/</id>
-    <published>2026-06-26T12:00:00Z</published>
-    <updated>2026-06-26T12:00:00Z</updated>
-    <category term="Gravel"/>
-    <summary>The backstory behind Gravel: why network fragility, not shortest path, is the question that matters for the infrastructure a place depends on, and what a national run of all 3,221 US counties found.</summary>
+    <title>Meaning is geometry</title>
+    <link href="https://awrylabs.com/stories/meaning-is-geometry/" rel="alternate" type="text/html"/>
+    <id>https://awrylabs.com/stories/meaning-is-geometry/</id>
+    <published>2026-06-10T12:00:00Z</published>
+    <updated>2026-06-10T12:00:00Z</updated>
+    <category term="Embedding Playground"/>
+    <summary>The backstory behind the Embedding Playground: why a word, to a language model, is a place rather than a string, and what the famous king − man + woman ≈ queen trick quietly hides.</summary>
   </entry>
 
   <entry>
     <title>The only winning move</title>
     <link href="https://awrylabs.com/stories/the-only-winning-move/" rel="alternate" type="text/html"/>
     <id>https://awrylabs.com/stories/the-only-winning-move/</id>
-    <published>2026-06-26T12:00:00Z</published>
-    <updated>2026-06-26T12:00:00Z</updated>
+    <published>2026-05-07T12:00:00Z</published>
+    <updated>2026-05-07T12:00:00Z</updated>
     <category term="WOPR"/>
     <summary>The backstory behind WOPR: building a rigorous nuclear war simulator whose most common ending, by design and by measurement, is the one where nobody plays.</summary>
   </entry>
@@ -63,10 +53,20 @@
     <title>Outsourcing the small decisions</title>
     <link href="https://awrylabs.com/stories/outsourcing-the-small-decisions/" rel="alternate" type="text/html"/>
     <id>https://awrylabs.com/stories/outsourcing-the-small-decisions/</id>
-    <published>2026-06-26T12:00:00Z</published>
-    <updated>2026-06-26T12:00:00Z</updated>
+    <published>2026-05-07T12:00:00Z</published>
+    <updated>2026-05-07T12:00:00Z</updated>
     <category term="Tyche"/>
     <summary>The backstory behind Tyche: a family Disney habit turned into a randomizer, and the sharper trick hiding inside a coin flip.</summary>
+  </entry>
+
+  <entry>
+    <title>The question routing libraries don't ask</title>
+    <link href="https://awrylabs.com/stories/the-question-routing-doesnt-ask/" rel="alternate" type="text/html"/>
+    <id>https://awrylabs.com/stories/the-question-routing-doesnt-ask/</id>
+    <published>2026-04-14T12:00:00Z</published>
+    <updated>2026-04-14T12:00:00Z</updated>
+    <category term="Gravel"/>
+    <summary>The backstory behind Gravel: why network fragility, not shortest path, is the question that matters for the infrastructure a place depends on, and what a national run of all 3,221 US counties found.</summary>
   </entry>
 
 </feed>
