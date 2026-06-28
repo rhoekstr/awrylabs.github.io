@@ -32,6 +32,13 @@
   </url>
 
   <url>
+    <loc>https://awrylabs.com/stories/the-problem-that-wouldnt-let-go/</loc>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
     <loc>https://awrylabs.com/stories/meaning-is-geometry/</loc>
     <lastmod>2026-06-27</lastmod>
     <changefreq>yearly</changefreq>
@@ -75,6 +82,13 @@
 
   <url>
     <loc>https://awrylabs.com/gravel.html</loc>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://awrylabs.com/kindling.html</loc>
     <lastmod>2026-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

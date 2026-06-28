@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kindling · awryLabs</title>
+  <meta name="description" content="Kindling: an open-source hybrid recommender that catches fast and grows with your data. Closed-form, no training loop, no GPU. Python API over a Rust core; channels gate on by data regime." />
+  <meta name="author" content="Robert Hoekstra">
+  <link rel="canonical" href="https://awrylabs.com/kindling.html">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/awry.css?v=8">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Kindling · awryLabs">
+  <meta property="og:description" content="An open-source hybrid recommender that catches fast and grows with your data. Closed-form, no training loop, no GPU. Python API over a Rust core.">
+  <meta property="og:url" content="https://awrylabs.com/kindling.html">
+  <meta property="og:image" content="https://awrylabs.com/assets/og/kindling.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="awryLabs">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["SoftwareApplication", "SoftwareSourceCode"],
+        "name": "Kindling",
+        "url": "https://awrylabs.com/kindling.html",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Linux, macOS, Windows",
+        "programmingLanguage": ["Python", "Rust"],
+        "codeRepository": "https://github.com/rhoekstr/kindling",
+        "license": "https://www.apache.org/licenses/LICENSE-2.0",
+        "softwareVersion": "1.0.0",
+        "description": "An open-source hybrid recommender system: a fused closed-form base (EASE / Wilson-normalized cooccurrence) plus auto-gated channels (trend, last-item, transitions, user-CF), with a Rust core for the numerics. No training loop, no GPU. Channels activate by the measured shape of the data at fit time.",
+        "author": { "@id": "https://awrylabs.com/#robert" },
+        "publisher": { "@id": "https://awrylabs.com/#organization" },
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "awryLabs", "item": "https://awrylabs.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Kindling", "item": "https://awrylabs.com/kindling.html" }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <nav class="nav">
+    <a class="wordmark" href="/"><span class="awry">awry</span><span class="labs">Labs</span></a>
+    <span class="nav-sep">/</span>
+    <span class="nav-current">Kindling</span>
+  </nav>
+
+  <main class="main">
+
+    <p class="sr-only">Kindling is an open-source hybrid recommender system with a Python API and a Rust numerics core. Released under Apache 2.0 on PyPI as kindling-rec. It fuses a closed-form base (EASE for small catalogs, Wilson-normalized cooccurrence for large ones) with auto-gated refinement channels that switch on by the measured shape of the data at fit time, with no training loop, no GPU, and sub-millisecond serving.</p>
+
+    <!-- ====================================================
+         HERO
+         ==================================================== -->
+    <article class="card card--large" data-theme="published">
+      <div class="status status--corner" role="status">Published · <span data-stat="version">v1.0.0</span></div>
+      <h1 class="card__title">Kindling</h1>
+      <p class="card__desc">
+        A hybrid recommender that catches fast and grows with your data. Point it at a table of
+        interactions and it lights, even with barely anything to burn; feed it more and it gets
+        sharper. One fused, closed-form base score per (user, item), plus refinement channels that
+        switch themselves on by the measured shape of the data. No training loop, no GPU, no neural
+        net, no knobs to babysit. The numerics run in a Rust core.
+      </p>
+      <div class="badges">
+        <span class="badge" style="background: #B8862B; color: #fff;">Apache 2.0</span>
+        <span class="badge" style="background: #0E8A80; color: #fff;">Python 3.11+</span>
+        <span class="badge" style="background: #B84545; color: #fff;">Rust core</span>
+        <span class="badge" style="background: #6B46C1; color: #fff;">PyPI · kindling-rec</span>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 0.6rem;">
+        <a class="repo-link" href="https://github.com/rhoekstr/kindling" target="_blank" rel="noopener">
+        <svg class="repo-link__icon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        View on GitHub
+        </a>
+        <a class="repo-link" href="/stories/the-problem-that-wouldnt-let-go/" style="background: var(--card-pill); color: var(--card-text-strong); border: 1px solid var(--card-border);">Read the story →</a>
+      </div>
+      <footer class="card__footer">
+        <span data-stat="version">v1.0.0</span>
+        &middot; released <span data-stat="released">June 2026</span>
+        &middot; last commit <span data-stat="last-commit">2026-06-27</span>
+        &middot; <a href="https://github.com/rhoekstr/kindling">rhoekstr/kindling</a>
+      </footer>
+    </article>
+
+    <!-- ====================================================
+         VISUAL, interactive growth curves (real benchmark data)
+         ==================================================== -->
+    <article class="card card--section" data-theme="published">
+      <h2 class="card__title">Watch it grow, on real data</h2>
+      <p class="card__desc">
+        Accuracy as a function of how much history the model has seen, from 1% of training data
+        (cold) to 100% (warm). Pick any of the 11 benchmark datasets; the ember line is Kindling.
+        Every point is straight from the repo's <code>warming_*.json</code> runs.
+      </p>
+
+      <div class="kg" id="kg">
+        <div class="kg__controls">
+          <label class="kg__field">Dataset
+            <select id="kg-dataset" aria-label="Dataset"></select>
+          </label>
+          <div class="kg__metric" role="group" aria-label="Metric">
+            <button type="button" class="kg__btn is-on" data-metric="1">NDCG@10</button>
+            <button type="button" class="kg__btn" data-metric="2">Recall@10</button>
+          </div>
+          <span id="kg-meta" class="kg__meta"></span>
+        </div>
+        <svg id="kg-svg" viewBox="0 0 740 340" role="img" aria-label="Interactive growth-curve chart of recommendation accuracy versus amount of training history, per dataset."></svg>
+        <div id="kg-legend" class="kg__legend" aria-label="Series, click to toggle"></div>
+        <noscript>
+          <p class="card__desc" style="opacity:.8;font-size:.86rem;">Interactive chart needs JavaScript. The full per-dataset growth curves are in <a href="https://github.com/rhoekstr/kindling/blob/main/docs/RESULTS.md">RESULTS.md</a>.</p>
+        </noscript>
+      </div>
+
+      <p class="card__desc" style="opacity: 0.8; font-size: 0.86rem; margin-top: 0.6rem;">
+        On repeat-regime datasets (grocery, retail) the evaluation credits reorders, and that's
+        where Kindling pulls away from the field. On discovery datasets, popularity is a stubborn
+        cold-start baseline; Kindling's edge shows up as the data warms and it ends on top. The
+        negative results are filed beside the wins in
+        <a href="https://github.com/rhoekstr/kindling/blob/main/docs/EXPERIMENTS.md">EXPERIMENTS.md</a>.
+      </p>
+
+      <style>
+        #kg { --kg-grid: var(--card-border); }
+        #kg .kg__controls { display:flex; flex-wrap:wrap; align-items:center; gap:0.6rem 1rem; margin:0.2rem 0 0.7rem; }
+        #kg .kg__field { display:flex; align-items:center; gap:0.45rem; font:600 0.82rem -apple-system,system-ui,sans-serif; color:var(--card-text); }
+        #kg select { font:600 0.85rem -apple-system,system-ui,sans-serif; color:var(--card-text-strong); background:var(--card-pill); border:1px solid var(--card-border); border-radius:7px; padding:0.32rem 0.5rem; cursor:pointer; }
+        #kg .kg__metric { display:inline-flex; border:1px solid var(--card-border); border-radius:7px; overflow:hidden; }
+        #kg .kg__btn { font:600 0.78rem -apple-system,system-ui,sans-serif; color:var(--card-text); background:transparent; border:0; padding:0.34rem 0.7rem; cursor:pointer; }
+        #kg .kg__btn + .kg__btn { border-left:1px solid var(--card-border); }
+        #kg .kg__btn.is-on { background:#e8590c; color:#fff; }
+        #kg .kg__meta { font:600 0.74rem -apple-system,system-ui,sans-serif; color:var(--card-text); opacity:0.7; letter-spacing:0.01em; }
+        #kg #kg-svg { width:100%; height:auto; display:block; touch-action:pan-y; }
+        #kg .kg__legend { display:flex; flex-wrap:wrap; gap:0.4rem 0.9rem; margin-top:0.6rem; }
+        #kg .kg__leg { display:inline-flex; align-items:center; gap:0.4rem; font:600 0.78rem -apple-system,system-ui,sans-serif; color:var(--card-text); background:none; border:0; padding:0; cursor:pointer; }
+        #kg .kg__leg.off { opacity:0.32; text-decoration:line-through; }
+        #kg .kg__sw { width:18px; height:3px; border-radius:2px; display:inline-block; }
+        #kg .kg-ax { stroke:var(--kg-grid); stroke-width:1.4; }
+        #kg .kg-grid { stroke:var(--kg-grid); stroke-width:1; opacity:0.22; }
+        #kg .kg-line { fill:none; stroke-linecap:round; stroke-linejoin:round; }
+        #kg .kg-dot circle { stroke:var(--card-bg, var(--page-bg)); stroke-width:1; }
+        #kg .kg-txt { fill:var(--card-text); font:600 11px -apple-system,system-ui,sans-serif; }
+        #kg .kg-cap { fill:var(--card-text); opacity:0.6; font:700 10px -apple-system,system-ui,sans-serif; letter-spacing:0.12em; }
+      </style>
+      <script>
+      (function(){
+        var DATA = {"movielens-1m":{"l":"MovieLens-1M","r":0,"c":3678,"n":1000,"s":{"kindling":[[0.01,0.0434,0.0052],[0.02,0.0586,0.0078],[0.04,0.0856,0.0131],[0.08,0.0948,0.0166],[0.15,0.0966,0.0212],[0.3,0.1132,0.0225],[0.5,0.1296,0.0279],[0.75,0.1722,0.0374],[1.0,0.3092,0.0626]],"cooc":[[0.01,0.0377,0.0049],[0.02,0.0437,0.0058],[0.04,0.0575,0.0086],[0.08,0.0817,0.013],[0.15,0.097,0.0178],[0.3,0.1218,0.0245],[0.5,0.1427,0.0284],[0.75,0.1844,0.0345],[1.0,0.263,0.0448]],"ease":[[0.01,0.0438,0.0058],[0.02,0.0548,0.0076],[0.04,0.0741,0.0105],[0.08,0.0846,0.0147],[0.15,0.0865,0.0181],[0.3,0.1041,0.0204],[0.5,0.1161,0.0253],[0.75,0.1522,0.033],[1.0,0.2945,0.0544]],"implicit_als":[[0.01,0.0563,0.0073],[0.02,0.0698,0.0103],[0.04,0.0811,0.011],[0.08,0.0945,0.0157],[0.15,0.0906,0.017],[0.3,0.0984,0.0196],[0.5,0.1043,0.0186],[0.75,0.1365,0.025],[1.0,0.2467,0.0448]],"item_item_knn":[[0.01,0.0179,0.0018],[0.02,0.0121,0.0011],[0.04,0.0143,0.0018],[0.08,0.0171,0.0023],[0.15,0.0653,0.0092],[0.3,0.1044,0.0182],[0.5,0.1218,0.0217],[0.75,0.1626,0.0267],[1.0,0.2572,0.0399]],"popularity":[[0.01,0.108,0.0169],[0.02,0.1113,0.0177],[0.04,0.1119,0.0183],[0.08,0.1161,0.018],[0.15,0.1191,0.0184],[0.3,0.1303,0.0209],[0.5,0.1498,0.0234],[0.75,0.1841,0.0298],[1.0,0.2593,0.0394]],"lightgcn":[[0.04,0.1065,0.0165],[0.1,0.1179,0.0191],[0.15,0.1187,0.0196],[0.5,0.1262,0.0302],[1.0,0.2757,0.0541]]}},"amazon-beauty":{"l":"Amazon Beauty","r":0,"c":11959,"n":1000,"s":{"kindling":[[0.01,0.0004,0.0005],[0.02,0.0007,0.0015],[0.04,0.0005,0.0006],[0.08,0.0003,0.0006],[0.15,0.0022,0.0031],[0.3,0.0081,0.0114],[0.5,0.0167,0.024],[0.75,0.0239,0.0327],[1.0,0.0324,0.0427]],"cooc":[[0.01,0.0,0.0],[0.02,0.0,0.0],[0.04,0.0,0.0],[0.08,0.0,0.0],[0.15,0.0021,0.0026],[0.3,0.0069,0.0088],[0.5,0.0138,0.0203],[0.75,0.0212,0.0261],[1.0,0.0264,0.0334]],"ease":[[0.01,0.0001,0.0001],[0.02,0.0001,0.0001],[0.04,0.0002,0.0002],[0.08,0.0006,0.0012],[0.15,0.0019,0.0028],[0.3,0.0086,0.0111],[0.5,0.0147,0.0208],[0.75,0.0209,0.0278],[1.0,0.0301,0.0395]],"implicit_als":[[0.01,0.0,0.0],[0.02,0.0004,0.0011],[0.04,0.0001,0.0003],[0.08,0.0006,0.001],[0.15,0.0009,0.0013],[0.3,0.003,0.0047],[0.5,0.0079,0.0116],[0.75,0.0161,0.0203],[1.0,0.0217,0.0285]],"item_item_knn":[[0.01,0.0,0.0],[0.02,0.0,0.0],[0.04,0.0001,0.0001],[0.08,0.0004,0.0006],[0.15,0.0018,0.0024],[0.3,0.004,0.0063],[0.5,0.0108,0.0132],[0.75,0.0166,0.0204],[1.0,0.026,0.0317]],"popularity":[[0.01,0.0044,0.0058],[0.02,0.0042,0.0064],[0.04,0.0052,0.007],[0.08,0.005,0.0088],[0.15,0.0057,0.0107],[0.3,0.0051,0.01],[0.5,0.0051,0.0092],[0.75,0.0055,0.0082],[1.0,0.0058,0.0082]]}},"steam":{"l":"Steam","r":0,"c":14057,"n":1000,"s":{"kindling":[[0.01,0.0016,0.0026],[0.02,0.0042,0.0075],[0.04,0.0069,0.0122],[0.08,0.0128,0.0231],[0.15,0.0206,0.0372],[0.3,0.0318,0.0545],[0.5,0.0436,0.0746],[0.75,0.0504,0.0926],[1.0,0.0554,0.0993]],"cooc":[[0.01,0.0003,0.0004],[0.02,0.0013,0.002],[0.04,0.0026,0.0035],[0.08,0.0064,0.0114],[0.15,0.0162,0.0247],[0.3,0.0232,0.0375],[0.5,0.0298,0.0508],[0.75,0.0352,0.0604],[1.0,0.0388,0.069]],"ease":[[0.01,0.0005,0.0011],[0.02,0.0015,0.0018],[0.04,0.0046,0.0077],[0.08,0.01,0.0187],[0.15,0.0161,0.0282],[0.3,0.027,0.0437],[0.5,0.0369,0.058],[0.75,0.0423,0.0706],[1.0,0.0464,0.0796]],"implicit_als":[[0.01,0.0016,0.0024],[0.02,0.0019,0.0034],[0.04,0.0023,0.0048],[0.08,0.0022,0.0054],[0.15,0.003,0.0054],[0.3,0.0062,0.0134],[0.5,0.0181,0.0302],[0.75,0.018,0.0316],[1.0,0.0214,0.0394]],"item_item_knn":[[0.01,0.0002,0.0003],[0.02,0.0001,0.0001],[0.04,0.0,0.0],[0.08,0.0004,0.001],[0.15,0.0052,0.0093],[0.3,0.0145,0.0256],[0.5,0.0246,0.0423],[0.75,0.0354,0.0547],[1.0,0.0377,0.0657]],"popularity":[[0.01,0.0382,0.0621],[0.02,0.0379,0.0611],[0.04,0.0377,0.061],[0.08,0.0379,0.0614],[0.15,0.0374,0.0607],[0.3,0.0378,0.0629],[0.5,0.0379,0.0629],[0.75,0.0379,0.0629],[1.0,0.0376,0.0631]]}},"amazon-book-academic":{"l":"Amazon Books","r":0,"c":91599,"n":1000,"s":{"kindling":[[0.01,0.0,0.0],[0.02,0.0005,0.0002],[0.04,0.0015,0.0011],[0.08,0.0025,0.0019],[0.15,0.0046,0.0039],[0.3,0.0113,0.0104],[0.5,0.0208,0.0202],[0.75,0.0271,0.0266],[1.0,0.0382,0.0354]],"cooc":[[0.01,0.0,0.0],[0.02,0.0005,0.0002],[0.04,0.0015,0.0011],[0.08,0.0025,0.0019],[0.15,0.0046,0.0039],[0.3,0.0113,0.0104],[0.5,0.0208,0.0202],[0.75,0.0271,0.0266],[1.0,0.0382,0.0354]],"ease":[[0.01,0.0,0.0],[0.02,0.0005,0.0002],[0.04,0.0015,0.0011],[0.08,0.0025,0.0019],[0.15,0.0046,0.0039],[0.3,0.0113,0.0104],[0.5,0.0208,0.0202],[0.75,0.0271,0.0266],[1.0,0.0382,0.0354]],"implicit_als":[[0.01,0.0002,0.0002],[0.02,0.0008,0.0006],[0.04,0.0021,0.0017],[0.08,0.0028,0.0017],[0.15,0.0051,0.0044],[0.3,0.0072,0.0057],[0.5,0.014,0.0114],[0.75,0.0165,0.0145],[1.0,0.0177,0.0144]],"item_item_knn":[[0.01,0.0,0.0],[0.02,0.0005,0.0002],[0.04,0.0012,0.0006],[0.08,0.0019,0.0015],[0.15,0.0028,0.0024],[0.3,0.0062,0.005],[0.5,0.0149,0.0151],[0.75,0.0269,0.0279],[1.0,0.0408,0.0368]],"popularity":[[0.01,0.0043,0.0028],[0.02,0.0035,0.0028],[0.04,0.0029,0.0024],[0.08,0.0031,0.0025],[0.15,0.0034,0.0025],[0.3,0.0035,0.0025],[0.5,0.0035,0.0025],[0.75,0.0039,0.0028],[1.0,0.0038,0.0028]]}},"yelp2018":{"l":"Yelp 2018","r":0,"c":38048,"n":1000,"s":{"kindling":[[0.01,0.001,0.0007],[0.02,0.002,0.0015],[0.04,0.0025,0.0017],[0.08,0.0031,0.0026],[0.15,0.0055,0.0057],[0.3,0.0148,0.0138],[0.5,0.0219,0.0213],[0.75,0.0274,0.0255],[1.0,0.0337,0.0317]],"cooc":[[0.01,0.001,0.0007],[0.02,0.0018,0.0014],[0.04,0.0025,0.0017],[0.08,0.0031,0.0026],[0.15,0.0055,0.0057],[0.3,0.0148,0.0138],[0.5,0.0219,0.0213],[0.75,0.0274,0.0255],[1.0,0.0337,0.0317]],"ease":[[0.01,0.001,0.0007],[0.02,0.0018,0.0014],[0.04,0.0025,0.0017],[0.08,0.0031,0.0026],[0.15,0.0055,0.0057],[0.3,0.0148,0.0138],[0.5,0.0219,0.0213],[0.75,0.0274,0.0255],[1.0,0.0337,0.0317]],"implicit_als":[[0.01,0.0011,0.0008],[0.02,0.0008,0.0007],[0.04,0.0039,0.0024],[0.08,0.0089,0.0064],[0.15,0.0133,0.0105],[0.3,0.0202,0.0159],[0.5,0.0262,0.023],[0.75,0.0309,0.0273],[1.0,0.0341,0.0319]],"item_item_knn":[[0.01,0.0004,0.0002],[0.02,0.001,0.0006],[0.04,0.0018,0.0013],[0.08,0.0019,0.0015],[0.15,0.0028,0.002],[0.3,0.0046,0.0049],[0.5,0.009,0.0097],[0.75,0.0215,0.0215],[1.0,0.0353,0.0317]],"popularity":[[0.01,0.0062,0.0053],[0.02,0.0078,0.0079],[0.04,0.0066,0.0068],[0.08,0.0068,0.007],[0.15,0.0076,0.0073],[0.3,0.0075,0.0073],[0.5,0.0075,0.0071],[0.75,0.0077,0.0074],[1.0,0.0081,0.0075]]}},"hm":{"l":"H&M (retail)","r":1,"c":44004,"n":1500,"s":{"kindling":[[0.01,0.0004,0.0004],[0.02,0.0008,0.0012],[0.04,0.0014,0.0015],[0.08,0.0015,0.0027],[0.15,0.0051,0.0073],[0.3,0.0074,0.0105],[0.5,0.0108,0.016],[0.75,0.0127,0.0192],[1.0,0.0203,0.0276]],"cooc":[[0.01,0.0,0.0],[0.02,0.0,0.0],[0.04,0.0013,0.0013],[0.08,0.0009,0.0018],[0.15,0.0041,0.0058],[0.3,0.0065,0.009],[0.5,0.0099,0.0137],[0.75,0.0108,0.0156],[1.0,0.0134,0.0191]],"implicit_als":[[0.01,0.0,0.0],[0.02,0.0008,0.0006],[0.04,0.0014,0.0019],[0.08,0.0021,0.0029],[0.15,0.0026,0.0027],[0.3,0.0058,0.0077],[0.5,0.0069,0.0087],[0.75,0.0093,0.014],[1.0,0.0098,0.0129]],"item_item_knn":[[0.01,0.0,0.0],[0.02,0.0,0.0],[0.04,0.0008,0.0011],[0.08,0.0001,0.0003],[0.15,0.0006,0.0009],[0.3,0.0013,0.0014],[0.5,0.0055,0.008],[0.75,0.0084,0.0122],[1.0,0.0126,0.0193]],"popularity":[[0.01,0.0045,0.0057],[0.02,0.0053,0.0066],[0.04,0.0054,0.0066],[0.08,0.0049,0.0066],[0.15,0.005,0.0066],[0.3,0.0053,0.0066],[0.5,0.0051,0.0066],[0.75,0.0051,0.0066],[1.0,0.0052,0.007]]}},"retailrocket":{"l":"RetailRocket","r":1,"c":224180,"n":1000,"s":{"kindling":[[0.01,0.0016,0.002],[0.02,0.0015,0.002],[0.04,0.0016,0.002],[0.08,0.002,0.0025],[0.15,0.0135,0.017],[0.3,0.0351,0.0416],[0.5,0.0555,0.0657],[0.75,0.0744,0.0893],[1.0,0.0918,0.1086]],"cooc":[[0.01,0.0,0.0],[0.02,0.0,0.0],[0.04,0.0,0.0],[0.08,0.0009,0.0015],[0.15,0.0015,0.0036],[0.3,0.0035,0.009],[0.5,0.0071,0.0118],[0.75,0.0104,0.0157],[1.0,0.0134,0.0197]],"implicit_als":[[0.01,0.001,0.001],[0.02,0.0,0.0],[0.04,0.0003,0.001],[0.08,0.0003,0.0],[0.15,0.0006,0.001],[0.3,0.004,0.0068],[0.5,0.0059,0.0098],[0.75,0.0048,0.0083],[1.0,0.0067,0.0128]],"popularity":[[0.01,0.0033,0.0045],[0.02,0.0036,0.005],[0.04,0.0032,0.005],[0.08,0.0029,0.004],[0.15,0.0029,0.004],[0.3,0.0029,0.004],[0.5,0.0034,0.0055],[0.75,0.0028,0.0045],[1.0,0.0028,0.0045]]}},"tafeng":{"l":"Ta-Feng (grocery)","r":1,"c":23698,"n":1500,"s":{"kindling":[[0.01,0.0298,0.0328],[0.02,0.0365,0.0397],[0.04,0.0549,0.0533],[0.08,0.0835,0.078],[0.15,0.1072,0.1088],[0.3,0.1114,0.1189],[0.5,0.107,0.1235],[0.75,0.1325,0.1533],[1.0,0.1401,0.1654]],"cooc":[[0.01,0.0015,0.0013],[0.02,0.0026,0.0036],[0.04,0.0042,0.0066],[0.08,0.0097,0.0143],[0.15,0.0193,0.0236],[0.3,0.0381,0.0494],[0.5,0.046,0.0614],[0.75,0.0441,0.0623],[1.0,0.0486,0.0672]],"implicit_als":[[0.01,0.0024,0.0032],[0.02,0.0046,0.0055],[0.04,0.0058,0.0071],[0.08,0.0062,0.0091],[0.15,0.0113,0.0181],[0.3,0.0124,0.0174],[0.5,0.0137,0.0188],[0.75,0.0126,0.0164],[1.0,0.0131,0.0201]],"item_item_knn":[[0.01,0.0014,0.0014],[0.02,0.0021,0.0034],[0.04,0.0008,0.0015],[0.08,0.0001,0.0002],[0.15,0.0027,0.0028],[0.3,0.0143,0.0166],[0.5,0.0445,0.0528],[0.75,0.0629,0.076],[1.0,0.0676,0.0839]],"popularity":[[0.01,0.1335,0.129],[0.02,0.1322,0.1266],[0.04,0.1304,0.1284],[0.08,0.1332,0.1375],[0.15,0.1257,0.1266],[0.3,0.1147,0.1155],[0.5,0.1062,0.1123],[0.75,0.0912,0.0971],[1.0,0.0833,0.0909]]}},"dunnhumby":{"l":"Dunnhumby (grocery)","r":1,"c":88427,"n":1500,"s":{"kindling":[[0.01,0.157,0.0184],[0.02,0.1787,0.0228],[0.04,0.1729,0.0266],[0.08,0.3197,0.0438],[0.15,0.3733,0.0514],[0.3,0.4262,0.0621],[0.5,0.4501,0.0686],[0.75,0.4669,0.0738],[1.0,0.478,0.0776]],"cooc":[[0.01,0.0657,0.0092],[0.02,0.0976,0.0131],[0.04,0.126,0.0165],[0.08,0.1285,0.02],[0.15,0.1077,0.0198],[0.3,0.0729,0.0153],[0.5,0.0594,0.0118],[0.75,0.0438,0.0085],[1.0,0.0345,0.0066]],"implicit_als":[[0.01,0.0703,0.0095],[0.02,0.0801,0.0106],[0.04,0.0909,0.0133],[0.08,0.0953,0.0144],[0.15,0.0979,0.0157],[0.3,0.0914,0.0155],[0.5,0.0731,0.013],[0.75,0.0609,0.0113],[1.0,0.052,0.0111]],"item_item_knn":[[0.01,0.0026,0.0002],[0.02,0.0051,0.0007],[0.04,0.0464,0.0045],[0.08,0.1269,0.0166],[0.15,0.1261,0.0213],[0.3,0.0923,0.0171],[0.5,0.071,0.0127],[0.75,0.0552,0.0111],[1.0,0.0458,0.0091]],"popularity":[[0.01,0.2268,0.0357],[0.02,0.2108,0.0343],[0.04,0.1787,0.0305],[0.08,0.1396,0.0256],[0.15,0.1102,0.0215],[0.3,0.0734,0.0156],[0.5,0.0546,0.0116],[0.75,0.0439,0.01],[1.0,0.0359,0.0084]]}},"instacart":{"l":"Instacart (grocery)","r":1,"c":49677,"n":1000,"s":{"kindling":[[0.01,0.0204,0.014],[0.02,0.0402,0.0262],[0.04,0.0693,0.0457],[0.08,0.1162,0.079],[0.15,0.1736,0.1194],[0.3,0.2492,0.1814],[0.5,0.3087,0.2331],[0.75,0.3492,0.2689],[1.0,0.3719,0.2954]],"cooc":[[0.01,0.0204,0.014],[0.02,0.0349,0.0236],[0.04,0.042,0.029],[0.08,0.0515,0.0378],[0.15,0.0477,0.0342],[0.3,0.0384,0.0298],[0.5,0.0305,0.0242],[0.75,0.0215,0.0165],[1.0,0.0167,0.013]],"implicit_als":[[0.01,0.0162,0.0117],[0.02,0.0238,0.0175],[0.04,0.0274,0.0213],[0.08,0.0291,0.0228],[0.15,0.0256,0.019],[0.3,0.0228,0.0175],[0.5,0.0209,0.0159],[0.75,0.0161,0.0112],[1.0,0.0148,0.011]],"popularity":[[0.01,0.0929,0.0657],[0.02,0.0892,0.0625],[0.04,0.0837,0.0583],[0.08,0.0715,0.0503],[0.15,0.0585,0.0409],[0.3,0.0433,0.0305],[0.5,0.0319,0.0229],[0.75,0.0275,0.0196],[1.0,0.0227,0.016]]}},"gowalla":{"l":"Gowalla","r":1,"c":1210349,"n":1000,"s":{"kindling":[[0.01,0.0029,0.0032],[0.02,0.0038,0.004],[0.04,0.0189,0.0101],[0.08,0.045,0.0321],[0.15,0.0743,0.056],[0.3,0.1179,0.0968],[0.5,0.1477,0.1348],[0.75,0.1655,0.1593],[1.0,0.1734,0.1683]],"cooc":[[0.01,0.0007,0.0002],[0.02,0.0013,0.0009],[0.04,0.0041,0.0032],[0.08,0.0074,0.0085],[0.15,0.0072,0.0074],[0.3,0.0071,0.0085],[0.5,0.0104,0.0126],[0.75,0.0101,0.014],[1.0,0.0099,0.0134]],"implicit_als":[[0.01,0.0009,0.0006],[0.02,0.0023,0.002],[0.04,0.0066,0.0062],[0.08,0.0107,0.0103],[0.15,0.0152,0.0142],[0.3,0.0162,0.0186],[0.5,0.0145,0.016],[0.75,0.0129,0.0154],[1.0,0.0126,0.0148]],"popularity":[[0.01,0.007,0.0092],[0.02,0.0068,0.0094],[0.04,0.0066,0.0093],[0.08,0.0067,0.0101],[0.15,0.0067,0.0099],[0.3,0.0063,0.0094],[0.5,0.0056,0.0088],[0.75,0.0047,0.0071],[1.0,0.0042,0.0066]]}}};
+        var COL = {kindling:"#e8590c",cooc:"#f59f00",ease:"#d6336c",implicit_als:"#1c7ed6",item_item_knn:"#2f9e44",popularity:"#868e96",lightgcn:"#7048e8"};
+        var NAME = {kindling:"kindling",cooc:"cooc (base)",ease:"EASE",implicit_als:"implicit ALS",item_item_knn:"item-kNN",popularity:"popularity",lightgcn:"LightGCN"};
+        var DRAW = ["popularity","cooc","ease","item_item_knn","implicit_als","lightgcn","kindling"];
+        var sel = document.getElementById("kg-dataset"),
+            svg = document.getElementById("kg-svg"),
+            leg = document.getElementById("kg-legend"),
+            meta = document.getElementById("kg-meta");
+        if(!sel) return;
+        var L=64,R=712,T=24,B=276,W=R-L,H=B-T,LXMIN=-2,LXMAX=0;
+        var metric=1, hidden={};
+        Object.keys(DATA).forEach(function(k){
+          var o=document.createElement("option"); o.value=k; o.textContent=DATA[k].l; sel.appendChild(o);
+        });
+        var cur=Object.keys(DATA)[0];
+        function px(f){ return L + (Math.log(f)/Math.LN10 - LXMIN)/(LXMAX-LXMIN)*W; }
+        function py(v,ym){ return B - (ym? v/ym*H : 0); }
+        function niceMax(v){ if(v<=0) return 0.01; var e=Math.pow(10,Math.floor(Math.log(v)/Math.LN10)); var ms=[1,1.5,2,3,4,5,6,8,10]; for(var i=0;i<ms.length;i++){ if(ms[i]*e>=v) return ms[i]*e; } return 10*e; }
+        function fmt(v){ return v>=0.1? v.toFixed(2): v.toFixed(3); }
+        function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
+        function render(){
+          var d=DATA[cur], s=d.s, ym=0;
+          DRAW.forEach(function(m){ if(s[m]&&!hidden[m]) s[m].forEach(function(p){ if(p[metric]>ym) ym=p[metric]; }); });
+          ym=niceMax(ym*1.05);
+          var g="";
+          // gridlines + y labels
+          [0,0.5,1].forEach(function(t){ var v=ym*t, y=py(v,ym);
+            g+='<line class="kg-grid" x1="'+L+'" y1="'+y+'" x2="'+R+'" y2="'+y+'"/>';
+            g+='<text class="kg-txt" x="'+(L-8)+'" y="'+(y+4)+'" text-anchor="end" style="opacity:.75">'+fmt(v)+'</text>';
+          });
+          // x decade labels
+          [[0.01,"1%"],[0.1,"10%"],[1,"100%"]].forEach(function(t){ var x=px(t[0]);
+            g+='<line class="kg-grid" x1="'+x+'" y1="'+T+'" x2="'+x+'" y2="'+B+'"/>';
+            g+='<text class="kg-txt" x="'+x+'" y="'+(B+18)+'" text-anchor="middle" style="opacity:.75">'+t[1]+'</text>';
+          });
+          // axes
+          g+='<line class="kg-ax" x1="'+L+'" y1="'+T+'" x2="'+L+'" y2="'+B+'"/>';
+          g+='<line class="kg-ax" x1="'+L+'" y1="'+B+'" x2="'+R+'" y2="'+B+'"/>';
+          g+='<text class="kg-cap" x="'+L+'" y="'+(T-9)+'">COLD</text>';
+          g+='<text class="kg-cap" x="'+R+'" y="'+(T-9)+'" text-anchor="end">WARM</text>';
+          g+='<text class="kg-txt" x="'+((L+R)/2)+'" y="'+(B+34)+'" text-anchor="middle" style="opacity:.7">training history (log) →</text>';
+          // lines
+          DRAW.forEach(function(m){
+            if(!s[m]||hidden[m]) return;
+            var pts=s[m], dpath="", isK=(m==="kindling");
+            pts.forEach(function(p,i){ dpath+=(i?"L":"M")+px(p[0]).toFixed(1)+" "+py(p[metric],ym).toFixed(1)+" "; });
+            g+='<path class="kg-line" d="'+dpath+'" stroke="'+COL[m]+'" stroke-width="'+(isK?3.2:1.8)+'"'+(isK?'':' opacity="0.85"')+'/>';
+            if(isK){ g+='<g class="kg-dot">'; pts.forEach(function(p){
+              g+='<circle cx="'+px(p[0]).toFixed(1)+'" cy="'+py(p[metric],ym).toFixed(1)+'" r="3.4" fill="'+COL[m]+'"><title>'+NAME[m]+' @ '+Math.round(p[0]*100)+'%: '+p[metric].toFixed(4)+'</title></circle>';
+            }); g+='</g>'; }
+          });
+          svg.innerHTML=g;
+          // meta
+          meta.textContent=d.c.toLocaleString()+" items · "+d.n.toLocaleString()+" eval users"+(d.r?" · repeat-aware eval":"");
+          // legend
+          var lg="";
+          DRAW.forEach(function(m){ if(!s[m]) return;
+            lg+='<button type="button" class="kg__leg'+(hidden[m]?" off":"")+'" data-m="'+m+'"><span class="kg__sw" style="background:'+COL[m]+'"></span>'+esc(NAME[m])+'</button>';
+          });
+          leg.innerHTML=lg;
+        }
+        sel.addEventListener("change",function(){ cur=sel.value; render(); });
+        document.querySelectorAll("#kg .kg__btn").forEach(function(b){
+          b.addEventListener("click",function(){
+            document.querySelectorAll("#kg .kg__btn").forEach(function(x){ x.classList.remove("is-on"); });
+            b.classList.add("is-on"); metric=+b.getAttribute("data-metric"); render();
+          });
+        });
+        leg.addEventListener("click",function(e){ var t=e.target.closest(".kg__leg"); if(!t) return; var m=t.getAttribute("data-m"); hidden[m]=!hidden[m]; render(); });
+        render();
+      })();
+      </script>
+    </article>
+
+    <!-- ====================================================
+         THE IDEA
+         ==================================================== -->
+    <article class="card card--section" data-theme="published">
+      <h2 class="card__title">Closed-form, gated, and honest about it</h2>
+      <p class="card__desc">
+        The fashionable answer to recommendation is a deep model and a training loop. Kindling takes
+        the other bet: <em>shallow, closed-form models, assembled with care and gated per dataset,
+        go toe to toe with the approaches assumed to have made them obsolete.</em> Every channel is
+        closed-form or a counting statistic; every channel is switched on by a measurable property
+        of the data; every gate exists because the ungated version measurably hurt somewhere.
+      </p>
+
+      <div class="grid" style="--cols: 2;">
+        <div class="callout tint-rose">
+          <span class="callout__title">Why it exists</span>
+          <p class="callout__text">
+            You shouldn't have to be a recommender-systems expert to get a good one running.
+            Kindling does the tuning by reading your data at <code>fit()</code> time and turning on
+            only the machinery that data can actually support. No config flags to guess at.
+          </p>
+        </div>
+        <div class="callout tint-teal">
+          <span class="callout__title">What you get</span>
+          <p class="callout__text">
+            One fused base score per (user, item), plus z-normalized refinement channels, plus a
+            boost layer and cold-slots, computed end to end in a Rust core. Sub-millisecond single
+            recommendations; batch runs in parallel with the GIL released.
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <!-- ====================================================
+         INTELLIGENT ACTIVATION, the gate table
+         ==================================================== -->
+    <article class="card card--section" data-theme="launching">
+      <h2 class="card__title">Channels turn on by regime, not configuration</h2>
+      <p class="card__desc">
+        Every decision below is made from the data at <code>fit()</code> time. You don't pick the
+        model; the shape of your interactions picks it.
+      </p>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Channel</th>
+            <th>Turns on when</th>
+            <th>Does</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><code>EASE</code> base</td>          <td>catalog ≤ 20k items</td>                        <td>closed-form item-item base (matrix inversion, in Rust)</td></tr>
+          <tr><td><code>cooccurrence</code> base</td>  <td>catalog &gt; 20k items</td>                     <td>Wilson-normalized cooccurrence, scales past EASE</td></tr>
+          <tr><td>trend</td>                           <td>timestamps present</td>                          <td>recency-weighted popularity drift</td></tr>
+          <tr><td>transitions</td>                     <td>timestamps present, not a rating-burst</td>      <td>sequential last-item → next-item signal</td></tr>
+          <tr><td>user-CF</td>                          <td>sparse-history data</td>                         <td>user-user collaborative signal where it pays</td></tr>
+          <tr><td>rating-weighting</td>                <td>true ratings present</td>                        <td>weights the base by explicit rating, not just clicks</td></tr>
+          <tr><td>repeat gate</td>                      <td>genuine reorder regime (held-out check)</td>     <td>promotes repeat consumption; declines fake-repeat</td></tr>
+        </tbody>
+        <caption>The activation table, condensed. Full gate logic in <a href="https://github.com/rhoekstr/kindling/blob/main/docs/REFERENCE.md">REFERENCE.md</a> §2.</caption>
+      </table>
+    </article>
+
+    <!-- ====================================================
+         INSTALLATION
+         ==================================================== -->
+    <article class="card card--section palette-amber">
+      <h2 class="card__title">Installation</h2>
+
+      <div class="grid" style="--cols: 2;">
+        <div>
+          <div class="code-label">pip, from PyPI</div>
+<pre class="code"><code>pip install kindling-rec</code></pre>
+        </div>
+        <div>
+          <div class="code-label">from source, with dev extras</div>
+<pre class="code"><code>pip install -e ".[dev]"</code></pre>
+        </div>
+      </div>
+
+      <p class="card__desc">
+        Runtime dependencies are just numpy / pandas / scipy. The linear algebra that matters (the
+        EASE inversion, the channel blend, the serving path) runs on a pure-Rust core,
+        <code>kindling_core</code>, so there's no PyTorch, no BLAS system dependency, and no GPU.
+        A wheel that imports is a wheel that works. Add <code>".[dev,bench]"</code> for the
+        benchmark harness.
+      </p>
+    </article>
+
+    <!-- ====================================================
+         QUICK START
+         ==================================================== -->
+    <article class="card card--section palette-teal">
+      <h2 class="card__title">Quick start</h2>
+      <p class="card__desc">Fit on a table of interactions, then recommend. New and anonymous users are first-class.</p>
+
+      <div>
+        <div class="code-label">Fit and recommend</div>
+<pre class="code"><code>from kindling import Engine
+from kindling.loaders import movielens
+
+# columns: entity_id, item_id, timestamp[, rating]
+interactions = movielens.load_1m()
+
+engine = Engine()
+engine.fit(interactions)              # reads the data, gates the channels
+
+for rec in engine.recommend(entity_id=42, n=10):
+    print(rec.item_id, rec.score, rec.base_kind)
+
+# Many users at once, parallel in the Rust core (GIL released)
+batches = engine.recommend_batch([42, 99, 7], n=10)</code></pre>
+      </div>
+
+      <div>
+        <div class="code-label">Cold and anonymous users, no per-user training</div>
+<pre class="code"><code># personalized from a handful of seed items
+engine.recommend_for_items(item_ids=[101, 205], n=10)
+
+# nothing to go on? clean popularity fallback, same code path
+engine.recommend_for_items(item_ids=[], n=10)</code></pre>
+      </div>
+    </article>
+
+    <!-- ====================================================
+         RESULTS
+         ==================================================== -->
+    <article class="card card--section" data-theme="published">
+      <h2 class="card__title">Where it stands</h2>
+      <p class="card__desc">
+        Full-ranking NDCG@10, engine defaults. Strongest personalized model on all four headline
+        datasets, and it beats implicit ALS everywhere. No training loop, no GPU.
+      </p>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Dataset</th>
+            <th class="num">NDCG@10</th>
+            <th>What activates</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table__row--emphasis"><td>movielens-1m</td>      <td class="num">0.293</td> <td>rating-weighted EASE</td></tr>
+          <tr><td>steam (realistic)</td>  <td class="num">0.066</td> <td>open-catalog cooccurrence + cold slots</td></tr>
+          <tr><td>amazon-beauty</td>      <td class="num">0.033</td> <td>+ user-CF channel</td></tr>
+          <tr><td>amazon-book-chrono</td> <td class="num">0.032</td> <td>timestamps activate trend / transitions</td></tr>
+        </tbody>
+        <caption>Engine-default NDCG@10. The full record, including the negative results, is in <a href="https://github.com/rhoekstr/kindling/blob/main/docs/EXPERIMENTS.md">EXPERIMENTS.md</a>.</caption>
+      </table>
+
+      <div class="callout">
+        <span class="callout__title">The repeat regime is where it separates</span>
+        <p class="callout__text">
+          On datasets where people genuinely rebuy and replay (grocery, retail), a held-out gate
+          turns on reorder recommendation. Under repeat-aware evaluation, Kindling pulls away from
+          the field — Dunnhumby <strong>0.48 NDCG@10 versus ~0.05</strong> for every baseline —
+          while <em>correctly declining</em> on fake-repeat data like Steam, where a re-log isn't a
+          repurchase. The gate that turns the win on is the same gate that refuses the false one.
+        </p>
+      </div>
+    </article>
+
+    <!-- ====================================================
+         SERVING PERFORMANCE
+         ==================================================== -->
+    <article class="card card--section palette-slate">
+      <h2 class="card__title">Serving performance</h2>
+      <p class="card__desc">Native engine, measured by <code>bench/final_state_perf.py</code>. The recommend path is pure Rust.</p>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Dataset</th>
+            <th class="num">Fit</th>
+            <th class="num">Single recommend (p50)</th>
+            <th class="num">Batch throughput</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>movielens-1m</td>  <td class="num">4.2 s</td>   <td class="num">0.17 ms</td> <td class="num">15.4k recs/s</td></tr>
+          <tr><td>amazon-beauty</td> <td class="num">13.1 s</td>  <td class="num">1.21 ms</td> <td class="num">3.0k recs/s</td></tr>
+          <tr><td>steam</td>         <td class="num">110 s</td>   <td class="num">5.81 ms</td> <td class="num">0.8k recs/s</td></tr>
+        </tbody>
+        <caption>Single recommend dropped from ~200 ms on the earlier Python path to sub-millisecond, with byte-identical rankings.</caption>
+      </table>
+
+      <div class="kpi-row">
+        <div class="kpi tint-amber">
+          <span class="kpi__label">Single recommend</span>
+          <span class="kpi__value">0.17 ms</span>
+          <span class="kpi__caption">p50 on movielens-1m, pure-Rust serving path.</span>
+        </div>
+        <div class="kpi tint-violet">
+          <span class="kpi__label">Python → Rust</span>
+          <span class="kpi__value">~1000×</span>
+          <span class="kpi__caption">~200 ms down to sub-millisecond, rankings byte-identical.</span>
+        </div>
+        <div class="kpi tint-success">
+          <span class="kpi__label">Repeat regime</span>
+          <span class="kpi__value">~10×</span>
+          <span class="kpi__caption">Dunnhumby 0.48 vs ~0.05 NDCG@10 against every baseline.</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- ====================================================
+         ARCHITECTURE
+         ==================================================== -->
+    <article class="card card--section palette-violet">
+      <h2 class="card__title">Architecture</h2>
+      <p class="card__desc">
+        A thin Python API over a Rust numerics core. Python reads your data, decides the gates, and
+        orchestrates; the core does the linear algebra and the hot serving path.
+      </p>
+
+      <div class="grid" style="--cols: 2;">
+        <div class="obj" style="--card-accent: #0E8A80; --card-pill: rgba(14, 138, 128, 0.30);">
+          <div class="obj__num">Python</div>
+          <div class="obj__title">kindling</div>
+          <div class="obj__desc">
+            <code>Engine.fit/recommend</code>, the data loaders, the gate decisions, and the
+            serving wrapper. Depends on numpy / pandas / scipy only.
+          </div>
+        </div>
+        <div class="obj" style="--card-accent: #B84545; --card-pill: rgba(184, 69, 69, 0.30);">
+          <div class="obj__num">Rust</div>
+          <div class="obj__title">kindling_core</div>
+          <div class="obj__desc">
+            The EASE inversion, the channel blend, the boost layer, cold-slots, and the batch
+            recommend path. GIL released for parallel batches. No BLAS, no GPU.
+          </div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <span class="callout__title">Serving as an artifact</span>
+        <p class="callout__text">
+          Persist a fit as a self-contained artifact and serve it with no re-fit:
+          <code>KindlingServer.from_engine(engine).save("artifact/")</code>, then
+          <code>KindlingServer.load("artifact/")</code> in the serving process. A FastAPI example
+          ships behind an optional extra.
+        </p>
+      </div>
+    </article>
+
+    <!-- ====================================================
+         WHERE IT EARNS ITS KEEP
+         ==================================================== -->
+    <article class="card card--section" data-theme="launching">
+      <h2 class="card__title">Who it's for</h2>
+
+      <div class="grid" style="--cols: 2;">
+        <div class="obj" style="--card-accent: #C17D1E; --card-pill: rgba(193, 125, 30, 0.32);">
+          <div class="obj__num">Small teams</div>
+          <div class="obj__title">A good recommender without a research budget</div>
+          <div class="obj__desc">
+            No GPU bill, no training pipeline to maintain, no hyperparameter sweep. Install, fit,
+            serve. The defaults are the tuning.
+          </div>
+        </div>
+        <div class="obj" style="--card-accent: #0B8577; --card-pill: rgba(11, 133, 119, 0.32);">
+          <div class="obj__num">Cold catalogs</div>
+          <div class="obj__title">When most users have almost no history</div>
+          <div class="obj__desc">
+            Cold start is the baseline, not a bolt-on. New and anonymous users are served from seed
+            items immediately, popularity only when there's truly nothing to go on.
+          </div>
+        </div>
+        <div class="obj" style="--card-accent: #B91C1C; --card-pill: rgba(185, 28, 28, 0.32);">
+          <div class="obj__num">Reorder businesses</div>
+          <div class="obj__title">Grocery, retail, anything people rebuy</div>
+          <div class="obj__desc">
+            Repeat consumption is first-class. The repeat gate turns it on where it pays and
+            refuses it where re-logs aren't repurchases.
+          </div>
+        </div>
+        <div class="obj" style="--card-accent: #6B46C1; --card-pill: rgba(107, 70, 193, 0.32);">
+          <div class="obj__num">Honest benchmarking</div>
+          <div class="obj__title">A measured baseline to beat</div>
+          <div class="obj__desc">
+            A strong, fully-documented closed-form baseline, negative results included, before you
+            spend a quarter on something deeper.
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ====================================================
+         DOCUMENTATION + CITATION
+         ==================================================== -->
+    <article class="card card--section palette-rose">
+      <h2 class="card__title">Documentation &amp; citation</h2>
+
+      <div class="grid" style="--cols: 2;">
+        <div class="callout">
+          <span class="callout__title">Reference</span>
+          <p class="callout__text">
+            <a href="https://github.com/rhoekstr/kindling/blob/main/README.md">README</a> ·
+            <a href="https://github.com/rhoekstr/kindling/blob/main/docs/REFERENCE.md">API reference</a> ·
+            <a href="https://github.com/rhoekstr/kindling/blob/main/docs/RESULTS.md">Results</a> ·
+            <a href="https://github.com/rhoekstr/kindling/blob/main/docs/EXPERIMENTS.md">Experiment log</a> ·
+            <a href="https://github.com/rhoekstr/kindling/blob/main/docs/REPEAT-GATE.md">Repeat gate</a>
+          </p>
+        </div>
+        <div class="callout">
+          <span class="callout__title">License</span>
+          <p class="callout__text">
+            Apache 2.0, free for commercial, research, and government use. Alpha, and PRs are
+            welcome via GitHub Issues and Pull Requests.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <div class="code-label">BibTeX</div>
+<pre class="code"><code>@software{kindling2026,
+  author  = {Hoekstra, Robert},
+  title   = {Kindling: A Hybrid Recommender that Grows with Your Data},
+  year    = {2026},
+  url     = {https://github.com/rhoekstr/kindling},
+  version = {1.0.0}
+}</code></pre>
+      </div>
+    </article>
+
+    <!-- ====================================================
+         NON-GOALS
+         ==================================================== -->
+    <article class="card card--section" data-theme="upcoming">
+      <h2 class="card__title">What Kindling is not</h2>
+      <div class="grid" style="--cols: 3;">
+        <div class="callout">
+          <span class="callout__title">Not deep learning</span>
+          <p class="callout__text">No neural net, no embeddings to train, no GPU. If you need a two-tower model, this isn't it.</p>
+        </div>
+        <div class="callout">
+          <span class="callout__title">Not novel</span>
+          <p class="callout__text">A careful assembly of known, closed-form pieces. The contribution is the gating and the honesty, not a new algorithm.</p>
+        </div>
+        <div class="callout">
+          <span class="callout__title">Not state of the art</span>
+          <p class="callout__text">A solid engineering choice, measured against the field. Strongest <em>personalized</em> model on the test sets, not a leaderboard trophy.</p>
+        </div>
+      </div>
+    </article>
+
+  </main>
+
+  <footer class="footer">
+    <a href="/">awryLabs</a>
+    <span class="sep">·</span>
+    <a href="https://github.com/rhoekstr/kindling">rhoekstr/kindling</a>
+    <span class="sep">·</span>
+    <a href="about.html">About</a>
+    <span class="sep">·</span>
+    <a href="privacy.html">Privacy</a>
+    <span class="sep">·</span>
+    <span>© 2026 awryLabs</span>
+  </footer>
+
+</body>
+</html>

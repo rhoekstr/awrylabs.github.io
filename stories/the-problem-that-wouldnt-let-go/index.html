@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The problem that wouldn't let go · awryLabs</title>
+  <meta name="description" content="The backstory behind Kindling: the recommender-systems problem I once nearly did a PhD on, two months of not being able to leave it alone, and the unfashionable result that shallow, closed-form models still hold up." />
+  <meta name="author" content="Robert Hoekstra">
+  <link rel="canonical" href="https://awrylabs.com/stories/the-problem-that-wouldnt-let-go/">
+  <link rel="alternate" type="application/atom+xml" title="awryLabs Stories" href="/stories/feed.xml">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/awry.css?v=8">
+  <link rel="stylesheet" href="/assets/blog.css?v=1">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="The problem that wouldn't let go">
+  <meta property="og:description" content="The backstory behind Kindling: the recommender-systems problem I once nearly did a PhD on, two months of not being able to leave it alone, and the unfashionable result that shallow, closed-form models still hold up.">
+  <meta property="og:url" content="https://awrylabs.com/stories/the-problem-that-wouldnt-let-go/">
+  <meta property="og:image" content="https://awrylabs.com/assets/og/the-problem-that-wouldnt-let-go.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="awryLabs">
+  <meta property="article:published_time" content="2026-06-27">
+  <meta property="article:author" content="Robert Hoekstra">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "headline": "The problem that wouldn't let go",
+        "description": "The backstory behind Kindling: the recommender-systems problem I once nearly did a PhD on, two months of not being able to leave it alone, and the unfashionable result that shallow, closed-form models still hold up.",
+        "url": "https://awrylabs.com/stories/the-problem-that-wouldnt-let-go/",
+        "mainEntityOfPage": "https://awrylabs.com/stories/the-problem-that-wouldnt-let-go/",
+        "datePublished": "2026-06-27",
+        "dateModified": "2026-06-27",
+        "image": "https://awrylabs.com/assets/og/the-problem-that-wouldnt-let-go.png",
+        "author": { "@id": "https://awrylabs.com/#robert" },
+        "publisher": { "@id": "https://awrylabs.com/#organization" },
+        "isPartOf": { "@id": "https://awrylabs.com/#website" },
+        "about": "Recommender systems"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "awryLabs", "item": "https://awrylabs.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Stories", "item": "https://awrylabs.com/stories/" },
+          { "@type": "ListItem", "position": 3, "name": "The problem that wouldn't let go", "item": "https://awrylabs.com/stories/the-problem-that-wouldnt-let-go/" }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <nav class="nav">
+    <a class="wordmark" href="/"><span class="awry">awry</span><span class="labs">Labs</span></a>
+    <span class="nav-sep">/</span>
+    <a class="nav-crumb" href="/stories/">Stories</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-current">The problem that wouldn't let go</span>
+  </nav>
+
+  <main class="main" style="--article-accent: #C75B2A;">
+
+    <article class="article">
+
+      <p class="article__eyebrow">Backstory · Kindling</p>
+      <h1 class="article__title">The problem that wouldn't let go</h1>
+      <p class="article__standfirst">
+        I once nearly did a PhD on recommender systems. Instead I spent two months unable to leave
+        the problem alone, and learned that the unfashionable, shallow methods hold up better than
+        I'd assumed.
+      </p>
+
+      <div class="article__byline">
+        <img class="article__avatar" src="/assets/robert-hoekstra.jpg" width="44" height="44" alt="Robert Hoekstra">
+        <span class="article__byline-who">
+          <a class="article__byline-name" href="/me/">Robert Hoekstra</a>
+          <span class="article__byline-meta">June 2026 · 5 min read</span>
+        </span>
+      </div>
+
+      <div class="article__body">
+
+        <p>
+          Years ago, at Rev.io, I took a quick pass at a recommendation feature. It shipped, it
+          worked, and it bothered me. Not because it was broken. Because it was unfinished. I had
+          reached for the obvious approach, gotten something plausible, and walked away with the
+          distinct sense that I had skipped the interesting part. That feeling sat there, quietly,
+          for years.
+        </p>
+
+        <p>
+          Recommendation has been a slow pull of mine for a long time. Long enough that when I was
+          deciding what to do a doctorate in, one of the roads I seriously considered was computer
+          science, with recommender systems as the thing I would spend years on. I went a different
+          way (disaster sociology, where I still am) and I don't regret it. But a road not taken has
+          a way of leaving a light on in the window. The Rev.io itch was that light getting brighter.
+        </p>
+
+        <p>
+          So a little over two months ago I finally sat down with it. What came out is a library
+          called <a href="/kindling.html">Kindling</a>. The announcement is about what it does. This
+          is about the part that actually mattered, which was not the shipping but the chewing.
+        </p>
+
+        <h2>The chewing</h2>
+
+        <p>
+          Two months, mostly at the edges of the day. 219 commits. 26 experiment branches. 168
+          benchmark runs across 13 datasets. 20 experiments written up in full, the failures filed
+          right beside the wins. The loop was always the same: have an idea, test it, watch the
+          numbers reject it, sit with why, come back the next day with another. Most nights it was
+          where my mind wandered whether I planned it or not. The shower, the walk, 11pm when I
+          should have been asleep.
+        </p>
+
+        <p>
+          That is the real story of Kindling, more than any feature in it. Not a clever insight that
+          arrived whole, but a problem I could not put down, sanded smooth over sixty-odd days of
+          letting it marinate until it gave something up.
+        </p>
+
+        <p class="pull">
+          Have an idea, watch the numbers reject it, sit with why, come back the next day with
+          another. Let it marinate until it gives something up.
+        </p>
+
+        <h2>Two camps, both half right</h2>
+
+        <p>
+          Modern recommendation has two camps, and each is half right. One says capacity wins: give
+          a deep model enough data and it will learn structure no hand-built feature can match. The
+          other says most of the real value still lives in a handful of classical, closed-form
+          methods that have been quietly strong for a decade. The deep camp is right when the data
+          is rich. The classical camp is right that most real catalogs are not rich. They are
+          sparse, cold, and full of users you have barely seen.
+        </p>
+
+        <p>
+          The frame that holds both sits one level up: stop picking a model, and start matching the
+          model to the regime the data is actually in. That is the whole design of Kindling. It
+          reads the shape of your interactions when it fits, and turns on only the machinery the
+          data can support. A closed-form base for small catalogs, cooccurrence for large ones;
+          trend, sequential, and user-collaborative channels that each switch on by a measurable
+          property rather than a config flag you would have to guess at. Cold start is the baseline,
+          not a bolt-on. Repeat buying is first-class, because on grocery and retail data,
+          suppressing it throws away real accuracy.
+        </p>
+
+        <h2>What the chewing gave up</h2>
+
+        <p>
+          What surfaced surprised me, and I will own the assumption it corrected. I had quietly
+          filed the shallow, closed-form methods under obsolete, the kind of thing you learn for
+          context before moving on to the real models. Assembled with care and measured honestly,
+          they go toe to toe with the approaches I had assumed buried them. Full-ranking NDCG@10 of
+          0.293 on MovieLens-1M, the strongest personalized model on all four headline datasets,
+          beating implicit ALS everywhere. On grocery data where people genuinely rebuy, the gap
+          stops being polite: Dunnhumby at 0.48 against about 0.05 for every baseline. And the same
+          gate that turns that win on refuses the false version of it on Steam, where a re-log is a
+          replay, not a repurchase.
+        </p>
+
+        <p>
+          None of that is a single headline number, which is the point. There is a
+          <a href="/kindling.html">live chart on the Kindling page</a> that lets you watch each
+          model's accuracy grow from cold to warm, dataset by dataset. On some discovery catalogs,
+          plain popularity is a stubborn cold-start baseline that takes real history to beat, and I
+          left that in plain view. A benchmark you can only read in your own favor is not a
+          benchmark. The negative results are in the repo for the same reason. They are half the
+          value.
+        </p>
+
+        <h2>A solid, unglamorous choice</h2>
+
+        <p>
+          So the end result is a solid engineering choice. Not novel. Not state of the art. A
+          careful assembly of known pieces, gated well and graded without flinching. I would take
+          that over clever any day.
+        </p>
+
+        <p>
+          I ship most things because I want them to exist in the world. This one I built because it
+          would not let me go, and because a path I had talked myself out of, once, turned out to
+          still want walking. It is open source, Apache 2.0, at
+          <a href="https://github.com/rhoekstr/kindling" target="_blank" rel="noopener">github.com/rhoekstr/kindling</a>.
+          If you have a cold catalog, I would genuinely like to know what has held up on it...
+        </p>
+
+      </div>
+
+      <div class="article__end">
+        <img src="/assets/robert-hoekstra.jpg" width="56" height="56" alt="Robert Hoekstra">
+        <div class="article__end-body">
+          <strong>Robert Hoekstra</strong> builds independent software as
+          <a href="/">awryLabs</a>: games, libraries, and small tools, one project at a time.
+          More <a href="/me/">about me</a>, or see <a href="/kindling.html">Kindling</a> itself.
+        </div>
+      </div>
+
+      <p class="article__more"><a href="/stories/">← All stories</a></p>
+
+    </article>
+
+  </main>
+
+  <footer class="footer">
+    <a href="/">awryLabs</a>
+    <span class="sep">·</span>
+    <a href="/stories/">Stories</a>
+    <span class="sep">·</span>
+    <a href="/me/">Robert Hoekstra</a>
+    <span class="sep">·</span>
+    <a href="/privacy.html">Privacy</a>
+    <span class="sep">·</span>
+    <span>© 2026 awryLabs</span>
+  </footer>
+
+</body>
+</html>

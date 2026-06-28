@@ -5,9 +5,19 @@
   <link href="https://awrylabs.com/stories/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="https://awrylabs.com/stories/" rel="alternate" type="text/html"/>
   <id>https://awrylabs.com/stories/</id>
-  <updated>2026-06-27T00:00:00Z</updated>
+  <updated>2026-06-27T12:00:00Z</updated>
   <author><name>Robert Hoekstra</name><uri>https://awrylabs.com/me/</uri></author>
   <icon>https://awrylabs.com/favicon.svg</icon>
+
+  <entry>
+    <title>The problem that wouldn't let go</title>
+    <link href="https://awrylabs.com/stories/the-problem-that-wouldnt-let-go/" rel="alternate" type="text/html"/>
+    <id>https://awrylabs.com/stories/the-problem-that-wouldnt-let-go/</id>
+    <published>2026-06-27T12:00:00Z</published>
+    <updated>2026-06-27T12:00:00Z</updated>
+    <category term="Kindling"/>
+    <summary>The backstory behind Kindling: the recommender-systems problem I once nearly did a PhD on, two months of not being able to leave it alone, and the unfashionable result that shallow, closed-form models still hold up.</summary>
+  </entry>
 
   <entry>
     <title>Meaning is geometry</title>

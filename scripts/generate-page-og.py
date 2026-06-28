@@ -93,6 +93,7 @@ def card(slug, eyebrow, title, subtitle, accent, path):
 PROJECTS = [
     ("morass", "Game · iOS, iPadOS, macOS, watchOS", "Morass", "A calm strategy game about the complexity of power.", "#28b487", "morass"),
     ("gravel", "C++ / Python library", "Gravel", "Network-graph fragility: where is a place one closure from cut off?", "#5a9cd6", "gravel"),
+    ("kindling", "Python + Rust library", "Kindling", "A recommender that catches fast and grows with your data. No training loop, no GPU.", "#e8743c", "kindling"),
     ("wopr", "Web · React", "WOPR", "Five strategy games, and a war sim whose best ending is not playing.", "#00ff41", "wopr"),
     ("tyche", "Web · React + TypeScript", "Tyche", "A psychedelic randomizer for the small decisions you can't make.", "#ff3df0", "tyche"),
     ("embeddings", "Web · Vanilla JS", "Embedding Playground", "Meaning is geometry. Play with real word vectors in your browser.", "#e4c46a", "embeddings"),
@@ -101,6 +102,7 @@ PROJECTS = [
 STORIES = [
     ("the-line-you-cant-draw", "Backstory · Morass", "The line you can't quite draw", "", "#d08a5e", "stories/the-line-you-cant-draw"),
     ("the-question-routing-doesnt-ask", "Backstory · Gravel", "The question routing libraries don't ask", "", "#5a9cd6", "stories/the-question-routing-doesnt-ask"),
+    ("the-problem-that-wouldnt-let-go", "Backstory · Kindling", "The problem that wouldn't let go", "", "#e8743c", "stories/the-problem-that-wouldnt-let-go"),
     ("the-only-winning-move", "Backstory · WOPR", "The only winning move", "", "#3fbf63", "stories/the-only-winning-move"),
     ("outsourcing-the-small-decisions", "Backstory · Tyche", "Outsourcing the small decisions", "", "#bd7df0", "stories/outsourcing-the-small-decisions"),
     ("meaning-is-geometry", "Backstory · Embedding Playground", "Meaning is geometry", "", "#e4c46a", "stories/meaning-is-geometry"),
