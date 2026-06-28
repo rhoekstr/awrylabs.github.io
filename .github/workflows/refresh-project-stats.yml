@@ -1,10 +1,12 @@
 name: Refresh project stats
 
-# Pulls last-commit dates (and Gravel's release tag/date) from the
-# public project repos and bakes them into the awrylabs.com pages at
-# build time. No client-side JS is shipped to visitors; the GitHub
-# API is only ever talked to from this workflow, never from the
-# browser.
+# Two-step pipeline, no client-side JS shipped to visitors:
+#   1. fetch-stats.py  — one data grab from the public repos / PyPI into
+#      data/project-stats.json (the stored source of truth).
+#   2. inject-stats.py — render that snapshot into every page at build time.
+# The GitHub API and PyPI are only ever talked to from this workflow, never
+# from the browser. New projects are added in fetch-stats.py's registry and
+# inject-stats.py's page map, not here.
 
 on:
   schedule:
@@ -19,146 +21,32 @@ jobs:
   refresh:
     runs-on: ubuntu-latest
     permissions:
-      contents: write             # needed to commit refreshed pages
+      contents: write             # needed to commit refreshed data + pages
 
     steps:
       - uses: actions/checkout@v4
 
-      # ---------------------------------------------------------------
-      # Gravel — versioned library, so refresh tag + release date too.
-      # ---------------------------------------------------------------
-      - name: Refresh Gravel
+      # 1. One grab → store the snapshot.
+      - name: Fetch stats
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          set -euo pipefail
-          REPO="rhoekstr/gravel"
-          BRANCH=$(gh api "repos/$REPO" --jq .default_branch)
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/fetch-stats.py
 
-          if REL_JSON=$(gh api "repos/$REPO/releases/latest" 2>/dev/null); then
-            VERSION=$(jq -r .tag_name <<<"$REL_JSON")
-            RELEASED_RAW=$(jq -r .published_at <<<"$REL_JSON")
-            RELEASED=$(date -u -d "$RELEASED_RAW" '+%B %Y')
-          else
-            VERSION="Unreleased"
-            RELEASED="—"
-          fi
+      # 2. Render the stored snapshot into every mapped page.
+      - name: Render pages
+        run: python3 scripts/inject-stats.py --data data/project-stats.json
 
-          LAST_RAW=$(gh api "repos/$REPO/branches/$BRANCH" \
-                      --jq .commit.commit.committer.date)
-          LAST_COMMIT=$(date -u -d "$LAST_RAW" '+%Y-%m-%d')
-
-          python3 scripts/inject-stats.py \
-            --file gravel.html \
-            --set "version=$VERSION" \
-            --set "released=$RELEASED" \
-            --set "last-commit=$LAST_COMMIT"
-
-          echo "::notice title=Gravel::version=$VERSION · released=$RELEASED · last_commit=$LAST_COMMIT"
-
-      # ---------------------------------------------------------------
-      # Kindling — versioned library published to PyPI. Pull the version
-      # from PyPI (kindling-rec), the last-commit date from GitHub.
-      # ---------------------------------------------------------------
-      - name: Refresh Kindling
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          set -euo pipefail
-          REPO="rhoekstr/kindling"
-          BRANCH=$(gh api "repos/$REPO" --jq .default_branch)
-
-          if PYPI_VER=$(curl -fsSL "https://pypi.org/pypi/kindling-rec/json" | jq -r .info.version) \
-               && [ -n "$PYPI_VER" ] && [ "$PYPI_VER" != "null" ]; then
-            VERSION="v$PYPI_VER"
-          else
-            VERSION="v1.0.0"
-          fi
-
-          LAST_RAW=$(gh api "repos/$REPO/branches/$BRANCH" \
-                      --jq .commit.commit.committer.date)
-          LAST_COMMIT=$(date -u -d "$LAST_RAW" '+%Y-%m-%d')
-
-          python3 scripts/inject-stats.py \
-            --file kindling.html \
-            --set "version=$VERSION" \
-            --set "last-commit=$LAST_COMMIT"
-
-          echo "::notice title=Kindling::version=$VERSION · last_commit=$LAST_COMMIT"
-
-      # ---------------------------------------------------------------
-      # WOPR — webapp, no formal versioning. Just last-commit date.
-      # ---------------------------------------------------------------
-      - name: Refresh WOPR
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          set -euo pipefail
-          REPO="rhoekstr/wopr"
-          BRANCH=$(gh api "repos/$REPO" --jq .default_branch)
-          LAST_RAW=$(gh api "repos/$REPO/branches/$BRANCH" \
-                      --jq .commit.commit.committer.date)
-          LAST_COMMIT=$(date -u -d "$LAST_RAW" '+%Y-%m-%d')
-
-          python3 scripts/inject-stats.py \
-            --file wopr.html \
-            --set "last-commit=$LAST_COMMIT"
-
-          echo "::notice title=WOPR::last_commit=$LAST_COMMIT"
-
-      # ---------------------------------------------------------------
-      # Tyche — webapp, no formal versioning. Just last-commit date.
-      # ---------------------------------------------------------------
-      - name: Refresh Tyche
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          set -euo pipefail
-          REPO="rhoekstr/tyche"
-          BRANCH=$(gh api "repos/$REPO" --jq .default_branch)
-          LAST_RAW=$(gh api "repos/$REPO/branches/$BRANCH" \
-                      --jq .commit.commit.committer.date)
-          LAST_COMMIT=$(date -u -d "$LAST_RAW" '+%Y-%m-%d')
-
-          python3 scripts/inject-stats.py \
-            --file tyche.html \
-            --set "last-commit=$LAST_COMMIT"
-
-          echo "::notice title=Tyche::last_commit=$LAST_COMMIT"
-
-      # ---------------------------------------------------------------
-      # Embedding Playground — single-file teaching tool. Last-commit
-      # date is the only stat surfaced; no formal versioning either.
-      # ---------------------------------------------------------------
-      - name: Refresh Embeddings
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          set -euo pipefail
-          REPO="rhoekstr/embedding-playground"
-          BRANCH=$(gh api "repos/$REPO" --jq .default_branch)
-          LAST_RAW=$(gh api "repos/$REPO/branches/$BRANCH" \
-                      --jq .commit.commit.committer.date)
-          LAST_COMMIT=$(date -u -d "$LAST_RAW" '+%Y-%m-%d')
-
-          python3 scripts/inject-stats.py \
-            --file embeddings.html \
-            --set "last-commit=$LAST_COMMIT"
-
-          echo "::notice title=Embeddings::last_commit=$LAST_COMMIT"
-
-      # ---------------------------------------------------------------
       # Single commit covering whatever changed. If nothing changed
       # (no new releases, no new commits since last run), exit clean.
-      # ---------------------------------------------------------------
       - name: Commit and push if changed
         run: |
-          if git diff --quiet gravel.html kindling.html wopr.html tyche.html embeddings.html; then
-            echo "No project pages changed — skipping commit."
+          PATHS="data/project-stats.json index.html gravel.html kindling.html wopr.html tyche.html embeddings.html"
+          if git diff --quiet $PATHS; then
+            echo "Nothing changed — skipping commit."
             exit 0
           fi
           git config user.name  "awrylabs-stats[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add gravel.html kindling.html wopr.html tyche.html embeddings.html
-          git commit -m "stats: refresh project pages"
+          git add $PATHS
+          git commit -m "stats: refresh project data and pages"
           git push

@@ -1,0 +1,21 @@
+{
+  "gravel": {
+    "version": "v2.2.3",
+    "released": "April 2026",
+    "last-commit": "2026-04-20"
+  },
+  "kindling": {
+    "version": "v1.0.2",
+    "released": "June 2026",
+    "last-commit": "2026-06-28"
+  },
+  "wopr": {
+    "last-commit": "2026-06-27"
+  },
+  "tyche": {
+    "last-commit": "2026-05-07"
+  },
+  "embeddings": {
+    "last-commit": "2026-06-11"
+  }
+}
