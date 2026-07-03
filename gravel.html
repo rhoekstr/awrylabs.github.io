@@ -3,15 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gravel · awryLabs</title>
-  <meta name="description" content="Gravel: a C++/Python library for network graph fragility analysis. Built for roads, works on any network: electrical grids, telecom, water, or your own graph." />
+  <title>Gravel: network graph fragility analysis · awryLabs</title>
+  <meta name="description" content="Gravel: C++/Python network graph fragility analysis. Built for roads, works on any network. Now renders fragility visually, with a built-in FEMA flood pipeline." />
   <meta name="author" content="Robert Hoekstra">
   <link rel="canonical" href="https://awrylabs.com/gravel.html">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/awry.css?v=8">
+  <style>
+    /* 2.5.0 dashboard demo card */
+    .gv-demo { display: block; position: relative; border-radius: 12px; overflow: hidden;
+      border: 1px solid var(--card-border); box-shadow: 0 14px 34px -20px rgba(0,0,0,0.5);
+      margin: 0.5rem 0 0.2rem; background: #f6f5f2; }
+    .gv-demo img { width: 100%; display: block; }
+    .gv-demo__play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 66px; height: 66px; border-radius: 999px; background: rgba(20, 18, 13, 0.72);
+      color: #fff; display: grid; place-items: center; font-size: 1.4rem; line-height: 1;
+      padding-left: 5px; box-shadow: 0 8px 22px -6px rgba(0,0,0,0.6); transition: transform 0.16s ease; }
+    .gv-demo:hover .gv-demo__play { transform: translate(-50%, -50%) scale(1.07); }
+    .gv-demo__cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 0.7rem 0.95rem;
+      background: linear-gradient(to top, rgba(0,0,0,0.74), rgba(0,0,0,0)); color: #fff;
+      font-size: 0.85rem; font-weight: 600; }
+  </style>
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Gravel · awryLabs">
-  <meta property="og:description" content="A C++/Python library for network graph fragility analysis. Built for roads, works on any network: electrical grids, telecom, water, or your own graph.">
+  <meta property="og:title" content="Gravel: network graph fragility analysis · awryLabs">
+  <meta property="og:description" content="A C++/Python library for network graph fragility analysis. Built for roads, works on any network. Now renders fragility visually, with a built-in FEMA flood-hazard pipeline.">
   <meta property="og:url" content="https://awrylabs.com/gravel.html">
   <meta property="og:image" content="https://awrylabs.com/assets/og/gravel.png">
   <meta property="og:image:width" content="1200">
@@ -33,7 +48,7 @@
         "downloadUrl": "https://pypi.org/project/gravel-fragility/",
         "installUrl": "https://pypi.org/project/gravel-fragility/",
         "sameAs": ["https://github.com/rhoekstr/gravel", "https://pypi.org/project/gravel-fragility/"],
-        "softwareVersion": "2.2.3",
+        "softwareVersion": "2.5.0",
         "license": "https://www.apache.org/licenses/LICENSE-2.0",
         "description": "A C++/Python library for network graph fragility analysis. Built-in OpenStreetMap support for road networks; the same engine operates on any directed weighted graph (electrical grids, telecom, water) for disaster and national-security planning.",
         "author": { "@id": "https://awrylabs.com/#robert" },
@@ -67,14 +82,16 @@
          HERO
          ==================================================== -->
     <article class="card card--large" data-theme="published">
-      <div class="status status--corner" role="status">Published · <span data-stat="version">v2.2.3</span></div>
+      <div class="status status--corner" role="status">Published · <span data-stat="version">v2.5.0</span></div>
       <h1 class="card__title">Gravel</h1>
       <p class="card__desc">
         Network graph fragility analysis. Given a graph and a notion of "failure,"
         Gravel quantifies how badly connectivity degrades: which edges are load-bearing,
         which regions become isolated, and where redundancy is genuinely absent versus
         merely reduced. Ships with first-class OpenStreetMap support for road networks;
-        the analysis engine itself works on any directed weighted graph.
+        the analysis engine itself works on any directed weighted graph. Now it renders
+        those failures too, not just scores them: interactive flood-risk maps that play a
+        road network coming apart as the water rises.
       </p>
       <div class="badges">
         <span class="badge" style="background: #B8862B; color: #fff;">Apache 2.0</span>
@@ -91,11 +108,66 @@
         <a class="repo-link" href="/stories/the-question-routing-doesnt-ask/" style="background: var(--card-pill); color: var(--card-text-strong); border: 1px solid var(--card-border);">Read the story →</a>
       </div>
       <footer class="card__footer">
-        <span data-stat="version">v2.2.3</span>
+        <span data-stat="version">v2.5.0</span>
         &middot; released <span data-stat="released">April 2026</span>
-        &middot; last commit <span data-stat="last-commit">2026-04-20</span>
+        &middot; last commit <span data-stat="last-commit">2026-07-03</span>
         &middot; <a href="https://github.com/rhoekstr/gravel">rhoekstr/gravel</a>
       </footer>
+    </article>
+
+    <!-- ====================================================
+         NEW IN 2.5.0, see fragility, don't just compute it
+         ==================================================== -->
+    <article class="card card--section" data-theme="published">
+      <div class="status status--corner" role="status">New in <span data-stat="version">v2.5.0</span></div>
+      <h2 class="card__title">Now you can watch fragility happen</h2>
+      <p class="card__desc">
+        Fragility used to be a number Gravel returned. As of 2.5.0 it's something you can
+        watch: a visualization layer, a built-in FEMA flood-hazard pipeline, and six
+        analysis hot paths moved into the C++ engine behind the same Python API.
+      </p>
+
+      <a class="gv-demo" href="/gravel/asheville/">
+        <img src="/gravel/asheville/preview.jpg" width="1280" height="800" loading="lazy"
+             alt="A frame from the interactive dashboard: the dense Asheville road grid with FEMA flood zones tracing the rivers, red blocked crossings and yellow stranded roads, and a chart showing a third of trips severed.">
+        <span class="gv-demo__play" aria-hidden="true">&#9654;</span>
+        <span class="gv-demo__cap">Asheville under a severe FEMA flood &middot; 38% of trips severed at full inundation &middot; play the interactive dashboard &rarr;</span>
+      </a>
+
+      <div class="grid" style="--cols: 2;">
+        <div class="callout tint-teal">
+          <span class="callout__title">A visualization stack, two audiences</span>
+          <p class="callout__text">
+            Static colorblind-safe choropleths for the paper, WebGL maps that scale to
+            county-size networks, and self-contained animated dashboards that play the
+            failure sequence in any browser. No server, no notebook kernel.
+          </p>
+        </div>
+        <div class="callout tint-rose">
+          <span class="callout__title">FEMA flood data, built in</span>
+          <p class="callout__text">
+            <code>fetch_nfhl_flood_zones</code> pulls live hazard polygons from FEMA's
+            National Flood Hazard Layer; <code>flood_edge_probabilities</code> turns them
+            into per-edge closure probabilities that feed the fragility model.
+          </p>
+        </div>
+        <div class="callout tint-amber">
+          <span class="callout__title">Three-state coloring</span>
+          <p class="callout__text">
+            Roads directly blocked (red) are separated from roads left stranded (yellow)
+            over the still-connected network (blue), so amplification is visible: a handful
+            of flooded crossings isolate a far larger dry area than they physically touch.
+          </p>
+        </div>
+        <div class="callout tint-teal">
+          <span class="callout__title">Real road geometry</span>
+          <p class="callout__text">
+            Simplified graphs now carry the true road polyline, so maps trace actual roads
+            instead of straight lines between intersections. A geometry tolerance downscales
+            it natively for smaller share files.
+          </p>
+        </div>
+      </div>
     </article>
 
     <!-- ====================================================
@@ -341,6 +413,15 @@
       </div>
 
       <div>
+        <div class="code-label">Add the visualization + interop stack</div>
+<pre class="code"><code>pip install "gravel-fragility[viz,interop]"</code></pre>
+        <p class="card__desc" style="font-size:0.86rem; opacity:0.85; margin-top:0.5rem;">
+          Pulls in the static plots, WebGL maps, and self-contained dashboards
+          (<code>viz.dashboard_html</code>) plus the FEMA hazard loaders.
+        </p>
+      </div>
+
+      <div>
         <div class="code-label">From source</div>
 <pre class="code"><code>git clone https://github.com/rhoekstr/gravel.git
 cd gravel
@@ -362,7 +443,7 @@ cmake --build build -j</code></pre>
          ==================================================== -->
     <article class="card card--section palette-teal">
       <h2 class="card__title">Quick start</h2>
-      <p class="card__desc">Two examples: a synthetic graph (no geography), then a real OSM county.</p>
+      <p class="card__desc">Three examples: a synthetic graph (no geography), a real OSM county, then a flood scenario rendered to a shareable dashboard.</p>
 
       <div>
         <div class="code-label">Synthetic graph, any network</div>
@@ -399,6 +480,23 @@ print(f"isolation risk:        {result.isolation_risk:.3f}")
 print(f"reachable nodes:       {result.reachable_nodes}")
 print(f"directional coverage:  {result.directional_coverage:.2f}")</code></pre>
       </div>
+
+      <div>
+        <div class="code-label">Flood scenario → a self-contained dashboard</div>
+<pre class="code"><code>import gravel
+from gravel import hazards, viz
+
+g, _ = gravel.load_osm_graph_with_metadata("asheville.osm")
+sg = gravel.simplify_graph(g).graph
+flood = hazards.fetch_nfhl_flood_zones(bbox)                 # live FEMA NFHL
+probs = hazards.flood_edge_probabilities(sg, flood)
+order = viz.failure_sequence_from_probabilities(probs, seed=1, stages=50)
+viz.dashboard_html(sg, order, "dashboard.html", hazard=flood)   # one self-contained HTML file</code></pre>
+        <p class="card__desc" style="font-size:0.86rem; opacity:0.85; margin-top:0.5rem;">
+          That last call produces exactly the kind of file behind the
+          <a href="/gravel/asheville/">Asheville flood dashboard</a>.
+        </p>
+      </div>
     </article>
 
     <!-- ====================================================
@@ -406,7 +504,7 @@ print(f"directional coverage:  {result.directional_coverage:.2f}")</code></pre>
          ==================================================== -->
     <article class="card card--section" data-theme="published">
       <h2 class="card__title">Measured performance</h2>
-      <p class="card__desc">Apple M-series laptop, release build. Real OSM data at two scales.</p>
+      <p class="card__desc">Apple M-series laptop, 10 cores, release + OpenMP build. Real OSM data at two scales.</p>
 
       <table class="table">
         <thead>
@@ -417,32 +515,32 @@ print(f"directional coverage:  {result.directional_coverage:.2f}")</code></pre>
           </tr>
         </thead>
         <tbody>
-          <tr><td>OSM PBF load</td>                           <td class="num">0.36 s</td>   <td class="num">0.99 s</td></tr>
-          <tr><td>CH build</td>                               <td class="num">0.85 s</td>   <td class="num">3.92 s</td></tr>
-          <tr><td>CH distance query</td>                      <td class="num">3.8 µs</td>   <td class="num">8.8 µs</td></tr>
-          <tr><td>CH route (with path unpacking)</td>         <td class="num">82.7 µs</td>  <td class="num">144.8 µs</td></tr>
-          <tr><td>Distance matrix cell (OpenMP)</td>          <td class="num">5.5 µs</td>   <td class="num">6.3 µs</td></tr>
-          <tr><td>Route fragility (per path edge)</td>        <td class="num">~60 ms</td>   <td class="num">~124 ms</td></tr>
-          <tr class="table__row--emphasis"><td>Location fragility (MC=20)</td> <td class="num">2.1 s</td> <td class="num">~8 s</td></tr>
+          <tr><td>OSM PBF load</td>                           <td class="num">0.43 s</td>   <td class="num">0.96 s</td></tr>
+          <tr><td>Contraction-hierarchy build</td>            <td class="num">0.78 s</td>   <td class="num">3.81 s</td></tr>
+          <tr><td>CH distance query</td>                      <td class="num">3.5 µs</td>   <td class="num">7.8 µs</td></tr>
+          <tr><td>CH route (with path unpacking)</td>         <td class="num">80.5 µs</td>  <td class="num">112.8 µs</td></tr>
+          <tr><td>Distance-matrix cell (10 threads)</td>      <td class="num">0.6 µs</td>   <td class="num">1.3 µs</td></tr>
+          <tr><td>Route fragility (per path edge)</td>        <td class="num">~13 ms</td>   <td class="num">~28 ms</td></tr>
+          <tr class="table__row--emphasis"><td>Location fragility (MC=20, 50-mi radius)</td> <td class="num">0.11 s</td> <td class="num">1.0 s</td></tr>
         </tbody>
-        <caption>Swain Co. NC (200K nodes) and Buncombe Co. NC (593K nodes), real OSM data.</caption>
+        <caption>Swain Co. NC (200K nodes) and Buncombe Co. NC (593K nodes), real OSM data, 2026-07-01 baseline.</caption>
       </table>
 
       <div class="kpi-row">
         <div class="kpi tint-amber">
-          <span class="kpi__label">National per-county</span>
-          <span class="kpi__value">3.1 h</span>
-          <span class="kpi__caption">Isolation fragility for all 3,221 US counties, end to end.</span>
+          <span class="kpi__label">Flood-exposure pass</span>
+          <span class="kpi__value">228 ms</span>
+          <span class="kpi__caption">Per-edge flood probability across 101,760 edges and 250 FEMA zones (multi-zone point-in-polygon). It cost minutes in pure Python before 2.5.0.</span>
         </div>
         <div class="kpi tint-violet">
-          <span class="kpi__label">Inter-county</span>
-          <span class="kpi__value">~22 h</span>
-          <span class="kpi__caption">8,547 adjacent county pairs including 1,082 cross-state pairs via <code>osmium merge</code>.</span>
+          <span class="kpi__label">Moved into C++</span>
+          <span class="kpi__value">6 kernels</span>
+          <span class="kpi__caption">Analysis hot paths moved from Python into the engine behind identical wrappers. Same public API, just faster and more consistent.</span>
         </div>
         <div class="kpi tint-success">
-          <span class="kpi__label">v2.1 → v2.2 speedup</span>
-          <span class="kpi__value">~400×</span>
-          <span class="kpi__caption">Run the edge removals in reverse: a deletion forces a full CH-tree recompute, an insertion is a cheap IncrementalSSSP update. Remove all, add back, same answer, far less compute.</span>
+          <span class="kpi__label">Parallel scaling</span>
+          <span class="kpi__value">~5×</span>
+          <span class="kpi__caption">The parallel kernels scale roughly 5× from 1 to 10 threads, memory-bandwidth-bound past about 4.</span>
         </div>
       </div>
     </article>
@@ -648,7 +746,7 @@ print(f"directional coverage:  {result.directional_coverage:.2f}")</code></pre>
   title   = {Gravel: Network Graph Fragility Analysis},
   year    = {2026},
   url     = {https://github.com/rhoekstr/gravel},
-  version = {2.2.3}
+  version = {2.5.0}
 }</code></pre>
       </div>
     </article>

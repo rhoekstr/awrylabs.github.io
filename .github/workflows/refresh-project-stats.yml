@@ -40,7 +40,7 @@ jobs:
       # (no new releases, no new commits since last run), exit clean.
       - name: Commit and push if changed
         run: |
-          PATHS="data/project-stats.json index.html gravel.html kindling.html wopr.html tyche.html embeddings.html"
+          PATHS="data/project-stats.json index.html gravel.html kindling.html wopr.html tyche.html embeddings.html morass/index.html"
           if git diff --quiet $PATHS; then
             echo "Nothing changed — skipping commit."
             exit 0

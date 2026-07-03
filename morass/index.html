@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Morass · awryLabs</title>
+  <title>Morass: a calm turn-based strategy game · awryLabs</title>
   <meta name="description" content="Morass: a calm, turn-based strategy game of territory on living terrain. Place pins, read the terrain, hold the line. Free, no ads, no tracking. iPhone, iPad, Mac, Apple Watch." />
   <meta name="author" content="Robert Hoekstra">
   <link rel="canonical" href="https://awrylabs.com/morass/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/awry.css?v=8">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Morass · awryLabs">
+  <meta property="og:title" content="Morass: a calm turn-based strategy game · awryLabs">
   <meta property="og:description" content="A calm, turn-based strategy game of territory on living terrain. Place pins, read the terrain, hold the line. Free, no ads, no tracking.">
   <meta property="og:url" content="https://awrylabs.com/morass/">
   <meta property="og:image" content="https://awrylabs.com/assets/og/morass.png">
@@ -25,6 +25,7 @@
       {
         "@type": ["MobileApplication", "VideoGame"],
         "name": "Morass",
+        "softwareVersion": "1.1",
         "url": "https://awrylabs.com/morass/",
         "applicationCategory": "GameApplication",
         "operatingSystem": "iOS, iPadOS, macOS, watchOS",
@@ -91,13 +92,21 @@
     .ms-gallery figcaption { font-size: 0.76rem; color: var(--page-text-mute);
       margin-top: 0.6rem; text-align: center; line-height: 1.4; }
 
+    /* Mac showcase: a wide hero shot + a two-up of landscape frames */
+    .ms-macrow { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; margin-top: 0.9rem; }
+    .ms-macrow figure { margin: 0; }
+    .ms-macrow figcaption { font-size: 0.76rem; color: var(--card-text); opacity: 0.85;
+      margin-top: 0.55rem; text-align: center; line-height: 1.4; }
+
     /* Coming-soon CTA */
     .ms-finalcta { text-align: center; padding: 1rem 0 0.25rem; }
     .ms-finalcta h2 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.015em; margin: 0 0 0.35rem; }
     .ms-finalcta p { color: var(--page-text-mute); font-size: 0.92rem; margin: 0 0 1rem; }
     .ms-store { display: inline-flex; align-items: center; gap: 0.5rem;
-      background: var(--card-accent); color: #fff; padding: 0.6rem 1.15rem; border-radius: 9px;
-      font-weight: 600; font-size: 0.92rem; letter-spacing: -0.005em; }
+      background: var(--morass-rust); color: #fff; padding: 0.7rem 1.3rem; border-radius: 10px;
+      font-weight: 600; font-size: 0.95rem; letter-spacing: -0.005em; text-decoration: none;
+      transition: filter 0.15s ease; }
+    .ms-store:hover { filter: brightness(1.06); }
     .ms-store small { font-weight: 500; opacity: 0.85; font-size: 0.78rem; }
 
     @media (max-width: 720px) {
@@ -106,6 +115,7 @@
       .ms-hero .badges, .ms-hero .status { justify-content: center; }
       .ms-steps { grid-template-columns: 1fr; max-width: 280px; margin: 0 auto; }
       .ms-tiers { grid-template-columns: 1fr; }
+      .ms-macrow { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -122,8 +132,8 @@
     <p class="sr-only">Morass product page. A calm, turn-based strategy game of territory on living terrain, for iPhone, iPad, Mac, and Apple Watch. Free, with no ads and no tracking.</p>
 
     <!-- Hero -->
-    <article class="card card--large" data-theme="launching">
-      <div class="status status--corner" role="status">In development</div>
+    <article class="card card--large" data-theme="published">
+      <div class="status status--corner" role="status">On the App Store · <span data-stat="version">v1.1</span></div>
       <div class="ms-hero">
         <div>
           <h1 class="card__title">Morass</h1>
@@ -210,6 +220,21 @@
           <div class="obj__title">Quick match &amp; friends</div>
           <div class="obj__desc">Turn-based matches and friend challenges through Game Center. Take your turn when it suits you.</div>
         </div>
+      </div>
+    </article>
+
+    <!-- Now on the Mac -->
+    <article class="card card--section palette-teal">
+      <h2 class="card__title">Now on the Mac</h2>
+      <p class="card__desc">
+        One purchase covers every screen. On the Mac, the same quiet game opens in a
+        resizable window with your games listed alongside the board. Nothing added,
+        nothing louder, just more room to think.
+      </p>
+      <div class="ms-shot"><img src="/morass/screenshots/mac-01-hero.png" alt="Morass on the Mac: the games list and a live board side by side in one window." loading="lazy"></div>
+      <div class="ms-macrow">
+        <figure><div class="ms-shot"><img src="/morass/screenshots/mac-04-newgame.png" alt="The new-game panel on Mac: tutorial, practice, two players, or play the computer." loading="lazy"></div><figcaption>Start a game: solo, practice, or across the table.</figcaption></figure>
+        <figure><div class="ms-shot"><img src="/morass/screenshots/mac-03-trend.png" alt="The ownership-over-time chart on Mac, the lead tightening move by move." loading="lazy"></div><figcaption>Ownership over time, the lead tightening.</figcaption></figure>
       </div>
     </article>
 
@@ -303,7 +328,7 @@
     </section>
 
     <!-- Availability & the coffee -->
-    <article class="card card--section" data-theme="launching">
+    <article class="card card--section" data-theme="published">
       <h2 class="card__title">Free to play, and a coffee, if it earns one</h2>
       <p class="card__desc">
         Every mode, every feature, no ads, no subscription. The only thing you can buy is a
@@ -327,17 +352,16 @@
           <div class="ms-tier__price">$5</div>
         </div>
       </div>
-      <div class="alert alert--info">
-        Not yet on the App Store. It's in development now. Check back, or
-        <a href="mailto:coffee@awrylabs.com" style="color:inherit;">drop a line</a> to hear when it lands.
+      <div class="alert alert--success">
+        Morass <span data-stat="version">v1.1</span> is on the App Store now — free, for iPhone, iPad, Mac, and Apple Watch.
       </div>
     </article>
 
     <!-- Final CTA -->
-    <section class="ms-finalcta" data-theme="launching">
+    <section class="ms-finalcta">
       <h2>Find the line.</h2>
-      <p>Coming to iPhone, iPad, Mac, and Apple Watch.</p>
-      <span class="ms-store">&#63743;&nbsp; <span>Coming soon to the<br><small>App Store</small></span></span>
+      <p>Free on iPhone, iPad, Mac, and Apple Watch.</p>
+      <a class="ms-store" href="https://apps.apple.com/app/id6782670807" aria-label="Download Morass on the App Store">&#63743;&nbsp; <span>Download on the<br><small>App Store</small></span></a>
     </section>
 
   </main>

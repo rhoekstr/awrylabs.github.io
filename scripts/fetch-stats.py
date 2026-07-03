@@ -27,16 +27,19 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 STORE = ROOT / "data" / "project-stats.json"
 
-# repo: the public GitHub repo (for the last-commit date, always).
+# repo: the public GitHub repo, sourced for the last-commit date when present.
 # version: how to source a version + release date, if the project is
 #   versioned. "github-release" reads the latest GitHub Release; "pypi:NAME"
 #   reads PyPI. Omit for unversioned web apps (last-commit only).
+# appstore: an App Store numeric app id, sourced for version / release date /
+#   price via Apple's public iTunes Lookup API. No repo or last-commit needed.
 PROJECTS: dict[str, dict[str, str]] = {
-    "gravel": {"repo": "rhoekstr/gravel", "version": "github-release"},
+    "gravel": {"repo": "rhoekstr/gravel", "version": "pypi:gravel-fragility"},
     "kindling": {"repo": "rhoekstr/kindling", "version": "pypi:kindling-rec"},
     "wopr": {"repo": "rhoekstr/wopr"},
     "tyche": {"repo": "rhoekstr/tyche"},
     "embeddings": {"repo": "rhoekstr/embedding-playground"},
+    "morass": {"appstore": "6782670807"},
 }
 
 
@@ -90,6 +93,22 @@ def pypi(pkg: str) -> dict[str, str]:
     return out
 
 
+def app_store(app_id: str, country: str = "us") -> dict[str, str]:
+    data = _get(f"https://itunes.apple.com/lookup?id={app_id}&country={country}")
+    results = data.get("results") or []
+    if not results:
+        raise LookupError(f"app {app_id} not in the {country!r} storefront")
+    app = results[0]
+    out = {"version": f"v{app['version']}"}
+    if app.get("releaseDate"):
+        out["released"] = _iso(app["releaseDate"]).strftime("%B %Y")
+    if app.get("currentVersionReleaseDate"):
+        out["updated"] = _iso(app["currentVersionReleaseDate"]).strftime("%Y-%m-%d")
+    if app.get("formattedPrice"):
+        out["price"] = app["formattedPrice"]
+    return out
+
+
 def fetch(name: str, spec: dict[str, str]) -> dict[str, str]:
     stats: dict[str, str] = {}
     source = spec.get("version")
@@ -97,7 +116,10 @@ def fetch(name: str, spec: dict[str, str]) -> dict[str, str]:
         stats.update(github_release(spec["repo"]))
     elif source and source.startswith("pypi:"):
         stats.update(pypi(source.split(":", 1)[1]))
-    stats["last-commit"] = last_commit(spec["repo"])
+    if "appstore" in spec:
+        stats.update(app_store(spec["appstore"]))
+    if "repo" in spec:
+        stats["last-commit"] = last_commit(spec["repo"])
     return stats
 
 

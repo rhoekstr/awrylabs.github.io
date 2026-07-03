@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Asheville flood fragility · Gravel · awryLabs</title>
+  <meta name="description" content="A severe FEMA flood over Asheville's roads, rendered with Gravel: flooded crossings drop out, the roads they strand turn yellow, and 38% of trips severed." />
+  <meta name="author" content="Robert Hoekstra">
+  <link rel="canonical" href="https://awrylabs.com/gravel/asheville/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/awry.css?v=8">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Asheville flood fragility · Gravel">
+  <meta property="og:description" content="A severe FEMA flood over Asheville's roads: flooded crossings drop out, the roads they strand turn yellow, and 38% of trips are severed. Built with Gravel 2.5.0.">
+  <meta property="og:url" content="https://awrylabs.com/gravel/asheville/">
+  <meta property="og:image" content="https://awrylabs.com/gravel/asheville/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="awryLabs">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "name": "Asheville flood fragility",
+        "url": "https://awrylabs.com/gravel/asheville/",
+        "description": "An interactive fragility dashboard: a severe FEMA flood over the Asheville metro road network, built with Gravel 2.5.0.",
+        "isPartOf": { "@id": "https://awrylabs.com/#website" },
+        "about": { "@id": "https://awrylabs.com/gravel.html" },
+        "image": "https://awrylabs.com/gravel/asheville/og.jpg"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "awryLabs", "item": "https://awrylabs.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Gravel", "item": "https://awrylabs.com/gravel.html" },
+          { "@type": "ListItem", "position": 3, "name": "Asheville flood", "item": "https://awrylabs.com/gravel/asheville/" }
+        ]
+      }
+    ]
+  }
+  </script>
+  <style>
+    .gv { --flood: #B5532A; }
+    @media (prefers-color-scheme: dark) { .gv { --flood: #D08A5E; } }
+
+    .gv-lead { font-size: 1.05rem; line-height: 1.6; color: var(--page-text); max-width: 62ch; }
+    .gv-lead .hot { color: var(--flood); font-weight: 650; }
+
+    /* Click-to-load dashboard embed: the 14.8 MB deck.gl file only loads on tap. */
+    .dash { position: relative; width: 100%; aspect-ratio: 16 / 10; min-height: 520px;
+      border-radius: 14px; overflow: hidden; background: #f6f5f2;
+      border: 1px solid var(--page-border); box-shadow: 0 18px 44px -26px rgba(0,0,0,0.5); }
+    .dash__poster { display: block; width: 100%; height: 100%; padding: 0; margin: 0;
+      border: 0; cursor: pointer; background: #f6f5f2; position: relative; }
+    .dash__poster img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+    .dash__play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 76px; height: 76px; border-radius: 999px; background: rgba(20, 18, 13, 0.74);
+      color: #fff; font-size: 1.6rem; line-height: 1; display: grid; place-items: center;
+      padding-left: 5px; box-shadow: 0 10px 26px -8px rgba(0,0,0,0.6);
+      transition: transform 0.16s ease, background 0.16s ease; }
+    .dash__poster:hover .dash__play { transform: translate(-50%, -50%) scale(1.07); background: var(--flood); }
+    .dash__hint { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%);
+      background: rgba(20, 18, 13, 0.74); color: #fff; font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.01em; padding: 0.36rem 0.75rem; border-radius: 999px; white-space: nowrap; }
+    .dash__frame { width: 100%; height: 100%; border: 0; display: block; }
+
+    .gv-legend { display: flex; flex-wrap: wrap; gap: 0.5rem 1.1rem; margin: 0.2rem 0 0.4rem; }
+    .gv-chip { display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.86rem;
+      color: var(--card-text); font-weight: 600; }
+    .gv-chip::before { content: ""; width: 13px; height: 13px; border-radius: 3px; background: var(--c); }
+    .gv-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.4rem; }
+  </style>
+</head>
+<body class="gv">
+
+  <nav class="nav">
+    <a class="wordmark" href="/"><span class="awry">awry</span><span class="labs">Labs</span></a>
+    <span class="nav-sep">/</span>
+    <a class="nav-crumb" href="/gravel.html">Gravel</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-current">Asheville flood</span>
+  </nav>
+
+  <main class="main">
+
+    <header>
+      <p class="section-label">Built with Gravel 2.5.0</p>
+      <h1 class="card__title" style="font-size: 1.9rem; margin: 0.2rem 0 0.6rem;">A flood, playing out on Asheville's roads</h1>
+      <p class="gv-lead">
+        The Asheville metro road network, about 50,000 intersections and 103,000 road
+        segments, under a severe FEMA flood scenario. Press play: flooded crossings drop
+        out in <span class="hot">red</span>, the dry roads they strand turn
+        <span class="hot" style="--flood:#C9A227; color:#9A7B0A;">yellow</span>, and the
+        chart tracks the cost. By full inundation, <span class="hot">38% of trips are
+        severed</span>. The damage isn't where the water is; it's downstream of it.
+      </p>
+    </header>
+
+    <!-- Click-to-load dashboard (deck.gl, ~14.8 MB, self-contained, no external calls) -->
+    <div class="dash" id="dash">
+      <button class="dash__poster" id="dashLoad" type="button" aria-label="Load and play the interactive flood dashboard">
+        <img src="preview.jpg" width="1280" height="800" alt="A frame from the dashboard: the dense Asheville road grid with FEMA flood zones tracing the rivers, red blocked crossings and yellow stranded roads, and a chart showing 33% of trips severed." />
+        <span class="dash__play" aria-hidden="true">&#9654;</span>
+        <span class="dash__hint">Play the interactive dashboard &middot; ~15&nbsp;MB</span>
+      </button>
+      <noscript>
+        <a class="repo-link" href="dashboard.html" style="position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);">Open the interactive dashboard &rarr;</a>
+      </noscript>
+    </div>
+
+    <article class="card card--section" data-theme="published">
+      <div class="gv-legend">
+        <span class="gv-chip" style="--c:#C62828;">Blocked &mdash; road directly flooded or closed</span>
+        <span class="gv-chip" style="--c:#C9A227;">Stranded &mdash; dry road, cut off because the network around it failed</span>
+        <span class="gv-chip" style="--c:#2E6FB5;">Connected &mdash; still reachable</span>
+      </div>
+      <p class="card__desc" style="margin-top:0.5rem;">
+        That second color is the whole point. A handful of blocked river crossings strand a
+        far larger area than they physically touch. In a network, failure is not local. This
+        is topology, not a traffic simulation: it answers <em>what gets cut off</em>, not
+        <em>how bad the jam is</em>.
+      </p>
+      <p class="card__desc" style="opacity:0.82; font-size:0.86rem;">
+        Data: FEMA National Flood Hazard Layer (Special Flood Hazard Area + 500-year),
+        with storm-debris closures. Road geometry from OpenStreetMap. The whole dashboard is
+        a single self-contained HTML file rendered client-side; it makes no external calls.
+      </p>
+      <div class="gv-actions">
+        <a class="repo-link" href="dashboard.html" target="_blank" rel="noopener" style="background: var(--card-accent); color:#fff;">Open full-screen &rarr;</a>
+        <a class="repo-link" href="/gravel.html">&larr; Back to Gravel</a>
+        <a class="repo-link" href="https://pypi.org/project/gravel-fragility/" target="_blank" rel="noopener">gravel-fragility on PyPI</a>
+        <a class="repo-link" href="https://github.com/rhoekstr/gravel" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </article>
+
+  </main>
+
+  <footer class="footer">
+    <a href="/">awryLabs</a>
+    <span class="sep">·</span>
+    <a href="/gravel.html">Gravel</a>
+    <span class="sep">·</span>
+    <a href="https://github.com/rhoekstr/gravel">rhoekstr/gravel</a>
+    <span class="sep">·</span>
+    <a href="/privacy.html">Privacy</a>
+    <span class="sep">·</span>
+    <span>© 2026 awryLabs</span>
+  </footer>
+
+  <script>
+    (function () {
+      var btn = document.getElementById('dashLoad');
+      if (!btn) return;
+      btn.addEventListener('click', function () {
+        var frame = document.createElement('iframe');
+        frame.src = 'dashboard.html';
+        frame.title = 'Asheville flood fragility dashboard';
+        frame.className = 'dash__frame';
+        frame.setAttribute('allowfullscreen', '');
+        var wrap = document.getElementById('dash');
+        wrap.textContent = '';
+        wrap.appendChild(frame);
+      });
+    })();
+  </script>
+
+</body>
+</html>

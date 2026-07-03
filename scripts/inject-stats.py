@@ -45,6 +45,7 @@ PAGES: list[dict] = [
     {"file": "wopr.html", "project": "wopr"},
     {"file": "tyche.html", "project": "tyche"},
     {"file": "embeddings.html", "project": "embeddings"},
+    {"file": "morass/index.html", "project": "morass", "cascade": True},
 ]
 
 # Shared pages whose badges pull a single field from several projects.
@@ -53,6 +54,7 @@ AGGREGATE_PAGES: dict[str, dict[str, tuple[str, str]]] = {
     "index.html": {
         "gravel-version": ("gravel", "version"),
         "kindling-version": ("kindling", "version"),
+        "morass-version": ("morass", "version"),
     },
 }
 
