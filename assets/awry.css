@@ -161,6 +161,21 @@ a { color: inherit; }
   --card-status-dot:  #B8862B;
 }
 
+/* Morass brand: warm sand + rust on a warm ground, sampled from the app palette. */
+.palette-morass {
+  --card-bg:          #F3E7CF;
+  --card-surface:     #E9D9BB;
+  --card-border:      #CBA274;
+  --card-pill:        #E2D0AC;
+  --card-accent:      #B5532A;
+  --card-text:        #6E4A2C;
+  --card-text-strong: #46301A;
+  --card-border-style: solid;
+  --card-status-bg:   #E9D9BB;
+  --card-status-text: #6E4A2C;
+  --card-status-dot:  #B5532A;
+}
+
 .palette-rose {
   --card-bg:          #FDEDED;
   --card-surface:     #FAD4D4;
@@ -373,6 +388,18 @@ a { color: inherit; }
     --card-status-bg:   #3A2B10;
     --card-status-text: #D4B880;
     --card-status-dot:  #E0B35C;
+  }
+  .palette-morass {
+    --card-bg:          #241D12;
+    --card-surface:     #31281A;
+    --card-border:      #6E5734;
+    --card-pill:        #3B3020;
+    --card-accent:      #D08A5E;
+    --card-text:        #D7C7A8;
+    --card-text-strong: #F0E8D7;
+    --card-status-bg:   #31281A;
+    --card-status-text: #D7C7A8;
+    --card-status-dot:  #D08A5E;
   }
   .palette-rose {
     --card-bg:          #2B0F0F;
