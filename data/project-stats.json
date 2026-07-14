@@ -1,8 +1,8 @@
 {
   "gravel": {
-    "version": "v2.10.0",
+    "version": "v3.0.0",
     "released": "April 2026",
-    "last-commit": "2026-07-12"
+    "last-commit": "2026-07-14"
   },
   "kindling": {
     "version": "v1.0.3",
